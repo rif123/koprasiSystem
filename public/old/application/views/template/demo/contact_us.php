@@ -1,0 +1,1 @@
+<?php include"./assets/".$template."/contact_us.php"; ?>

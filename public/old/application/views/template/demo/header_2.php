@@ -1,0 +1,1 @@
+<?php include"./assets/".$template."/header_2.php"; ?>

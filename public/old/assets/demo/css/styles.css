@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url('reset.css');
+@import url('flexslider.css');
+@import url('jcarousel_tango.css');
+@import url('simpletabs.css');
+@import url('short_codes.css');
+@import url('base.css');
+@import url('responsive.css');
+
+.alt_page_navigation {padding-bottom: 10px;padding: 7px 0px;	border: solid 1px #dedede;border-width: 1px 0px;margin-bottom: 20px;display: inline-block;width: 100%;}
+.alt_page_navigation a {	padding: 3px 5px;margin: 2px;color: white;text-decoration: none;float: left;font-size: 12px;background-color: #DB5C04;}
+.active_page {background-color: white !important;color: black !important;}
+
+

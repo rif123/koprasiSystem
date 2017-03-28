@@ -1,0 +1,1 @@
+<?php include"./assets/".$template."/myaccount.php"; ?>

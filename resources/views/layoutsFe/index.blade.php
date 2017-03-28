@@ -1,0 +1,5 @@
+@include('layoutsFe.header')
+@include('layoutsFe.menu')
+    @yield('content')
+@include('layoutsFe.footer-menu')
+@include('layoutsFe.footer')

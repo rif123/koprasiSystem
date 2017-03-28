@@ -1,0 +1,1 @@
+<?php include"./assets/".$template."/login_or_register.php"; ?>
