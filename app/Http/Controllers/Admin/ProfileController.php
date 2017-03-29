@@ -34,12 +34,13 @@ class ProfileController extends Controller
 
 		// $data = MA::all();
 		echo "<pre>";
-		// print_r(\Session::all());die;
         print_R(\Input::all());die;
+		// save M_anggota
 		$mAnggota = new MA;
         $mAnggota->nm_anggota = \Input::get('nm_anggota');
         $mAnggota->save();
 
+		// save m_pribadi
 		$mPribadi = new MP;
 		$mPribadi->tempat_lahir_pribadi = \Input::get('tempat_lahir_pribadi');
 		$mPribadi->npwp_pribadi = \Input::get('npwp_pribadi');
