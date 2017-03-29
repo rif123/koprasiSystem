@@ -20,6 +20,7 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
 
         // profile
         Route::get('/profile', ['uses'=>'ProfileController@index', 'as'=>'profile.index']);
+        Route::post('/profile-create', ['uses'=>'ProfileController@create', 'as'=>'profile.create']);
 
 
         Route::get('/error', 'DashboardController@privilege');

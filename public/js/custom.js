@@ -13,10 +13,12 @@ define([
 		'customIndex',
 		'jquerydatatables',
 		'swal',
+		'jqueryForm',
+		'profile',
+
 	], function ($){
 		$(document).ready(function(){
 		var mediaObj;
-
 		$('#addNewSocial').on('click',function(){
 			var myvar = '<div class="panel panel-default">'+
 			'<div class="panel-body">'+
@@ -55,9 +57,8 @@ define([
 			'</div>'+
 			'</div>'+
 			'</div>';
-			console.log("Ads");
 			$(myvar).insertBefore('#addNewSocial');
-	
+
 		});
 
 		$('.clearupload').on('click',function(){
@@ -105,7 +106,7 @@ define([
     			}
 	    		$('#modal').modal('toggle');
     		}
-	    		
+
     	});
 
     	$('.alertButton').on('click',function(e){

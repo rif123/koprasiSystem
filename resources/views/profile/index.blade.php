@@ -12,11 +12,10 @@
             </h2>
             <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
-                     <button type="button" class="btn btn-primary waves-effect">SAVE</button>
+                     <button type="button" class="btn btn-primary waves-effect btn-profile">SAVE</button>
                 </li>
             </ul>
         </div>
-
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
@@ -26,19 +25,22 @@
                        <li role="presentation"><a href="#profile" data-toggle="tab">DATA USAHA</a></li>
                        <li role="presentation"><a href="#messages" data-toggle="tab">DOC & LEGAL</a></li>
                     </ul>
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="home">
-                             @include('profile.index.dataPribadi')
-                        </div>
+                    <form id="form-anggota" action="{{url(route('profile.create'))}}" method="post" enctype="multipart/form-data">
+                        {!! Form::token() !!}
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                 @include('profile.index.dataPribadi')
+                            </div>
 
-                        <div role="tabpanel" class="tab-pane fade" id="profile">
-                            @include('profile.index.dataUsaha')
-                        </div>
+                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                @include('profile.index.dataUsaha')
+                            </div>
 
-                        <div role="tabpanel" class="tab-pane fade" id="messages">
-                            @include('profile.index.dataDocLegal')
+                            <div role="tabpanel" class="tab-pane fade" id="messages">
+                                @include('profile.index.dataDocLegal')
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

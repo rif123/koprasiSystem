@@ -27,6 +27,12 @@ require.config({
 		},
 		'customIndex' : {
 			deps: ['jquery']
+		},
+		'jqueryForm' : {
+			deps: ['jquery']
+		},
+		'profile' : {
+			deps: ['jquery']
 		}
 	},
 	paths : {
@@ -47,5 +53,7 @@ require.config({
         jquerydatatables  : 'plugins/jquery-datatable/jquery.dataTables',
         swal  : 'plugins/sweetalert/sweetalert.min',
         leanmodal  : 'plugins/jquery-leanmodal/jquery.leanModal.min',
+        jqueryForm  : 'plugins/form/jqueryForm',
+        profile  : 'js/profile/profile',
 	}
 });

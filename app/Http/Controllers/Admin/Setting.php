@@ -14,7 +14,7 @@ class Setting extends Controller {
 	public function index(){
         $data = ST::select('setting_name','value')->whereIn('setting_name',Array("site_title","site_description","meta_description","meta_keyword","site_logo"))->get()->toArray();
         $b= array();
-        
+
         foreach($data as $a => $c){
              $b[$c['setting_name']] = $c['value'];
         }
@@ -24,7 +24,7 @@ class Setting extends Controller {
     public function location(){
         $data = ST::select('setting_name','value')->whereIn('setting_name',Array("latitude","longitude","marker_text"))->get()->toArray();
         $b= array();
-        
+
         foreach($data as $a => $c){
              $b[$c['setting_name']] = $c['value'];
         }
@@ -59,7 +59,7 @@ class Setting extends Controller {
     public function footer(){
         $data = ST::select('setting_name','value')->whereIn('setting_name',Array("footer_text"))->get()->toArray();
         $b= array();
-        
+
         foreach($data as $a => $c){
              $b[$c['setting_name']] = $c['value'];
         }
@@ -99,7 +99,7 @@ class Setting extends Controller {
 
     public function footerProcess(){
         $rules = array(
-            'footertext'    => 'required'    
+            'footertext'    => 'required'
         );
 
         $validator = \Validator::make(\Input::all(), $rules);
@@ -119,11 +119,11 @@ class Setting extends Controller {
 
     public function generalProcess(){
         $rules = array(
-            'title'    => 'required', 
-            'description' => 'required',    
-            'metadescription' => 'required', 
-            'metakeyword' => 'required', 
-            'img' => 'image|mimes:jpg,png,jpeg|max:1024|min:1',        
+            'title'    => 'required',
+            'description' => 'required',
+            'metadescription' => 'required',
+            'metakeyword' => 'required',
+            'img' => 'image|mimes:jpg,png,jpeg|max:1024|min:1',
         );
 
         $validator = \Validator::make(\Input::all(), $rules);
@@ -137,7 +137,7 @@ class Setting extends Controller {
             $metadescription = (strlen(\Input::get('metadescription')) < 1)?"Default":\Input::get('metadescription');
             $metakeyword = (strlen(\Input::get('metakeyword')) < 1)?"Default":\Input::get('metakeyword');
             $imageName = '/default/logo.png';
-              
+
             if(\Input::hasFile('img')){
                 $imageName = \Input::file('img')->getClientOriginalName();
                 \Input::file("img")->move(public_path().'/images/image-gallery/', $imageName);
@@ -147,7 +147,7 @@ class Setting extends Controller {
               }
 
             $affected = \DB::update("update settings set `value` = CASE setting_name WHEN 'site_title' THEN ? WHEN 'site_description' THEN ?  WHEN 'meta_description' THEN ?  WHEN 'meta_keyword' THEN ?  WHEN 'site_logo' THEN ? END where setting_name IN('site_title','site_description','meta_description','meta_keyword','site_logo')", [$title,$description,$metadescription,$metakeyword,$imageName]);
-            
+
             return \Redirect::to($_ENV['ADMIN_FOLDER'].'/setting')->with(["success"=>"Data saved"]);
         }
 
@@ -155,7 +155,7 @@ class Setting extends Controller {
 
 	public function profile(){
 		$id = \Auth::user()->id;
-        
+
 		$data = US::where('id',$id)->get()->toArray();
 		$b= array();
 		foreach($data[0] as $a => $c){
@@ -167,8 +167,8 @@ class Setting extends Controller {
 	public function profileProcess(){
 		$id = \Auth::user()->id;
 		$rules = array(
-            'uname'    => 'required|min:4', 
-            'email' => 'required|email',	
+            'uname'    => 'required|min:4',
+            'email' => 'required|email',
         );
 
         $validator = \Validator::make(\Input::all(), $rules);
@@ -180,7 +180,7 @@ class Setting extends Controller {
         	$update = US::find($id);
         	$update->uname = \Input::get('uname');
         	$update->email = \Input::get('email');
-        	  
+
         	if(\Input::has("newpass")){
         		$oldpassword = \Input::get('oldpass');
         		$newpassword = \Input::get("newpass");
