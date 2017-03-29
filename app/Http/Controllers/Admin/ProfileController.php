@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 use App\Models\MdataPribadi as mdp;
 use App\Models\MAnggota as MA;
 use App\Models\MdataPribadi as MP;
-
+use App\Models\MDocLegal as MD;
 
 class ProfileController extends Controller
 {
-	private $parser = array();
+    private $parser = array();
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +20,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-		$data['data'] = "";
-		return view("profile.index",$data)->with('parser', $this->parser);
+        $data['data'] = "";
+        return view("profile.index", $data)->with('parser', $this->parser);
     }
 
     /**
@@ -32,30 +32,48 @@ class ProfileController extends Controller
     public function create()
     {
 
-		// $data = MA::all();
-		echo "<pre>";
-        print_R(\Input::all());die;
-		// save M_anggota
-		$mAnggota = new MA;
+        // $data = MA::all();
+
+        // save M_anggota
+        $mAnggota = new MA;
         $mAnggota->nm_anggota = \Input::get('nm_anggota');
         $mAnggota->save();
 
-		// save m_pribadi
-		$mPribadi = new MP;
-		$mPribadi->tempat_lahir_pribadi = \Input::get('tempat_lahir_pribadi');
-		$mPribadi->npwp_pribadi = \Input::get('npwp_pribadi');
-		$mPribadi->noHp_pribadi = \Input::get('noHp_pribadi');
-		$mPribadi->email_pribadi = \Input::get('email_pribadi');
-		$mPribadi->alamat_pribadi = \Input::get('alamat_pribadi');
-		$mPribadi->rtRw_pribadi = \Input::get('rtRw_pribadi');
-		$mPribadi->kec_pribadi = \Input::get('kec_pribadi');
-		$mPribadi->desKel_pribadi = \Input::get('desKel_pribadi');
-		$mPribadi->wubTahun_pribadi = \Input::get('wubTahun_pribadi');
-		$mPribadi->wubDinas_pribadi = \Input::get('wubDinas_pribadi');
-		$mPribadi->created = "aku";
+		// get last id
+		$insertedId = $mAnggota->id;
+
+        // save M_pribadi
+        $mPribadi = new MP;
+        $mPribadi->tempat_lahir_pribadi = \Input::get('tempat_lahir_pribadi');
+        $mPribadi->kd_anggota = $insertedId;
+        $mPribadi->npwp_pribadi = \Input::get('npwp_pribadi');
+        $mPribadi->noHp_pribadi = \Input::get('noHp_pribadi');
+        $mPribadi->email_pribadi = \Input::get('email_pribadi');
+        $mPribadi->alamat_pribadi = \Input::get('alamat_pribadi');
+        $mPribadi->rtRw_pribadi = \Input::get('rtRw_pribadi');
+        $mPribadi->kec_pribadi = \Input::get('kec_pribadi');
+        $mPribadi->desKel_pribadi = \Input::get('desKel_pribadi');
+        $mPribadi->wubTahun_pribadi = \Input::get('wubTahun_pribadi');
+        $mPribadi->wubDinas_pribadi = \Input::get('wubDinas_pribadi');
+        $mPribadi->created = "aku";
         $mPribadi->save();
 
-
+        // save M_doc_file
+        $mDocFile = new MD;
+        $mDocFile->npwp_docLegal = \Input::get('npwp_docLegal');
+        $mDocFile->kd_anggota = $insertedId;
+        $mDocFile->situ_docLegal = \Input::get('situ_docLegal');
+        $mDocFile->siup_docLegal = \Input::get('siup_docLegal');
+        $mDocFile->tdp_docLegal = \Input::get('tdp_docLegal');
+        $mDocFile->bpom_docLegal = \Input::get('bpom_docLegal');
+        $mDocFile->pirt_docLegal = \Input::get('pirt_docLegal');
+        $mDocFile->halal_docLegal = \Input::get('halal_docLegal');
+        $mDocFile->bpom_docLegal = \Input::get('bpom_docLegal');
+        $mDocFile->hki_docLegal = \Input::get('hki_docLegal');
+        $mDocFile->merk_docLegal = \Input::get('merk_docLegal');
+        $mDocFile->lainnya_docLegal = \Input::get('lainnya_docLegal');
+        $mDocFile->created = "aku";
+        $mDocFile->save();
     }
 
     /**
