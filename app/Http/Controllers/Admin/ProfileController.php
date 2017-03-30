@@ -4,11 +4,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\Input;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 // model flight
 use App\Models\MdataPribadi as mdp;
 use App\Models\MAnggota as MA;
 use App\Models\MdataPribadi as MP;
 use App\Models\MDocLegal as MD;
+use App\Models\MDataUsaha as MDU;
 
 class ProfileController extends Controller
 {
@@ -31,18 +33,45 @@ class ProfileController extends Controller
      */
     public function create()
     {
+        $rules=[
+            'nm_anggota'=>'required'
+        ];
+        $messages=[
+            'nm_anggota.required'=>config('constants.ERROR_NAMA_ANGGOTA'),
+        ];
 
-        // $data = MA::all();
+        $validator=Validator::make(\Input::all(), $rules, $messages);
+        if ($validator->passes()) {
+            // save M_anggota
+            $mAnggota = new MA;
+            $mAnggota->nm_anggota = \Input::get('nm_anggota');
+            $mAnggota->save();
 
-        // save M_anggota
-        $mAnggota = new MA;
-        $mAnggota->nm_anggota = \Input::get('nm_anggota');
-        $mAnggota->save();
+            // get last id
+            $insertedId = $mAnggota->id;
 
-		// get last id
-		$insertedId = $mAnggota->id;
+            // save m_pribadi
+            $this->savePribadi($insertedId);
 
-        // save M_pribadi
+            // save M_doc_file
+            $this->saveDataUsaha($insertedId);
+
+            // save M_doc_file
+            $this->saveDocFile($insertedId);
+
+            return response()->json(['status' => true, 'message' => config('constants.SUCCESS_FORM') ]);
+        } else {
+            $message = $validator->errors()->first();
+            return response()->json(['status' => false, 'message' => $message]);
+        }
+    }
+
+    /**
+     * save table m_data_pribadi
+     * @return save
+     */
+    private function savePribadi($insertedId)
+    {
         $mPribadi = new MP;
         $mPribadi->tempat_lahir_pribadi = \Input::get('tempat_lahir_pribadi');
         $mPribadi->kd_anggota = $insertedId;
@@ -57,8 +86,42 @@ class ProfileController extends Controller
         $mPribadi->wubDinas_pribadi = \Input::get('wubDinas_pribadi');
         $mPribadi->created = "aku";
         $mPribadi->save();
+    }
 
-        // save M_doc_file
+    /**
+     * save table m_data_usaha
+     * @return post
+     */
+    private function saveDataUsaha($insertedId)
+    {
+        $mDataUsaha = new MDU;
+        $mDataUsaha->kd_anggota = $insertedId;
+        $mDataUsaha->brand_usaha = \Input::get('brand_usaha');
+        $mDataUsaha->lama_usaha = \Input::get('lama_usaha');
+        $mDataUsaha->jenisProd_usaha = \Input::get('jenisProd_usaha');
+        $mDataUsaha->alamat_usaha = \Input::get('alamat_usaha');
+        $mDataUsaha->rtRw_usaha = \Input::get('rtRw_usaha');
+        $mDataUsaha->kec_usaha = \Input::get('kec_usaha');
+        $mDataUsaha->kabKot_usaha = \Input::get('kabKot_usaha');
+        $mDataUsaha->kapasitas_usaha = \Input::get('kapasitas_usaha');
+        $mDataUsaha->harga_usaha = \Input::get('harga_usaha');
+        $mDataUsaha->wilayah_offline_usaha = \Input::get('wilayah_offline_usaha');
+        $mDataUsaha->wilayah_online_usaha = \Input::get('wilayah_online_usaha');
+        $mDataUsaha->jumlahTenagaKerja_usaha = \Input::get('jumlahTenagaKerja_usaha');
+        $mDataUsaha->omset_usaha = \Input::get('omset_usaha');
+        $mDataUsaha->fb_usaha = \Input::get('fb_usaha');
+        $mDataUsaha->insta_usaha = \Input::get('insta_usaha');
+        $mDataUsaha->twiiter_usaha = \Input::get('twiiter_usaha');
+        $mDataUsaha->created = "aku";
+        $mDataUsaha->save();
+    }
+
+    /**
+     * save table m_data_docLegal
+     * @return post
+     */
+    private function saveDocFile($insertedId)
+    {
         $mDocFile = new MD;
         $mDocFile->npwp_docLegal = \Input::get('npwp_docLegal');
         $mDocFile->kd_anggota = $insertedId;

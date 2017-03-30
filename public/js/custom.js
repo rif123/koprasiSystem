@@ -14,7 +14,7 @@ define([
 		'jquerydatatables',
 		'swal',
 		'jqueryForm',
-		'profile',
+		'profile'
 
 	], function ($){
 		$(document).ready(function(){

@@ -54,6 +54,6 @@ require.config({
         swal  : 'plugins/sweetalert/sweetalert.min',
         leanmodal  : 'plugins/jquery-leanmodal/jquery.leanModal.min',
         jqueryForm  : 'plugins/form/jqueryForm',
-        profile  : 'js/profile/profile',
+        profile  : 'js/profile/profile'
 	}
 });

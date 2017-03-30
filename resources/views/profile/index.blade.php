@@ -5,6 +5,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="card">
+
         <div class="header">
             <h2>
                 FORMULIR PENDAFTARAN ANGGOTA BARU
@@ -19,13 +20,14 @@
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
+                    <form id="form-anggota" action="{{url(route('profile.create'))}}" method="post" enctype="multipart/form-data">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs tab-nav-right" role="tablist">
                        <li role="presentation" class="active"><a href="#home" data-toggle="tab">DATA PRIBADI</a></li>
                        <li role="presentation"><a href="#profile" data-toggle="tab">DATA USAHA</a></li>
                        <li role="presentation"><a href="#messages" data-toggle="tab">DOC & LEGAL</a></li>
                     </ul>
-                    <form id="form-anggota" action="{{url(route('profile.create'))}}" method="post" enctype="multipart/form-data">
+
                         {!! Form::token() !!}
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="home">

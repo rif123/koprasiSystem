@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class MAnggota extends Model {
+    class MAnggota extends Model {
     /**
     * The table associated with the model.
     *

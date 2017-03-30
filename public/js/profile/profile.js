@@ -1,14 +1,24 @@
 $(document).ready(function(){
     var options = {
-        success:       showResponse,  // post-submit callback
+        dataType:  'json',
         beforeSend: function() {
 
         },
         uploadProgress: function(event, position, total, percentComplete) {
 
         },
-        success: function() {
-
+        success: function(xhr) {
+            if (xhr.status) {
+                var modalDiv = $('#defaultModal');
+                    modalDiv.find('.modal-title').html("Berhasil");
+                    modalDiv.find('.modal-body').html(xhr.message);
+                    modalDiv.modal('show');
+            } else {
+                var modalDiv = $('#defaultModal');
+                    modalDiv.find('.modal-title').html("Peringatan");
+                    modalDiv.find('.modal-body').html(xhr.message);
+                    modalDiv.modal('show');
+            }
         },
         complete: function(xhr) {
 

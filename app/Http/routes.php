@@ -12,7 +12,7 @@
 */
 
 Route::get('/auth/login', ['uses'=>'LoginController@create','as'=>'loginCreate.create']);
-Route::post('/auth/login', 'LoginController@checkLogin');
+            Route::post('/auth/login', 'LoginController@checkLogin');
 Route::group(['middleware' => ['beforelogin','token']], function () {
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
@@ -21,6 +21,8 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         // profile
         Route::get('/profile', ['uses'=>'ProfileController@index', 'as'=>'profile.index']);
         Route::post('/profile-create', ['uses'=>'ProfileController@create', 'as'=>'profile.create']);
+
+        // jabatan
 
 
         Route::get('/error', 'DashboardController@privilege');
