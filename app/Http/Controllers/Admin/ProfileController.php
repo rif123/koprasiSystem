@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-// model flight
+// model
 use App\Models\MdataPribadi as mdp;
 use App\Models\MAnggota as MA;
 use App\Models\MdataPribadi as MP;
@@ -39,12 +39,14 @@ class ProfileController extends Controller
         $messages=[
             'nm_anggota.required'=>config('constants.ERROR_NAMA_ANGGOTA'),
         ];
-
         $validator=Validator::make(\Input::all(), $rules, $messages);
         if ($validator->passes()) {
+
+
             // save M_anggota
             $mAnggota = new MA;
             $mAnggota->nm_anggota = \Input::get('nm_anggota');
+            $mAnggota->pasPhoto_anggota = $this->uploadFile();
             $mAnggota->save();
 
             // get last id
@@ -137,6 +139,19 @@ class ProfileController extends Controller
         $mDocFile->lainnya_docLegal = \Input::get('lainnya_docLegal');
         $mDocFile->created = "aku";
         $mDocFile->save();
+    }
+
+    /**
+     * upload image
+     * @return [type] [description]
+     */
+    private function uploadFile (){
+        $file = \Input::file('pasPhoto_anggota')->isValid();
+        $destinationPath = public_path().'/uploads'; // upload path
+        $extension = \Input::file('pasPhoto_anggota')->getClientOriginalExtension(); // getting image extension
+        $fileName = rand(11111, 99999).'.'.$extension; // renameing image
+        \Input::file('pasPhoto_anggota')->move($destinationPath, $fileName); // uploading file to given path;
+        return $fileName;
     }
 
     /**

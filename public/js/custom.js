@@ -12,9 +12,13 @@ define([
 		'customAdmin',
 		'customIndex',
 		'jquerydatatables',
-		'swal',
 		'jqueryForm',
-		'profile'
+		'profile',
+		'sweetAlert',
+		'menu',
+		'group',
+		'save',
+		'spokok',
 
 	], function ($){
 		$(document).ready(function(){

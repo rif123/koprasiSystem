@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Models\User as US;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -39,37 +39,45 @@ class LoginController extends Controller
     public function checkLogin(){
         $rules = array(
             'username'    => 'required|min:3', // username
-            'password' => 'required|alphaNum|min:3' // password 
+            'password' => 'required|alphaNum|min:3' // password
         );
         $remember = (\Input::has('rememberme')) ? true : false;
-
         $validator = \Validator::make(\Input::all(), $rules);
- 
-        if($validator->fails()){
+
+        if($validator->fails()) {
             return \Redirect::to('/auth/login')
                 ->withErrors($validator)
                 ->withInput(\Input::except('password'));
+        } else {
+            $userdata = array(
+                        'uname' => \Input::get('username'),
+                        'password' => \Input::get('password')
+                        );
+            if(\Auth::attempt($userdata,$remember)){
+                    if(\Auth::User()->user_level->rules != '1'){
+                        \Session::put('rules', unserialize(\Auth::User()->user_level->rules));
+                    }
+                    else{
+                        $anggota = US::mAnggota(\Auth::User()->id);
+                        $dataSession = [
+                            'UserId' =>     \Auth::User()->id,
+                            'kd_anggota' => $anggota[0]->kd_anggota,
+                            'id' =>         \Auth::User()->user_level->rules,
+                            'user_grp' =>   \Auth::User()->user_grp,
+                            'uname' =>      \Auth::User()->uname,
+                            'email' =>      \Auth::User()->email,
+                            'rules' =>      \Auth::User()->user_level->rules
+                        ];
+                        \Session::put($dataSession);
+                    }
+                    $a = array("admin","admin/error","admin/home","admin/logout","admin/logout","admin/setting/profile");
+                    \Session::put('whitelist', $a);
+                    return redirect('admin');
+            }else{
+                    return view("auth.login",["error"=>"1"])->with('parser', $this->parser);
             }
-        else{
-                $userdata = array(
-                            'uname' => \Input::get('username'),
-                            'password' => \Input::get('password')
-                            );
-                if(\Auth::attempt($userdata,$remember)){
-                        if(\Auth::User()->user_level->rules != '1'){
-                            \Session::put('rules', unserialize(\Auth::User()->user_level->rules));
-                        }
-                        else{
-                            \Session::put('rules', 1);
-                        }
-                        $a = array("admin","admin/error","admin/home","admin/logout","admin/logout","admin/setting/profile");
-                        \Session::put('whitelist', $a);
-                        return redirect('admin');
-                }else{
-                        return view("auth.login",["error"=>"1"])->with('parser', $this->parser);
-                }
         }
-        
+
         return view("auth.login")->with('parser', $this->parser);
     }
 }

@@ -5,7 +5,6 @@
 <section class="content">
     <div class="container-fluid">
         <div class="card">
-
         <div class="header">
             <h2>
                 FORMULIR PENDAFTARAN ANGGOTA BARU

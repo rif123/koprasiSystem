@@ -60,15 +60,11 @@
                                             <div class="col-sm-6">
                                                 <select class="form-control"  name="ugroup">
                                                     @foreach($data as $b)
-                                                        @if(($b->id_level=='1') && ($id_level == '1') && (\Auth::user()->id_level == '1'))
-                                                                <option value="{{$b->id_level}}" selected>{{$b->level_name}}</option>
-                                                        @else
-                                                            @if($b->id_level == $id_level)
-                                                                <option value="{{$b->id_level}}" selected>{{$b->level_name}}</option>
-                                                            @else
-                                                                <option value="{{$b->id_level}}">{{$b->level_name}}</option>
-                                                            @endif
+                                                        {{--*/ $selected=''; /*--}}
+                                                        @if($b->user_grp  == $user_grp)
+                                                            {{--*/ $selected='selected="selected"'; /*--}}
                                                         @endif
+                                                        <option  {{$selected}} value="{{$b->user_grp}}">{{$b->group_name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

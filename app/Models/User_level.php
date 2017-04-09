@@ -13,4 +13,8 @@ class User_level extends Model {
 		return $this->hasOne("App\Models\User","id_level");
 	}
 
+	public function menuGroup(){
+		return $this->hasOne("App\Models\User","menuGroup");
+	}
+
 }

@@ -36,25 +36,25 @@
                                         <thead>
                                             <tr>
                                                 <th>UserName</th>
-                                                <th>Level</th>
+                                                <th>Group</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-striped">
                                             @foreach($data as $a => $b)
-                                                <tr>                                                    
+                                                <tr>
                                                     <td>{{$b->uname}}</td>
-                                                    <td>{{$data[$a]->user_level->level_name}}</td>
+                                                    <td>{{$b->group_name}}</td>
                                                     <td>
                                                         @if($b->id != '1')
                                                         <a href="{{url($_ENV['ADMIN_FOLDER'].'/user/edit/'.$b->id)}}">
                                                             <button class="btn btn-info waves-effect" type="button">
-                                                                    <i class="material-icons" style="color:white">mode_edit</i>     
+                                                                    <i class="material-icons" style="color:white">mode_edit</i>
                                                             </button>
                                                         </a>
                                                         <a href="{{url($_ENV['ADMIN_FOLDER'].'/user/delete/'.$b->id)}}" class="alertButton">
                                                             <button class="btn bg-red waves-effect" type="button">
-                                                                    <i class="material-icons">delete</i>                  
+                                                                    <i class="material-icons">delete</i>
                                                             </button>
                                                         </a>
                                                         @endif
@@ -63,7 +63,6 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    {!! $data->render() !!}
                                 </div>
                             </div>
                         </div>

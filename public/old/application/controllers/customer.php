@@ -10,7 +10,7 @@ class customer extends CI_Controller {
 	function index()
 	{
 		redirect('page');
-		
+
 	}
 	function auth(){
 		if(($this->session->userdata('set_login_cus')==FALSE)){

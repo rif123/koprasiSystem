@@ -12,7 +12,7 @@
 */
 
 Route::get('/auth/login', ['uses'=>'LoginController@create','as'=>'loginCreate.create']);
-            Route::post('/auth/login', 'LoginController@checkLogin');
+Route::post('/auth/login', 'LoginController@checkLogin');
 Route::group(['middleware' => ['beforelogin','token']], function () {
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
@@ -160,8 +160,41 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
 
         /*Admin Log Out*/
         Route::get('/logout', 'DashboardController@logout');
+
+        /*Admin Menu*/
+        Route::get('/config/menu', ['uses'=>'ConfigController@menu', 'as'=>'config.menu']);
+        Route::post('/config/menu-save', ['uses'=>'ConfigController@menuSave', 'as'=>'config.menuSave']);
+        Route::post('/config/menu-edit', ['uses'=>'ConfigController@menuUpdate', 'as'=>'config.menuUpdate']);
+        Route::get('/config/menu-delete', ['uses'=>'ConfigController@menuDestroy', 'as'=>'config.menuDestroy']);
+        Route::get('/config/menu-all', ['uses'=>'ConfigController@menuShowAll', 'as'=>'config.menuShowAll']);
+        Route::get('/config/menu-icon', ['uses'=>'ConfigController@menuIcon', 'as'=>'config.menuIcon']);
+
+
+
+        // config role
+        Route::get('/config/role', ['uses'=>'ConfigController@configRole', 'as'=>'config.role']);
+        Route::get('/role-reload-menu', ['uses'=>'ConfigController@reloadMenu', 'as'=>'config.reloadMenu']);
+        Route::post('/role-edit-group', ['uses'=>'ConfigController@editRole', 'as'=>'config.editGroup']);
+        // config role
+
+        // config group
+        Route::get('/config/group', ['uses'=>'ConfigController@menuGroup', 'as'=>'config.menuGroup']);
+        Route::post('/config/group-save', ['uses'=>'ConfigController@groupSave', 'as'=>'config.groupSave']);
+        Route::get('/config/group-show', ['uses'=>'ConfigController@groupShow', 'as'=>'config.groupShow']);
+        Route::post('/config/group-edit', ['uses'=>'ConfigController@groupEdit', 'as'=>'config.groupEdit']);
+        Route::get('/config/group-delete', ['uses'=>'ConfigController@groupDelete', 'as'=>'config.groupDelete']);
+        // config group
+
+        // save obligation
+        Route::get('/simpanan/wajib', ['uses'=>'SaveControllers@wajibList', 'as'=>'config.wajibList']);
+        Route::post('/simpanan/wajib-save', ['uses'=>'SaveControllers@wajibSave', 'as'=>'config.wajibSave']);
+
+        Route::get('/simpanan/pokok', ['uses'=>'SaveControllers@pokokList', 'as'=>'config.pokokList']);
+        Route::post('/simpanan/pokok-save', ['uses'=>'SaveControllers@pokokSave', 'as'=>'config.pokokSave']);
     });
 });
+
+
 
 Route::group(['namespace' => 'Frontend', 'prefix' => '/'], function () {
     // Route::resource('event', 'EventController');

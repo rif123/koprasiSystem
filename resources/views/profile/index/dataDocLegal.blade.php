@@ -83,7 +83,7 @@
         <h2 class="card-inside-title">Pas Photo</h2>
         <div class="input-group">
             <div class="form-line">
-                <input type="file" name="pasPhotoDocLegal" class="form-control" placeholder="Pas Photo">
+                <input type="file" name="pasPhoto_anggota" class="form-control" placeholder="Pas Photo">
             </div>
         </div>
     </div>

@@ -26,7 +26,7 @@ class Skill extends Controller {
 
     public function settingProcess(){
         $rules = array(
-            'name'    => 'required'    
+            'name'    => 'required'
         );
 
         $validator = \Validator::make(\Input::all(), $rules);
@@ -50,9 +50,9 @@ class Skill extends Controller {
 
 	public function addProcess(){
 		$rules = array(
-            'title'    => 'required|min:6', 
+            'title'    => 'required|min:6',
             'description' => 'required|min:10',
-            'img' => 'image|mimes:jpg,png,jpeg|max:1024|min:1',		
+            'img' => 'image|mimes:jpg,png,jpeg|max:1024|min:1',
         );
 
         $validator = \Validator::make(\Input::all(), $rules);
@@ -101,13 +101,13 @@ class Skill extends Controller {
 
 	public function editProcess($id){
 		$rules = array(
-            'title'    => 'required|min:6', 
+            'title'    => 'required|min:6',
             'description' => 'required|min:10',
-            'img' => 'image|mimes:jpg,png,jpeg|max:1024|min:1',		
+            'img' => 'image|mimes:jpg,png,jpeg|max:1024|min:1',
         );
 
        	$validator = \Validator::make(\Input::all(), $rules);
- 
+
         if($validator->fails()){
             return \Redirect::to($_ENV['ADMIN_FOLDER'].'/skill/edit/'.$id)->withErrors($validator);
         }
