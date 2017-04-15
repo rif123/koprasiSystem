@@ -2,6 +2,7 @@
 @section('header')
     <link href="{{ URL::asset('') }}plugins/dropzone/min/dropzone.min.css" rel="stylesheet" />
 @stop
+
 @section('content')
 @include('layouts.left')
 @include('layouts.right')
@@ -15,43 +16,66 @@
                 <small>(isi dengan lengkap & jelas)</small>
                 @include('profile.menuProfile')
             </h2>
-            <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                     <button type="button" class="btn btn-primary waves-effect btn-pas-profile">SAVE</button>
-                </li>
-            </ul>
         </div>
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
                     <div class="row clearfix">
-                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                           <div class="card">
-                               <div class="header">
-                                   <h2>
-                                       FILE UPLOAD - DRAG & DROP OR WITH CLICK & CHOOSE
-                                   </h2>
-                                   <ul class="header-dropdown m-r--5">
-                                       <li class="dropdown">
-                                           <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                               <i class="material-icons">more_vert</i>
-                                           </a>
-                                           <ul class="dropdown-menu pull-right">
-                                               <li><a href="javascript:void(0);">Action</a></li>
-                                               <li><a href="javascript:void(0);">Another action</a></li>
-                                               <li><a href="javascript:void(0);">Something else here</a></li>
-                                           </ul>
-                                       </li>
-                                   </ul>
-                               </div>
-                               <div class="body">
-                                   <form action="{{url(route('profile.photoProfileUpload'))}}" method="post"  enctype="multipart/form-data">
-                                        {!! Form::token() !!}
-                                        
-                                   </form>
-                               </div>
-                           </div>
-                       </div>
+                        <div class="card">
+
+                            @if(\Session::get('success'))
+                                <div class="alert alert-success">
+                                    {{\Session::get('success')}}
+                                </div>
+                            @endif
+                            @if($errors->has())
+                                <div class="alert alert-danger">
+                                    <h4>Error:</h4>
+                                    <ul>
+                                   @foreach ($errors->all() as $error)
+                                      <li>{{ $error }}</li>
+                                  @endforeach
+                                  </ul>
+                                </div>
+                            @endif
+                            <div class="body">
+                                <form name="edit" method="POST" action="{{url(route('profile.processGantiPassword'))}}" >
+                                    <h2 class="card-inside-title">Username</h2>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">person</i>
+                                        </span>
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="uname" value="{{$uname}}" placeholder="Username" />
+                                        </div>
+                                    </div>
+                                    <h2 class="card-inside-title">Email</h2>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">email</i>
+                                        </span>
+                                        <div class="form-line">
+                                            <input type="email" class="form-control" name="email" value="{{$email}}" placeholder="Email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h2 class="card-inside-title">Change Password</h2>
+                                        <div class="form-line">
+                                            <input type="password" class="form-control" name="oldpass" placeholder="Old password" />
+                                        </div>
+                                        <div class="form-line">
+                                            <input type="password" class="form-control" name="newpass" placeholder="New Password" />
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <div style="text-align:center">
+                                        <button type="Submit" class="btn btn-primary btn-lg m-l-15 waves-effect">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
                    </div>
                 </div>
             </div>

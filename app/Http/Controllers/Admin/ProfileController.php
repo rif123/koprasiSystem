@@ -11,6 +11,7 @@ use App\Models\MAnggota as MA;
 use App\Models\MdataPribadi as MP;
 use App\Models\MDocLegal as MD;
 use App\Models\MDataUsaha as MDU;
+use App\Models\User as US;
 
 class ProfileController extends Controller
 {
@@ -22,11 +23,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-
         $kd_anggota = \Session::get('kd_anggota');
         $getAll = MA::getALlData($kd_anggota);
         $data['allData'] = $getAll[0];
-                $data['selectedMenu'] = '';
+        $data['selectedMenu'] = '';
         return view("profile.index", $data)->with('parser', $this->parser);
     }
 
@@ -52,7 +52,8 @@ class ProfileController extends Controller
 
             // save M_anggota
             if ($checkAnggota[0]->kdAggota >= 1) {
-                $mAnggota =  MA::find($kd_anggota);;
+                $mAnggota =  MA::find($kd_anggota);
+                ;
                 $mAnggota->nm_anggota = \Input::get('nm_anggota');
                 $mAnggota->pasPhoto_anggota = $this->uploadFile();
                 $mAnggota->update();
@@ -81,7 +82,6 @@ class ProfileController extends Controller
                 $insertedId = $kd_anggota;
                 $this->saveDataUsaha('update', $insertedId);
             } else {
-
                 $insertedId = !empty($insertedId) ? $insertedId : $kd_anggota;
                 $this->saveDataUsaha('save', $insertedId);
             }
@@ -92,7 +92,6 @@ class ProfileController extends Controller
                 $insertedId = $kd_anggota;
                 $this->saveDocFile('update', $insertedId);
             } else {
-
                 $insertedId = !empty($insertedId) ? $insertedId : $kd_anggota;
                 $this->saveDocFile('save', $insertedId);
             }
@@ -121,7 +120,7 @@ class ProfileController extends Controller
             $mPribadi['desKel_pribadi'] = !empty(\Input::get('desKel_pribadi')) ? \Input::get('desKel_pribadi') : "";
             $mPribadi['wubTahun_pribadi'] = !empty(\Input::get('wubTahun_pribadi')) ? \Input::get('wubTahun_pribadi') : "";
             $mPribadi['wubDinas_pribadi'] = !empty(\Input::get('wubDinas_pribadi')) ? \Input::get('wubDinas_pribadi') : "";
-            $execute = MP::where("kd_anggota",$insertedId)->update($mPribadi);
+            $execute = MP::where("kd_anggota", $insertedId)->update($mPribadi);
         } else {
             $mPribadi = new MP;
             $mPribadi->tempat_lahir_pribadi = \Input::get('tempat_lahir_pribadi');
@@ -165,7 +164,7 @@ class ProfileController extends Controller
             $mDataUsaha['insta_usaha'] = \Input::get('insta_usaha');
             $mDataUsaha['twiiter_usaha'] = \Input::get('twiiter_usaha');
             $mDataUsaha['created'] = "aku";
-            $execute = MDU::where("kd_anggota",$insertedId)->update($mDataUsaha);
+            $execute = MDU::where("kd_anggota", $insertedId)->update($mDataUsaha);
         } else {
             $mDataUsaha = new MDU;
             $mDataUsaha->kd_anggota = $insertedId;
@@ -210,7 +209,7 @@ class ProfileController extends Controller
             $mDocFile['merk_docLegal'] = \Input::get('merk_docLegal');
             $mDocFile['lainnya_docLegal'] = \Input::get('lainnya_docLegal');
             $mDocFile['created'] = "aku";
-            $execute = MD::where("kd_anggota",$insertedId)->update($mDocFile);
+            $execute = MD::where("kd_anggota", $insertedId)->update($mDocFile);
         } else {
             $mDocFile = new MD;
             $mDocFile->npwp_docLegal = \Input::get('npwp_docLegal');
@@ -234,7 +233,8 @@ class ProfileController extends Controller
      * upload image
      * @return [type] [description]
      */
-    private function uploadFile (){
+    private function uploadFile()
+    {
         if (!empty(\Input::file('pasPhoto_anggota'))) {
             $file = \Input::file('pasPhoto_anggota')->isValid();
             $destinationPath = public_path().'/uploads'; // upload path
@@ -253,7 +253,7 @@ class ProfileController extends Controller
     public function photoProfile()
     {
         $kd_anggota = \Session::get('kd_anggota');
-        $getPhoto = MA::where("kd_anggota",$kd_anggota)->first();
+        $getPhoto = MA::where("kd_anggota", $kd_anggota)->first();
         $data['photo'] = !empty($getPhoto->pasPhotoProfile) ? $getPhoto->pasPhotoProfile : "";
         $data['kd_anggota'] = $kd_anggota;
         $data['selectedMenu'] = 'photoProfile';
@@ -268,9 +268,7 @@ class ProfileController extends Controller
      */
     public function photoProfileUpload()
     {
-
         if (!empty(\Input::file('file'))) {
-
             $file = \Input::file('file')->isValid();
             $destinationPath = public_path().'/uploads/profile'; // upload path
             $extension = \Input::file('file')->getClientOriginalExtension(); // getting image extension
@@ -278,7 +276,8 @@ class ProfileController extends Controller
             \Input::file('file')->move($destinationPath, $fileName); // uploading file to given path;
 
             $kd_anggota = \Session::get('kd_anggota');
-            $mAnggota =  MA::find($kd_anggota);;
+            $mAnggota =  MA::find($kd_anggota);
+            ;
             $mAnggota->pasPhotoProfile = $fileName;
             $mAnggota->update();
 
@@ -296,7 +295,7 @@ class ProfileController extends Controller
     public function photoProduk()
     {
         $kd_anggota = \Session::get('kd_anggota');
-        $getPhoto = MA::where("kd_anggota",$kd_anggota)->first();
+        $getPhoto = MA::where("kd_anggota", $kd_anggota)->first();
         $data['photo'] = !empty($getPhoto->pasPhotoProduk) ? $getPhoto->pasPhotoProduk : "";
         $data['selectedMenu'] = 'photo-produk';
         return view("profile.pasPhoto.photoProduk", $data);
@@ -311,7 +310,6 @@ class ProfileController extends Controller
     public function photoProdukUpload()
     {
         if (!empty(\Input::file('file'))) {
-
             $file = \Input::file('file')->isValid();
             $destinationPath = public_path().'/uploads/produk'; // upload path
             $extension = \Input::file('file')->getClientOriginalExtension(); // getting image extension
@@ -319,7 +317,8 @@ class ProfileController extends Controller
             \Input::file('file')->move($destinationPath, $fileName); // uploading file to given path;
 
             $kd_anggota = \Session::get('kd_anggota');
-            $mAnggota =  MA::find($kd_anggota);;
+            $mAnggota =  MA::find($kd_anggota);
+            ;
             $mAnggota->pasPhotoProduk = $fileName;
             $mAnggota->update();
 
@@ -336,10 +335,48 @@ class ProfileController extends Controller
      */
     public function gantiPassword()
     {
-        $kd_anggota = \Session::get('kd_anggota');
-        $getPhoto = MA::where("kd_anggota",$kd_anggota)->first();
-        $data['photo'] = !empty($getPhoto->pasPhotoProduk) ? $getPhoto->pasPhotoProduk : "";
-        $data['selectedMenu'] = 'ganti-password';
-        return view("profile.gantiPassword", $data);
+        $id = \Auth::user()->id;
+        $data = US::where('id', $id)->get()->toArray();
+        $sendData= array();
+        foreach ($data[0] as $a => $c) {
+            $sendData[$a] = $c;
+        }
+
+        $sendData['selectedMenu'] = 'ganti-password';
+        return view("profile.gantiPassword", $sendData);
+    }
+
+    public function processGantiPassword()
+    {
+
+        $id = \Auth::user()->id;
+        $rules = array(
+            'uname'    => 'required|min:4',
+            'email' => 'required|email',
+        );
+
+        $validator = \Validator::make(\Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return \Redirect::to($_ENV['ADMIN_FOLDER'].'/setting/profile')->withErrors($validator);
+        } else {
+            $update = US::find($id);
+            $update->uname = \Input::get('uname');
+            $update->email = \Input::get('email');
+
+            if (\Input::has("newpass")) {
+                $oldpassword = \Input::get('oldpass');
+                $newpassword = \Input::get("newpass");
+
+                if (\Hash::check($oldpassword, \Auth::user()->password)) {
+                    $update->password = \Hash::make($newpassword);
+                } else {
+                    return \Redirect::to($_ENV['ADMIN_FOLDER'].'/setting/profile')->withErrors(["Wrong old password"]);
+                }
+            }
+
+            $update->save();
+            return \Redirect::to($_ENV['ADMIN_FOLDER'].'/setting/profile')->with(["success"=>"Data saved"]);
+        }
     }
 }
