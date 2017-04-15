@@ -174,4 +174,24 @@ class Helpers
             return false;
         }
     }
+
+    /**
+     * @param get rp
+     * @return string
+     */
+    public static function getRp($bilangan)
+    {
+        $minus = "";
+        if ($bilangan < 0) {
+            $minus = "-";
+        }
+        return $minus . 'Rp' . self::getThousandSeparator(abs($bilangan));
+    }
+    public static function getThousandSeparator($bilangan)
+    {
+       if (is_numeric($bilangan)) {
+           return number_format($bilangan, 0, ',', '.');
+       }
+       return 0;
+    }
 }

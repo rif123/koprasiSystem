@@ -41,7 +41,7 @@ define([
 		        if(statusTxt == "error")
 		            $(href).html("Error load image manager");
 		    });
-    		
+
     	});
 	});
 });

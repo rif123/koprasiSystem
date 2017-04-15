@@ -20,15 +20,12 @@ class SaveControllers extends Controller
     {
         $list = SV::all();
         $data['list'] = $list;
+
         $listMonth = [];
         for ($i=0; $i < 4 ; $i++) {
             $listMonth[$i] = date('M', strtotime("+".$i." months"));
         }
         $data['monthLates'] =  $listMonth;
-
-        SV::getAll();
-
-
         return view("save.wajib.list", $data)->with('parser', $this->parser);
     }
 
@@ -101,11 +98,6 @@ class SaveControllers extends Controller
             return response()->json(['status' => true, 'message' => config('constants.SUCCESS_FORM') ]);
         }
     }
-
-
-
-
-
     /**
      * upload image
      * @return [type] [description]
@@ -120,8 +112,47 @@ class SaveControllers extends Controller
         return $fileName;
     }
 
+    public function listSave()
+    {
 
-	/**
+        $draw=$_REQUEST['draw'];
+        $length=$_REQUEST['length'];
+        $start=$_REQUEST['start'];
+        $search=$_REQUEST['search']["value"];
+        $savePokok = new SP;
+        $total=SV::getCountAll()[0]->count;
+
+        $output=array();
+        $output['draw']=$draw;
+        $output['recordsTotal']=$output['recordsFiltered']=$total;
+        $output['data']=array();
+        $query=SV::getAll();
+        $groupDate = [];
+        foreach ($query as $key => $value) {
+            $groupDate[$value->pay][$value->payMonth] = $value;
+        }
+        $listMonth = [];
+        $payMonth = [];
+        foreach ($groupDate as $key => $value) {
+            for ($i=0; $i <= 3 ; $i++) {
+                $listMonth = date('F', strtotime("+".$i." months"));
+                if (isset($groupDate[$key][$listMonth])) {
+                    $payMonth[$key][$listMonth] = \Helpers::getRp($groupDate[$key][$listMonth]->total);
+                } else {
+                    $payMonth[$key][$listMonth] ="";
+                }
+            }
+        }
+        $nomor_urut=$start+1;
+        foreach ($payMonth as $k => $value) {
+            $output['data'][]=array_values(array_merge([$k => $k], $value));
+            $nomor_urut++;
+        }
+        echo json_encode($output);
+    }
+
+
+    /**
      * upload image
      * @return [type] [description]
      */

@@ -37,6 +37,16 @@ $(document).ready(function(){
     $('.btn-simpan-pokok').click(function(){
         window.location  = urlListPokok;
     });
+
+    $('#listSimpananNew').DataTable( {
+        "processing": true,
+         "serverSide": true,
+         "ajax": {
+             "url": urlGetListSimpanan,
+             "type": "GET"
+         }
+   });
+   
 });
 
 function redirect() {

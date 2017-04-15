@@ -189,8 +189,13 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/simpanan/wajib', ['uses'=>'SaveControllers@wajibList', 'as'=>'config.wajibList']);
         Route::post('/simpanan/wajib-save', ['uses'=>'SaveControllers@wajibSave', 'as'=>'config.wajibSave']);
 
+        Route::get('/simpanan/list', ['uses'=>'SaveControllers@listSave', 'as'=>'config.listSave']);
+
+
         Route::get('/simpanan/pokok', ['uses'=>'SaveControllers@pokokList', 'as'=>'config.pokokList']);
         Route::post('/simpanan/pokok-save', ['uses'=>'SaveControllers@pokokSave', 'as'=>'config.pokokSave']);
+
+
     });
 });
 

@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.index_no_require')
 @section('content')
 @include('layouts.left')
 @include('layouts.right')
@@ -14,7 +14,7 @@
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
-                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                    <table class="table-bordered table-striped table-hover js-basic-example dataTable " id="listSimpananNew">
                           <thead>
                               <tr>
                                   <th>Jenis Simpanan</th>
@@ -90,9 +90,13 @@
         }
     </style>
 </section>
+@stop
+@stop
+@section('js')
+<script src="{{ URL::asset('') }}js/save/spokok.js"></script>
 <script>
     var urlListWajib = "{{url(route('config.wajibList'))}}";
     var urlListPokok = "{{url(route('config.pokokList'))}}";
+    var urlGetListSimpanan = "{{url(route('config.listSave'))}}";
 </script>
-@stop
 @stop
