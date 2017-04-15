@@ -1,5 +1,5 @@
 {{--*/
-    $btnMenu = ['photoProfile' => 'Photo Profile', 'photo-produk' => 'Photo Produk', 'ganti-password' => 'Ganti Password']
+    $btnMenu = ['photoProfile' => 'Photo Profile', 'photo-produk' => 'Photo Produk']
 /*--}}
 
 
