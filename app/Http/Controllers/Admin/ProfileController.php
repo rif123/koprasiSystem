@@ -26,6 +26,7 @@ class ProfileController extends Controller
         $kd_anggota = \Session::get('kd_anggota');
         $getAll = MA::getALlData($kd_anggota);
         $data['allData'] = $getAll[0];
+                $data['selectedMenu'] = '';
         return view("profile.index", $data)->with('parser', $this->parser);
     }
 
@@ -252,9 +253,10 @@ class ProfileController extends Controller
     public function photoProfile()
     {
         $kd_anggota = \Session::get('kd_anggota');
-        // $getAll = MA::getALlData($kd_anggota);
-        // $data['allData'] = $getAll[0];
+        $getPhoto = MA::where("kd_anggota",$kd_anggota)->first();
+        $data['photo'] = !empty($getPhoto->pasPhotoProfile) ? $getPhoto->pasPhotoProfile : "";
         $data['kd_anggota'] = $kd_anggota;
+        $data['selectedMenu'] = 'photoProfile';
         return view("profile.pasPhoto.photoProfile", $data);
     }
 
@@ -291,9 +293,13 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function photoProduk()
     {
-        //
+        $kd_anggota = \Session::get('kd_anggota');
+        $getPhoto = MA::where("kd_anggota",$kd_anggota)->first();
+        $data['photo'] = !empty($getPhoto->pasPhotoProduk) ? $getPhoto->pasPhotoProduk : "";
+        $data['selectedMenu'] = 'photo-produk';
+        return view("profile.pasPhoto.photoProduk", $data);
     }
 
     /**
@@ -302,9 +308,24 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function photoProdukUpload()
     {
-        //
+        if (!empty(\Input::file('file'))) {
+
+            $file = \Input::file('file')->isValid();
+            $destinationPath = public_path().'/uploads/produk'; // upload path
+            $extension = \Input::file('file')->getClientOriginalExtension(); // getting image extension
+            $fileName = rand(11111, 99999).'.'.$extension; // renameing image
+            \Input::file('file')->move($destinationPath, $fileName); // uploading file to given path;
+
+            $kd_anggota = \Session::get('kd_anggota');
+            $mAnggota =  MA::find($kd_anggota);;
+            $mAnggota->pasPhotoProduk = $fileName;
+            $mAnggota->update();
+
+            $result['filename'] = url('uploads/produk/'.$fileName);
+            return response()->json($result);
+        }
     }
 
     /**
@@ -313,8 +334,12 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function gantiPassword()
     {
-        //
+        $kd_anggota = \Session::get('kd_anggota');
+        $getPhoto = MA::where("kd_anggota",$kd_anggota)->first();
+        $data['photo'] = !empty($getPhoto->pasPhotoProduk) ? $getPhoto->pasPhotoProduk : "";
+        $data['selectedMenu'] = 'ganti-password';
+        return view("profile.gantiPassword", $data);
     }
 }

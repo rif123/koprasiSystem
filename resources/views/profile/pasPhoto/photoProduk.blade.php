@@ -46,7 +46,7 @@
                                    </ul>
                                </div>
                                <div class="body">
-                                   <form action="{{url(route('profile.photoProfileUpload'))}}" id="frmProfile" class="dropzone" method="post"  enctype="multipart/form-data">
+                                   <form action="{{url(route('profile.photoProdukUpload'))}}" id="frmProfile" class="dropzone" method="post"  enctype="multipart/form-data">
                                             {!! Form::token() !!}
                                        <div class="dz-message">
                                            <div class="drag-icon-cph">
@@ -67,7 +67,7 @@
                            <div class="card">
                                <div class="body">
                                    <div class="fallback photoProfile">
-                                       <img src="{{url('uploads/profile/'.$photo)}}"  id="idProfilePhoto" alt="no-image"/>
+                                       <img src="{{url('uploads/produk/'.$photo)}}"  id="idProfilePhoto" alt="no-image"/>
                                    </div>
                                </div>
                            </div>

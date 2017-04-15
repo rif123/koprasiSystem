@@ -2,7 +2,6 @@
 @section('header')
     <link href="{{ URL::asset('') }}plugins/dropzone/min/dropzone.min.css" rel="stylesheet" />
 @stop
-
 @section('content')
 @include('layouts.left')
 @include('layouts.right')
@@ -26,7 +25,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
                     <div class="row clearfix">
-                       <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                            <div class="card">
                                <div class="header">
                                    <h2>
@@ -46,34 +45,13 @@
                                    </ul>
                                </div>
                                <div class="body">
-                                   <form action="{{url(route('profile.photoProfileUpload'))}}" id="frmProfile" class="dropzone" method="post"  enctype="multipart/form-data">
-                                            {!! Form::token() !!}
-                                       <div class="dz-message">
-                                           <div class="drag-icon-cph">
-                                               <i class="material-icons">touch_app</i>
-                                           </div>
-                                           <h3>Drop files here or click to upload.</h3>
-                                           <em>(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</em>
-                                       </div>
-                                       <div class="fallback">
-                                           <input name="file"  type="file" multiple />
-                                       </div>
+                                   <form action="{{url(route('profile.photoProfileUpload'))}}" method="post"  enctype="multipart/form-data">
+                                        {!! Form::token() !!}
+                                        
                                    </form>
                                </div>
                            </div>
                        </div>
-
-                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                           <div class="card">
-                               <div class="body">
-                                   <div class="fallback photoProfile">
-                                       <img src="{{url('uploads/profile/'.$photo)}}"  id="idProfilePhoto" alt="no-image"/>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-
-
                    </div>
                 </div>
             </div>

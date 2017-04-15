@@ -1,6 +1,22 @@
+{{--*/
+    $btnMenu = ['photoProfile' => 'Photo Profile', 'photo-produk' => 'Photo Produk', 'ganti-password' => 'Ganti Password']
+/*--}}
+
+
+
+@if(Request::segment(2) == 'profile')
 <button type="button" class="btn btn-primary waves-effect btn-rubah-data" >Rubah Data</button>
-<a href="{{url(route('profile.photoProfile'))}}">
-    <button type="button" class="btn btn-primary waves-effect">Foto Profil</button>
+@else
+<a href="{{url(route('profile.index'))}}">
+    <button type="button" class="btn btn-primary waves-effect btn-rubah-data" >Rubah Data</button>
 </a>
-<button type="button" class="btn btn-primary waves-effect">Foto Produk</button>
-<button type="button" class="btn btn-primary waves-effect">Ganti Password</button>
+@endif
+@foreach($btnMenu as $key => $value)
+    {{--*/ $selected = "" /*--}}
+    @if($key == $selectedMenu)
+        {{--*/ $selected = 'disabled="disabled"' /*--}}
+    @endif
+    <a href="<?php echo url(route('profile.'.$key.'')); ?>">
+        <button type="button" class="btn btn-primary waves-effect" {{$selected}} >{{$value}}</button>
+    </a>
+@endforeach

@@ -24,6 +24,11 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/profile-photo', ['uses'=>'ProfileController@photoProfile', 'as'=>'profile.photoProfile']);
         Route::post('/profile-photo-upload', ['uses'=>'ProfileController@photoProfileUpload', 'as'=>'profile.photoProfileUpload']);
 
+        Route::get('/profile-photo-produk', ['uses'=>'ProfileController@photoProduk', 'as'=>'profile.photo-produk']);
+        Route::post('/profile-photo-produk-upload', ['uses'=>'ProfileController@photoProdukUpload', 'as'=>'profile.photoProdukUpload']);
+
+        Route::get('/profile-ganti-password', ['uses'=>'ProfileController@gantiPassword', 'as'=>'profile.ganti-password']);
+
         // jabatan
 
 
