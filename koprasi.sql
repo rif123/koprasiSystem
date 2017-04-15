@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 29, 2017 at 03:04 AM
+-- Generation Time: Apr 15, 2017 at 11:51 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -117,6 +117,190 @@ INSERT INTO `menu` (`id`, `name`, `link`, `order_show`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `menu_admin`
+--
+
+CREATE TABLE `menu_admin` (
+  `id_menu` int(10) NOT NULL,
+  `level_menu` smallint(6) NOT NULL,
+  `parent_menu` int(10) NOT NULL,
+  `posisition_menu` tinyint(4) NOT NULL,
+  `url_menu` varchar(100) NOT NULL,
+  `name_menu` varchar(100) NOT NULL,
+  `icon_menu` varchar(50) DEFAULT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `creator` varchar(100) DEFAULT NULL,
+  `edited` timestamp NULL DEFAULT NULL,
+  `editor` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `menu_admin`
+--
+
+INSERT INTO `menu_admin` (`id_menu`, `level_menu`, `parent_menu`, `posisition_menu`, `url_menu`, `name_menu`, `icon_menu`, `created`, `creator`, `edited`, `editor`) VALUES
+(201, 0, 0, 1, 'admin', 'Home', 'android', '2017-04-01 07:53:01', 'Admin DB', '2017-04-01 07:53:05', NULL),
+(202, 0, 0, 1, 'admin/profile', 'Profile', NULL, '2017-04-01 07:54:17', 'Admin DB', '2017-04-01 07:54:32', NULL),
+(205, 0, 0, 1, 'config/group', 'Config', 'book', '2017-04-01 16:54:59', 'Admin DB', '2017-04-01 16:55:07', NULL),
+(206, 0, 205, 1, 'admin/config/menu', 'Menu', NULL, '2017-04-01 16:55:42', 'Admin DB', '2017-04-01 16:55:53', NULL),
+(207, 0, 205, 1, 'admin/config/role', 'Role', NULL, '2017-04-01 16:56:34', 'Admin DB', '2017-04-01 16:56:42', NULL),
+(208, 0, 205, 1, 'admin/config/group', 'Group', NULL, '2017-04-01 16:57:41', 'Admin DB', '2017-04-01 16:57:49', NULL),
+(212, 0, 0, 0, 'admin/fe', 'Frontend Manager', NULL, '2017-04-08 15:23:49', NULL, NULL, NULL),
+(213, 0, 0, 0, 'admin/guest_book', 'Guest Book', NULL, '2017-04-08 15:25:14', NULL, NULL, NULL),
+(214, 0, 0, 0, 'admin/mediamanager', 'Media Manager', NULL, '2017-04-08 15:25:56', NULL, NULL, NULL),
+(215, 0, 0, 0, 'admin/menu', 'Menu', NULL, '2017-04-08 15:26:17', NULL, NULL, NULL),
+(216, 0, 0, 0, 'admin/form', 'Form', NULL, '2017-04-08 15:27:38', NULL, NULL, NULL),
+(217, 0, 0, 0, 'admin/settting', 'Settings', NULL, '2017-04-08 15:29:57', NULL, NULL, NULL),
+(218, 0, 0, 0, 'admin/user', 'User', NULL, '2017-04-08 15:30:43', NULL, NULL, NULL),
+(219, 0, 218, 0, 'admin/user', 'User', NULL, '2017-04-08 15:31:10', NULL, NULL, NULL),
+(220, 0, 218, 0, 'admin/user_level', 'User Group', NULL, '2017-04-08 15:32:49', NULL, NULL, NULL),
+(221, 0, 216, 0, 'admin/carousel', 'Slide', NULL, '2017-04-08 15:33:53', NULL, NULL, NULL),
+(222, 0, 216, 0, 'admin/post', 'Post', NULL, '2017-04-08 15:34:20', NULL, NULL, NULL),
+(223, 0, 216, 0, 'admin/process_text', 'Process Text', NULL, '2017-04-08 15:34:48', NULL, NULL, NULL),
+(224, 0, 216, 0, 'admin/prj', 'Project', NULL, '2017-04-08 15:35:16', NULL, NULL, NULL),
+(225, 0, 224, 0, 'admin/project', 'Project', NULL, '2017-04-08 15:35:41', NULL, NULL, NULL),
+(226, 0, 224, 0, 'admin/project/category', 'Project Category', NULL, '2017-04-08 15:36:17', NULL, NULL, NULL),
+(227, 0, 216, 0, 'admin/skill', 'Skill', NULL, '2017-04-08 15:36:50', NULL, NULL, NULL),
+(228, 0, 216, 0, 'admin/team', 'Team', NULL, '2017-04-08 15:37:10', NULL, NULL, NULL),
+(229, 0, 216, 0, 'admin/testimonial', 'Testimonial', NULL, '2017-04-08 15:37:30', NULL, NULL, NULL),
+(230, 0, 217, 0, 'admin/setting', 'General', NULL, '2017-04-08 15:39:07', NULL, NULL, NULL),
+(231, 0, 217, 0, 'Footer', 'Footers', NULL, '2017-04-08 15:39:32', NULL, NULL, NULL),
+(232, 0, 231, 0, 'admin/setting/footer', 'Footer Text', 'volume_down', '2017-04-08 15:39:58', NULL, NULL, NULL),
+(233, 0, 231, 0, 'admin/setting/footer/social', 'Social Link', NULL, '2017-04-08 15:40:50', NULL, NULL, NULL),
+(234, 0, 217, 0, 'admin/setting/location', 'Location', NULL, '2017-04-08 15:41:25', NULL, NULL, NULL),
+(235, 0, 217, 0, 'admin/setting/profile', 'Profile', NULL, '2017-04-08 15:41:48', NULL, NULL, NULL),
+(236, 0, 217, 0, 'admin/contact', 'Contact', 'favorite', '2017-04-08 15:42:28', NULL, NULL, NULL),
+(237, 0, 0, 0, 'simpanan', 'Simpanan', 'save', '2017-04-09 05:29:11', NULL, NULL, NULL),
+(238, 0, 237, 0, 'admin/simpanan/wajib', 'Wajib', 'card_giftcard', '2017-04-09 05:30:16', NULL, NULL, NULL),
+(239, 0, 237, 0, 'admin/simpanan/pokok', 'Pokok', 'card_travel', '2017-04-09 05:31:20', NULL, NULL, NULL),
+(241, 0, 0, 0, 'keuangan', 'Keuangan', 'payment', '2017-04-15 02:25:30', NULL, NULL, NULL),
+(242, 0, 241, 0, 'admin/keuangan', 'Koperasi', 'payment', '2017-04-15 02:26:15', NULL, NULL, NULL),
+(243, 0, 205, 0, 'admin/anggota', 'Generate Token Anggota', 'code', '2017-04-15 03:44:59', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_group`
+--
+
+CREATE TABLE `menu_group` (
+  `user_grp` int(11) NOT NULL,
+  `group_name` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `menu_group`
+--
+
+INSERT INTO `menu_group` (`user_grp`, `group_name`) VALUES
+(1, 'ADMINISTRATOR'),
+(2, 'TEACHER'),
+(3, 'STUDENT'),
+(4, 'PARENT');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_role`
+--
+
+CREATE TABLE `menu_role` (
+  `kd_role` int(11) NOT NULL,
+  `user_grp` int(11) NOT NULL,
+  `id_menu` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `menu_role`
+--
+
+INSERT INTO `menu_role` (`kd_role`, `user_grp`, `id_menu`) VALUES
+(168, 2, 201),
+(169, 2, 202),
+(171, 2, 205),
+(172, 2, 206),
+(173, 2, 207),
+(174, 2, 208),
+(182, 4, 205),
+(586, 3, 201),
+(737, 1, 201),
+(738, 1, 201),
+(741, 1, 202),
+(742, 1, 202),
+(743, 1, 205),
+(744, 1, 205),
+(745, 1, 206),
+(746, 1, 206),
+(747, 1, 207),
+(748, 1, 207),
+(749, 1, 208),
+(750, 1, 208),
+(751, 1, 243),
+(752, 1, 243),
+(753, 1, 212),
+(754, 1, 212),
+(755, 1, 213),
+(756, 1, 213),
+(757, 1, 214),
+(758, 1, 214),
+(759, 1, 215),
+(760, 1, 215),
+(761, 1, 216),
+(762, 1, 216),
+(763, 1, 221),
+(764, 1, 221),
+(765, 1, 222),
+(766, 1, 222),
+(767, 1, 223),
+(768, 1, 224),
+(769, 1, 223),
+(770, 1, 224),
+(771, 1, 225),
+(772, 1, 226),
+(773, 1, 225),
+(774, 1, 227),
+(775, 1, 226),
+(776, 1, 228),
+(777, 1, 227),
+(778, 1, 228),
+(779, 1, 229),
+(780, 1, 217),
+(781, 1, 229),
+(782, 1, 230),
+(783, 1, 217),
+(784, 1, 231),
+(785, 1, 230),
+(786, 1, 231),
+(787, 1, 232),
+(788, 1, 232),
+(789, 1, 233),
+(790, 1, 233),
+(791, 1, 234),
+(792, 1, 235),
+(793, 1, 234),
+(794, 1, 235),
+(795, 1, 236),
+(796, 1, 236),
+(797, 1, 218),
+(798, 1, 218),
+(799, 1, 219),
+(800, 1, 219),
+(801, 1, 220),
+(802, 1, 220),
+(803, 1, 237),
+(804, 1, 237),
+(805, 1, 238),
+(806, 1, 239),
+(807, 1, 238),
+(808, 1, 239),
+(809, 1, 241),
+(810, 1, 242),
+(811, 1, 241),
+(812, 1, 242);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -143,17 +327,18 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 
 CREATE TABLE `m_anggota` (
   `kd_anggota` int(11) NOT NULL,
+  `id_users` int(11) NOT NULL,
   `nm_anggota` varchar(100) DEFAULT NULL,
   `kd_jabatan` int(11) DEFAULT NULL,
   `pasPhoto_anggota` varchar(225) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `m_anggota`
 --
 
-INSERT INTO `m_anggota` (`kd_anggota`, `nm_anggota`, `kd_jabatan`, `pasPhoto_anggota`) VALUES
-(1, 'Rifky', 1, 'Kosong');
+INSERT INTO `m_anggota` (`kd_anggota`, `id_users`, `nm_anggota`, `kd_jabatan`, `pasPhoto_anggota`) VALUES
+(82, 9, 'Rifky', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -170,11 +355,12 @@ CREATE TABLE `m_data_docLegal` (
   `tdp_docLegal` varchar(100) DEFAULT NULL,
   `pirt_docLegal` varchar(100) DEFAULT NULL,
   `halal_docLegal` varchar(100) DEFAULT NULL,
+  `bpom_docLegal` varchar(100) DEFAULT NULL,
   `hki_docLegal` varchar(100) DEFAULT NULL,
   `merk_docLegal` varchar(100) DEFAULT NULL,
   `lainnya_docLegal` varchar(100) DEFAULT NULL,
   `created` varchar(255) DEFAULT NULL,
-  `create_date` date DEFAULT NULL,
+  `create_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated` varchar(255) DEFAULT NULL,
   `update_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -204,13 +390,6 @@ CREATE TABLE `m_data_pribadi` (
   `update_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `m_data_pribadi`
---
-
-INSERT INTO `m_data_pribadi` (`kd_data_pribadi`, `kd_anggota`, `tempat_lahir_pribadi`, `npwp_pribadi`, `noHp_pribadi`, `email_pribadi`, `alamat_pribadi`, `rtRw_pribadi`, `kec_pribadi`, `desKel_pribadi`, `wubTahun_pribadi`, `wubDinas_pribadi`, `created`, `create_date`, `updated`, `update_date`) VALUES
-(2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-03-28 20:41:38', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -221,12 +400,14 @@ CREATE TABLE `m_data_usaha` (
   `kd_usaha` int(11) NOT NULL,
   `kd_anggota` int(11) DEFAULT NULL,
   `brand_usaha` varchar(100) DEFAULT NULL,
+  `lama_usaha` int(11) DEFAULT NULL,
   `jenisProd_usaha` varchar(100) DEFAULT NULL,
   `alamat_usaha` text,
   `rtRw_usaha` varchar(20) DEFAULT NULL,
   `kec_usaha` varchar(50) DEFAULT NULL,
   `kabKot_usaha` varchar(50) DEFAULT NULL,
   `kapasitas_usaha` varchar(100) DEFAULT NULL,
+  `harga_usaha` int(11) DEFAULT NULL,
   `wilayah_offline_usaha` varchar(100) DEFAULT NULL,
   `wilayah_online_usaha` varchar(100) DEFAULT NULL,
   `jumlahTenagaKerja_usaha` int(11) DEFAULT NULL,
@@ -256,7 +437,8 @@ CREATE TABLE `m_jabatan` (
 --
 
 INSERT INTO `m_jabatan` (`kd_jabatan`, `nm_jabatan`) VALUES
-(1, 'Programmer');
+(1, 'Programmer'),
+(2, 'Sales');
 
 -- --------------------------------------------------------
 
@@ -276,6 +458,18 @@ CREATE TABLE `m_jenis_pinjaman` (
 
 CREATE TABLE `m_jenis_simpanan` (
   `kd_jsimpanan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_menu_dashboard`
+--
+
+CREATE TABLE `m_menu_dashboard` (
+  `kd_menu_dashboard` int(11) NOT NULL,
+  `nama_menu` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -662,9 +856,27 @@ CREATE TABLE `t_simpanan_transaksi` (
 CREATE TABLE `t_simpan_pokok` (
   `kd_spokok` int(11) NOT NULL,
   `no_spokok` int(11) DEFAULT NULL,
-  `tgl_spokok` varchar(50) DEFAULT NULL,
+  `jml_bayar_spokok` varchar(255) DEFAULT NULL,
+  `tgl_bayar_spokok` date DEFAULT NULL,
+  `bukti_bayar_spokok` varchar(100) DEFAULT NULL,
   `kd_anggota` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_simpan_pokok`
+--
+
+INSERT INTO `t_simpan_pokok` (`kd_spokok`, `no_spokok`, `jml_bayar_spokok`, `tgl_bayar_spokok`, `bukti_bayar_spokok`, `kd_anggota`) VALUES
+(1, NULL, '7000', '2016-07-04', '78015.jpeg', 82),
+(2, NULL, '1700', '2016-06-05', '90586.png', 82),
+(3, NULL, '1700', '2016-04-01', '18877.png', 82),
+(4, NULL, '1700', '2016-08-01', '88150.png', 82),
+(5, NULL, '7000', '2016-01-01', '80367.jpeg', 82),
+(6, NULL, '7000', '2016-01-01', '91494.png', 82),
+(7, NULL, '7000', '2016-01-01', '53894.png', 82),
+(8, NULL, 'asdf', '2016-05-01', '71235.png', 82),
+(9, NULL, 'asdf', '2016-05-01', '82771.png', 82),
+(10, NULL, '10000', '2016-05-01', '17515.png', 82);
 
 -- --------------------------------------------------------
 
@@ -686,9 +898,28 @@ CREATE TABLE `t_simpan_sukarela` (
 
 CREATE TABLE `t_simpan_wajib` (
   `kd_swajib` int(11) NOT NULL,
+  `jml_bayar_wajib` varchar(100) DEFAULT NULL,
+  `bkt_bayar_wajib` varchar(100) DEFAULT NULL,
+  `tgl_bayar_wajib` date DEFAULT NULL,
   `no_swajib` int(11) DEFAULT NULL,
   `kd_anggota` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_simpan_wajib`
+--
+
+INSERT INTO `t_simpan_wajib` (`kd_swajib`, `jml_bayar_wajib`, `bkt_bayar_wajib`, `tgl_bayar_wajib`, `no_swajib`, `kd_anggota`) VALUES
+(4, '19000', '96704.png', '2016-04-07', NULL, 82),
+(5, '19000', '26215.png', '2016-05-05', NULL, 82),
+(6, '19000', '92610.png', '2016-06-01', NULL, 82),
+(7, '19000', '23886.png', '2016-07-07', NULL, 82),
+(8, '19000', '76901.zip', '2016-04-22', NULL, 82),
+(9, '19000', '79413.zip', '2016-12-15', NULL, 82),
+(10, '19000', '94674.jpeg', '2016-10-05', NULL, 82),
+(12, '9000', '80143.png', '2016-09-10', NULL, 82),
+(13, '123456', '68948.jpeg', '2016-05-10', NULL, 82),
+(14, '123456', '72346.zip', '2016-05-10', NULL, 82);
 
 -- --------------------------------------------------------
 
@@ -697,7 +928,8 @@ CREATE TABLE `t_simpan_wajib` (
 --
 
 CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
+  `user_grp` int(11) DEFAULT NULL,
   `uname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
@@ -709,10 +941,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `uname`, `email`, `password`, `id_level`, `remember_token`) VALUES
-(1, 'admin', 'admin@admin.com', '$2y$10$kTJwyteB13BiPx6zjARaFOh54Ps/GljcLez7xNWazYfODEa13GDZa', 1, 'PAt6zvWuj1eIvloUEvm6l8MDnrKaRR3LI9xs9w7VK9Vf0W3QiGKEErSITUZw'),
-(7, 'admintoko', 'hatakeonez@gmail.com', '$2y$10$AqkLEdiU7mKcSNy0e49J6eDLOipzLijshcgvQu6/uk3youZ7QolQ2', 2, 'DUHvjdUZgYF9215pCqASVtb9UUuTjK3PgK8okd62ITNrPXIsXMjhZb6rXhEH'),
-(8, 'test', 'test@test.com', '$2y$10$YYAIO8T21OiDSOezG4E3JOSPf.kngu6gSPOXWHE9.l0rmTXWqdlPK', 3, NULL);
+INSERT INTO `users` (`id`, `user_grp`, `uname`, `email`, `password`, `id_level`, `remember_token`) VALUES
+(9, 1, 'admin', 'admin@admin.com', '$2y$10$kTJwyteB13BiPx6zjARaFOh54Ps/GljcLez7xNWazYfODEa13GDZa', 1, 'p82guw8ZoYusdqfXbKSpyhrx8inE9AVb4koQ5SzsF0FobOFnnT9XzGi2QCOr'),
+(15, 2, 'Rifky', 'rifky.rachman@gmail.com', '$2y$10$yG6TzyHZpkaNWQVT6uuAtuxHaNt.BeYZAzS.jXNIE9k1FepOtw1oC', 1, 'BSOwGb2cbIcN4qPSgW9zLAXgstHPu08wpQdjRjSqG9zMQZGN6odtiPytab7z'),
+(16, 3, 'akbar', 'akbar@gmail.com', '$2y$10$GDyKw0F.GFOfA7LX.L0O8e9KJ3hegeSE14guuFmh1/.lqolaJ1PTW', 1, 'xuoS5Ipqwqa8DRVCJ835vXrUTFNklLfpJUE7rFbuz6gEfp3Mv0SaFXf4m1I5');
 
 -- --------------------------------------------------------
 
@@ -802,11 +1034,34 @@ ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `menu_admin`
+--
+ALTER TABLE `menu_admin`
+  ADD PRIMARY KEY (`id_menu`);
+
+--
+-- Indexes for table `menu_group`
+--
+ALTER TABLE `menu_group`
+  ADD PRIMARY KEY (`user_grp`);
+
+--
+-- Indexes for table `menu_role`
+--
+ALTER TABLE `menu_role`
+  ADD PRIMARY KEY (`kd_role`),
+  ADD KEY `id_group` (`user_grp`),
+  ADD KEY `user_grp` (`user_grp`),
+  ADD KEY `id_menu` (`id_menu`),
+  ADD KEY `id_menu_2` (`id_menu`);
+
+--
 -- Indexes for table `m_anggota`
 --
 ALTER TABLE `m_anggota`
   ADD PRIMARY KEY (`kd_anggota`),
-  ADD KEY `kd_jabatan` (`kd_jabatan`);
+  ADD KEY `kd_jabatan` (`kd_jabatan`),
+  ADD KEY `key_anggota` (`id_users`);
 
 --
 -- Indexes for table `m_data_docLegal`
@@ -846,6 +1101,12 @@ ALTER TABLE `m_jenis_pinjaman`
 --
 ALTER TABLE `m_jenis_simpanan`
   ADD PRIMARY KEY (`kd_jsimpanan`);
+
+--
+-- Indexes for table `m_menu_dashboard`
+--
+ALTER TABLE `m_menu_dashboard`
+  ADD PRIMARY KEY (`kd_menu_dashboard`);
 
 --
 -- Indexes for table `m_nasabah`
@@ -995,7 +1256,8 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`),
   ADD UNIQUE KEY `uname` (`uname`),
-  ADD KEY `id_level` (`id_level`);
+  ADD KEY `id_level` (`id_level`),
+  ADD KEY `user_grp` (`user_grp`);
 
 --
 -- Indexes for table `user_level`
@@ -1035,10 +1297,25 @@ ALTER TABLE `guest_book`
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
+-- AUTO_INCREMENT for table `menu_admin`
+--
+ALTER TABLE `menu_admin`
+  MODIFY `id_menu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=244;
+--
+-- AUTO_INCREMENT for table `menu_group`
+--
+ALTER TABLE `menu_group`
+  MODIFY `user_grp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `menu_role`
+--
+ALTER TABLE `menu_role`
+  MODIFY `kd_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=813;
+--
 -- AUTO_INCREMENT for table `m_anggota`
 --
 ALTER TABLE `m_anggota`
-  MODIFY `kd_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `kd_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 --
 -- AUTO_INCREMENT for table `m_data_docLegal`
 --
@@ -1048,7 +1325,7 @@ ALTER TABLE `m_data_docLegal`
 -- AUTO_INCREMENT for table `m_data_pribadi`
 --
 ALTER TABLE `m_data_pribadi`
-  MODIFY `kd_data_pribadi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `kd_data_pribadi` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `m_data_usaha`
 --
@@ -1058,7 +1335,12 @@ ALTER TABLE `m_data_usaha`
 -- AUTO_INCREMENT for table `m_jabatan`
 --
 ALTER TABLE `m_jabatan`
-  MODIFY `kd_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `kd_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `m_menu_dashboard`
+--
+ALTER TABLE `m_menu_dashboard`
+  MODIFY `kd_menu_dashboard` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `post`
 --
@@ -1108,7 +1390,7 @@ ALTER TABLE `testimonial`
 -- AUTO_INCREMENT for table `t_simpan_pokok`
 --
 ALTER TABLE `t_simpan_pokok`
-  MODIFY `kd_spokok` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `kd_spokok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `t_simpan_sukarela`
 --
@@ -1118,12 +1400,12 @@ ALTER TABLE `t_simpan_sukarela`
 -- AUTO_INCREMENT for table `t_simpan_wajib`
 --
 ALTER TABLE `t_simpan_wajib`
-  MODIFY `kd_swajib` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `kd_swajib` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `user_level`
 --
@@ -1139,9 +1421,17 @@ ALTER TABLE `widget`
 --
 
 --
+-- Constraints for table `menu_role`
+--
+ALTER TABLE `menu_role`
+  ADD CONSTRAINT `ket_group` FOREIGN KEY (`user_grp`) REFERENCES `menu_group` (`user_grp`),
+  ADD CONSTRAINT `key_menu` FOREIGN KEY (`id_menu`) REFERENCES `menu_admin` (`id_menu`);
+
+--
 -- Constraints for table `m_anggota`
 --
 ALTER TABLE `m_anggota`
+  ADD CONSTRAINT `key_anggota` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `key_jabatan` FOREIGN KEY (`kd_jabatan`) REFERENCES `m_jabatan` (`kd_jabatan`);
 
 --
@@ -1228,6 +1518,7 @@ ALTER TABLE `t_simpan_wajib`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
+  ADD CONSTRAINT `user_group_menu` FOREIGN KEY (`user_grp`) REFERENCES `menu_group` (`user_grp`),
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_level`) REFERENCES `user_level` (`id_level`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

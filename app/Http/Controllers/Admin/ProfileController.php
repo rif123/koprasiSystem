@@ -34,10 +34,11 @@ class ProfileController extends Controller
     public function create()
     {
         $rules=[
-            'nm_anggota'=>'required'
+            'nm_anggota'=>'required',
         ];
         $messages=[
             'nm_anggota.required'=>config('constants.ERROR_NAMA_ANGGOTA'),
+
         ];
         $validator=Validator::make(\Input::all(), $rules, $messages);
         if ($validator->passes()) {

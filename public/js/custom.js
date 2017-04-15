@@ -16,9 +16,7 @@ define([
 		'profile',
 		'sweetAlert',
 		'menu',
-		'group',
-		'save',
-		'spokok',
+		'group'
 
 	], function ($){
 		$(document).ready(function(){

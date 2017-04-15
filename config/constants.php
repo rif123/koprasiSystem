@@ -6,4 +6,7 @@ return [
     'ERROR_PARENT_MENU' => 'Harap Di isi menu parent',
     'ERROR_ID_MENU_NOT_DEFINE' => 'ID menu tidak ter isi',
     'ERROR_ICON_MENU' => 'Icon wajib di isi',
+    'ERROR_NAMA_ANGGOTA' => 'Nama Anggota Wajib di isi',
+    'ERROR_NOMOR_ANGGOTA' => 'Nomor Anggota Wajib di isi',
+
 ];

@@ -196,6 +196,12 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::post('/simpanan/pokok-save', ['uses'=>'SaveControllers@pokokSave', 'as'=>'config.pokokSave']);
 
 
+
+        Route::get('/keuangan', ['uses'=>'KeuanganController@keuanganKoprasi', 'as'=>'config.keuanganKoprasi']);
+
+        Route::get('/anggota', ['uses'=>'AnggotaController@generateTokenAnggota', 'as'=>'config.generateTokenAnggota']);
+        Route::post('/anggota-generate', ['uses'=>'AnggotaController@generateToken', 'as'=>'config.generateToken']);
+
     });
 });
 

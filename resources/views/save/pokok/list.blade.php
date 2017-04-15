@@ -1,4 +1,8 @@
 @extends('layouts.index_no_require')
+@section('header')
+    <link href="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.css" rel="stylesheet" />
+@stop
+
 @section('content')
 @include('layouts.left')
 @include('layouts.right')
@@ -59,7 +63,7 @@
                             <div class="col-md-12">
                                 <div class="input-group">
                                     <div class="form-line">
-                                        <input type="text" name="tgl_bayar_spokok" class="form-control date" placeholder="Tanggal bayar">
+                                        <input type="text" name="tgl_bayar_spokok" class="form-control" id="datepicker" placeholder="Tanggal bayar">
                                     </div>
                                 </div>
                             </div>
@@ -94,9 +98,15 @@
 @stop
 @section('js')
 <script src="{{ URL::asset('') }}js/save/spokok.js"></script>
+<script src="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.min.js"></script>
 <script>
     var urlListWajib = "{{url(route('config.wajibList'))}}";
     var urlListPokok = "{{url(route('config.pokokList'))}}";
     var urlGetListSimpanan = "{{url(route('config.listSave'))}}";
+    $('#datepicker').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true,
+        startDate: '-3d'
+    });
 </script>
 @stop

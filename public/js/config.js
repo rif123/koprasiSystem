@@ -42,12 +42,6 @@ require.config({
 		},
 		'group' : {
 			deps: ['jquery']
-		},
-		'save' : {
-			deps: ['jquery']
-		},
-		'spokok' : {
-			deps: ['jquery']
 		}
 	},
 	paths : {
@@ -72,7 +66,5 @@ require.config({
         profile  : 'js/profile/profile',
 		menu 	: 'js/menu/menu',
 		group 	: 'js/group/group',
-		save 	: 'js/save/save',
-		spokok 	: 'js/save/spokok',
 	}
 });
