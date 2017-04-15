@@ -12,6 +12,7 @@ $(document).ready(function(){
                 var modalDiv = $('#defaultModal');
                     modalDiv.find('.modal-title').html("Berhasil");
                     modalDiv.find('.modal-body').html(xhr.message);
+                    modalDiv.find('.btn-close').attr('onclick', 'redirect()');
                     modalDiv.modal('show');
             } else {
                 var modalDiv = $('#defaultModal');
@@ -40,6 +41,11 @@ $(document).ready(function(){
         $(this).ajaxSubmit(options);
         return false;
     });
+    $('.btn-rubah-data').click(function(){
+        $(this).attr('disabled', 'disabled');
+        $('#form-anggota input').attr("readonly", false);
+    });
+    $('#form-anggota input').attr('readonly', 'readonly');
 });
 
 // pre-submit callback
@@ -47,6 +53,9 @@ function showRequest(formData, jqForm, options) {
     var queryString = $.param(formData);
     alert('About to submit: \n\n' + queryString);
     return true;
+}
+function redirect(){
+    window.location = window.location.href;
 }
 
 // post-submit callback

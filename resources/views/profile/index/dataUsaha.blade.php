@@ -17,14 +17,18 @@
     <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="brand_usaha" class="form-control date" placeholder="nama Brand">
+                <input type="text" name="brand_usaha" class="form-control date"
+                value="{{!empty($allData->brand_usaha) ? $allData->brand_usaha : '' }}"
+                placeholder="nama Brand">
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="lamaUsaha" class="form-control date" placeholder="Lama Usaha">
+                <input type="text" name="lama_usaha" class="form-control date"
+                        value="{{!empty($allData->lama_usaha) ? $allData->lama_usaha : '' }}"
+                placeholder="Lama Usaha">
             </div>
         </div>
     </div>
@@ -34,7 +38,9 @@
     <div class="col-md-12">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="jenisProd_usaha" class="form-control date" placeholder="Jenis Produk">
+                <input type="text" name="jenisProd_usaha" class="form-control date"
+                value="{{!empty($allData->jenisProd_usaha) ? $allData->jenisProd_usaha : '' }}"
+                placeholder="Jenis Produk">
             </div>
         </div>
     </div>
@@ -44,28 +50,36 @@
     <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="alamat_usaha" class="form-control date" placeholder="Alamat">
+                <input type="text" name="alamat_usaha" class="form-control date"
+                value="{{!empty($allData->alamat_usaha) ? $allData->alamat_usaha : '' }}"
+                placeholder="Alamat">
             </div>
         </div>
     </div>
     <div class="col-md-2">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="rtRw_usaha" class="form-control date" placeholder="Rt/Rw">
+                <input type="text" name="rtRw_usaha" class="form-control date"
+                value="{{!empty($allData->rtRw_usaha) ? $allData->rtRw_usaha : '' }}"
+                placeholder="Rt/Rw">
             </div>
         </div>
     </div>
     <div class="col-md-2">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="kec_usaha" class="form-control date" placeholder="Kecamatan">
+                <input type="text" name="kec_usaha" class="form-control date"
+                value="{{!empty($allData->kec_usaha) ? $allData->kec_usaha : '' }}"
+                placeholder="Kecamatan">
             </div>
         </div>
     </div>
     <div class="col-md-2">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="kabKot_usaha" class="form-control date" placeholder="Kab/Kot">
+                <input type="text" name="kabKot_usaha" class="form-control date"
+                    value="{{!empty($allData->kabKot_usaha) ? $allData->kabKot_usaha : '' }}"
+                placeholder="Kab/Kot">
             </div>
         </div>
     </div>
@@ -76,14 +90,18 @@
     <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="kapasitas_usaha" class="form-control date" placeholder="Kapasitas">
+                <input type="text" name="kapasitas_usaha" class="form-control date"
+                value="{{!empty($allData->kapasitas_usaha) ? $allData->kapasitas_usaha : '' }}"
+                placeholder="Kapasitas">
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="harga_usaha" class="form-control date" placeholder="Harga Jual">
+                <input type="text" name="harga_usaha" class="form-control date"
+                    value="{{!empty($allData->harga_usaha) ? $allData->harga_usaha : '' }}"
+                placeholder="Harga Jual">
             </div>
         </div>
     </div>
@@ -94,14 +112,18 @@
     <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="wilayah_offline_usaha" class="form-control date" placeholder="Offline">
+                <input type="text" name="wilayah_offline_usaha" class="form-control date"
+                value="{{!empty($allData->wilayah_offline_usaha) ? $allData->wilayah_offline_usaha : '' }}"
+                placeholder="Offline">
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="wilayah_online_usaha" class="form-control date" placeholder="Online">
+                <input type="text" name="wilayah_online_usaha" class="form-control date"
+                    value="{{!empty($allData->wilayah_online_usaha) ? $allData->wilayah_online_usaha : '' }}"
+                placeholder="Online">
             </div>
         </div>
     </div>
@@ -113,14 +135,18 @@
     <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="jumlahTenagaKerja_usaha" class="form-control date" placeholder="Jumlah Tenaga Kerja">
+                <input type="text" name="jumlahTenagaKerja_usaha" class="form-control date"
+                value="{{!empty($allData->jumlahTenagaKerja_usaha) ? $allData->jumlahTenagaKerja_usaha : '' }}"
+                placeholder="Jumlah Tenaga Kerja">
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="omset_usaha" class="form-control date" placeholder="Omset Usaha">
+                <input type="text" name="omset_usaha" class="form-control date"
+                value="{{!empty($allData->omset_usaha) ? $allData->omset_usaha : '' }}"
+                placeholder="Omset Usaha">
             </div>
         </div>
     </div>
@@ -131,21 +157,27 @@
     <div class="col-md-4">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="fb_usaha" class="form-control date" placeholder="Facebook">
+                <input type="text" name="fb_usaha" class="form-control date"
+                value="{{!empty($allData->fb_usaha) ? $allData->fb_usaha : '' }}"
+                placeholder="Facebook">
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="insta_usaha" class="form-control date" placeholder="Instagram">
+                <input type="text" name="insta_usaha" class="form-control date"
+                    value="{{!empty($allData->insta_usaha) ? $allData->insta_usaha : '' }}"
+                placeholder="Instagram">
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="input-group">
             <div class="form-line">
-                <input type="text" name="twiiter_usaha" class="form-control date" placeholder="Twiiter">
+                <input type="text" name="twiiter_usaha" class="form-control date"
+                    value="{{!empty($allData->twiiter_usaha) ? $allData->twiiter_usaha : '' }}"
+                 placeholder="Twiiter">
             </div>
         </div>
     </div>

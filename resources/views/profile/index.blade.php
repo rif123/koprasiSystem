@@ -9,6 +9,7 @@
             <h2>
                 FORMULIR PENDAFTARAN ANGGOTA BARU
                 <small>(isi dengan lengkap & jelas)</small>
+                @include('profile.menuProfile')
             </h2>
             <ul class="header-dropdown m-r--5">
                 <li class="dropdown">
@@ -28,6 +29,7 @@
                     </ul>
 
                         {!! Form::token() !!}
+                        <input  type="hidden" name="kd_anggota" value="{{Session::get('kd_anggota')}}" />
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="home">
                                  @include('profile.index.dataPribadi')

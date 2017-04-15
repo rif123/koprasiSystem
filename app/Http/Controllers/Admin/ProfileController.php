@@ -22,7 +22,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $data['data'] = "";
+
+        $kd_anggota = \Session::get('kd_anggota');
+        $getAll = MA::getALlData($kd_anggota);
+        $data['allData'] = $getAll[0];
         return view("profile.index", $data)->with('parser', $this->parser);
     }
 
@@ -42,26 +45,56 @@ class ProfileController extends Controller
         ];
         $validator=Validator::make(\Input::all(), $rules, $messages);
         if ($validator->passes()) {
-
+            // check exsiting
+            $kd_anggota = \Session::get('kd_anggota');
+            $checkAnggota = MA::checkDataAnggota('m_anggota', $kd_anggota);
 
             // save M_anggota
-            $mAnggota = new MA;
-            $mAnggota->nm_anggota = \Input::get('nm_anggota');
-            $mAnggota->pasPhoto_anggota = $this->uploadFile();
-            $mAnggota->save();
-
+            if ($checkAnggota[0]->kdAggota >= 1) {
+                $mAnggota =  MA::find($kd_anggota);;
+                $mAnggota->nm_anggota = \Input::get('nm_anggota');
+                $mAnggota->pasPhoto_anggota = $this->uploadFile();
+                $mAnggota->update();
+            } else {
+                $mAnggota = new MA;
+                $mAnggota->nm_anggota = \Input::get('nm_anggota');
+                $mAnggota->pasPhoto_anggota = $this->uploadFile();
+                $mAnggota->save();
+            }
             // get last id
             $insertedId = $mAnggota->id;
 
             // save m_pribadi
-            $this->savePribadi($insertedId);
+            $checkAnggota = MA::checkDataAnggota('m_data_pribadi', $kd_anggota);
+            if ($checkAnggota[0]->kdAggota >= 1) {
+                $insertedId = $kd_anggota;
+                $this->savePribadi('update', $insertedId);
+            } else {
+                $insertedId = !empty($insertedId) ? $insertedId : $kd_anggota;
+                $this->savePribadi('save', $insertedId);
+            }
 
             // save M_doc_file
-            $this->saveDataUsaha($insertedId);
+            $checkAnggota = MA::checkDataAnggota('m_data_usaha', $kd_anggota);
+            if ($checkAnggota[0]->kdAggota >= 1) {
+                $insertedId = $kd_anggota;
+                $this->saveDataUsaha('update', $insertedId);
+            } else {
+
+                $insertedId = !empty($insertedId) ? $insertedId : $kd_anggota;
+                $this->saveDataUsaha('save', $insertedId);
+            }
 
             // save M_doc_file
-            $this->saveDocFile($insertedId);
+            $checkAnggota = MA::checkDataAnggota('m_data_docLegal', $kd_anggota);
+            if ($checkAnggota[0]->kdAggota >= 1) {
+                $insertedId = $kd_anggota;
+                $this->saveDocFile('update', $insertedId);
+            } else {
 
+                $insertedId = !empty($insertedId) ? $insertedId : $kd_anggota;
+                $this->saveDocFile('save', $insertedId);
+            }
             return response()->json(['status' => true, 'message' => config('constants.SUCCESS_FORM') ]);
         } else {
             $message = $validator->errors()->first();
@@ -73,73 +106,127 @@ class ProfileController extends Controller
      * save table m_data_pribadi
      * @return save
      */
-    private function savePribadi($insertedId)
+    private function savePribadi($status, $insertedId)
     {
-        $mPribadi = new MP;
-        $mPribadi->tempat_lahir_pribadi = \Input::get('tempat_lahir_pribadi');
-        $mPribadi->kd_anggota = $insertedId;
-        $mPribadi->npwp_pribadi = \Input::get('npwp_pribadi');
-        $mPribadi->noHp_pribadi = \Input::get('noHp_pribadi');
-        $mPribadi->email_pribadi = \Input::get('email_pribadi');
-        $mPribadi->alamat_pribadi = \Input::get('alamat_pribadi');
-        $mPribadi->rtRw_pribadi = \Input::get('rtRw_pribadi');
-        $mPribadi->kec_pribadi = \Input::get('kec_pribadi');
-        $mPribadi->desKel_pribadi = \Input::get('desKel_pribadi');
-        $mPribadi->wubTahun_pribadi = \Input::get('wubTahun_pribadi');
-        $mPribadi->wubDinas_pribadi = \Input::get('wubDinas_pribadi');
-        $mPribadi->created = "aku";
-        $mPribadi->save();
+        if ($status == 'update') {
+            $mPribadi['tempat_lahir_pribadi'] = !empty(\Input::get('tempat_lahir_pribadi')) ? \Input::get('tempat_lahir_pribadi') : "";
+            $mPribadi['kd_anggota'] = $insertedId;
+            $mPribadi['npwp_pribadi'] = !empty(\Input::get('npwp_pribadi')) ? \Input::get('npwp_pribadi') : "";
+            $mPribadi['noHp_pribadi'] = !empty(\Input::get('noHp_pribadi')) ? \Input::get('noHp_pribadi') : "";
+            $mPribadi['email_pribadi']= !empty(\Input::get('email_pribadi')) ? \Input::get('email_pribadi') : "";
+            $mPribadi['alamat_pribadi'] = !empty(\Input::get('alamat_pribadi')) ? \Input::get('alamat_pribadi') : "";
+            $mPribadi['rtRw_pribadi'] = !empty(\Input::get('rtRw_pribadi')) ? \Input::get('rtRw_pribadi') : "";
+            $mPribadi['kec_pribadi'] = !empty(\Input::get('kec_pribadi')) ? \Input::get('kec_pribadi') : "";
+            $mPribadi['desKel_pribadi'] = !empty(\Input::get('desKel_pribadi')) ? \Input::get('desKel_pribadi') : "";
+            $mPribadi['wubTahun_pribadi'] = !empty(\Input::get('wubTahun_pribadi')) ? \Input::get('wubTahun_pribadi') : "";
+            $mPribadi['wubDinas_pribadi'] = !empty(\Input::get('wubDinas_pribadi')) ? \Input::get('wubDinas_pribadi') : "";
+            $execute = MP::where("kd_anggota",$insertedId)->update($mPribadi);
+        } else {
+            $mPribadi = new MP;
+            $mPribadi->tempat_lahir_pribadi = \Input::get('tempat_lahir_pribadi');
+            $mPribadi->kd_anggota = $insertedId;
+            $mPribadi->npwp_pribadi = \Input::get('npwp_pribadi');
+            $mPribadi->noHp_pribadi = \Input::get('noHp_pribadi');
+            $mPribadi->email_pribadi = \Input::get('email_pribadi');
+            $mPribadi->alamat_pribadi = \Input::get('alamat_pribadi');
+            $mPribadi->rtRw_pribadi = \Input::get('rtRw_pribadi');
+            $mPribadi->kec_pribadi = \Input::get('kec_pribadi');
+            $mPribadi->desKel_pribadi = \Input::get('desKel_pribadi');
+            $mPribadi->wubTahun_pribadi = \Input::get('wubTahun_pribadi');
+            $mPribadi->wubDinas_pribadi = \Input::get('wubDinas_pribadi');
+            $mPribadi->created = "aku";
+            $mPribadi->save();
+        }
     }
 
     /**
      * save table m_data_usaha
      * @return post
      */
-    private function saveDataUsaha($insertedId)
+    private function saveDataUsaha($status, $insertedId)
     {
-        $mDataUsaha = new MDU;
-        $mDataUsaha->kd_anggota = $insertedId;
-        $mDataUsaha->brand_usaha = \Input::get('brand_usaha');
-        $mDataUsaha->lama_usaha = \Input::get('lama_usaha');
-        $mDataUsaha->jenisProd_usaha = \Input::get('jenisProd_usaha');
-        $mDataUsaha->alamat_usaha = \Input::get('alamat_usaha');
-        $mDataUsaha->rtRw_usaha = \Input::get('rtRw_usaha');
-        $mDataUsaha->kec_usaha = \Input::get('kec_usaha');
-        $mDataUsaha->kabKot_usaha = \Input::get('kabKot_usaha');
-        $mDataUsaha->kapasitas_usaha = \Input::get('kapasitas_usaha');
-        $mDataUsaha->harga_usaha = \Input::get('harga_usaha');
-        $mDataUsaha->wilayah_offline_usaha = \Input::get('wilayah_offline_usaha');
-        $mDataUsaha->wilayah_online_usaha = \Input::get('wilayah_online_usaha');
-        $mDataUsaha->jumlahTenagaKerja_usaha = \Input::get('jumlahTenagaKerja_usaha');
-        $mDataUsaha->omset_usaha = \Input::get('omset_usaha');
-        $mDataUsaha->fb_usaha = \Input::get('fb_usaha');
-        $mDataUsaha->insta_usaha = \Input::get('insta_usaha');
-        $mDataUsaha->twiiter_usaha = \Input::get('twiiter_usaha');
-        $mDataUsaha->created = "aku";
-        $mDataUsaha->save();
+        if ($status == 'update') {
+            $mDataUsaha['kd_anggota'] = $insertedId;
+            $mDataUsaha['brand_usaha'] = \Input::get('brand_usaha');
+            $mDataUsaha['lama_usaha'] = \Input::get('lama_usaha');
+            $mDataUsaha['jenisProd_usaha'] = \Input::get('jenisProd_usaha');
+            $mDataUsaha['alamat_usaha'] = \Input::get('alamat_usaha');
+            $mDataUsaha['rtRw_usaha'] = \Input::get('rtRw_usaha');
+            $mDataUsaha['kec_usaha'] = \Input::get('kec_usaha');
+            $mDataUsaha['kabKot_usaha'] = \Input::get('kabKot_usaha');
+            $mDataUsaha['kapasitas_usaha'] = \Input::get('kapasitas_usaha');
+            $mDataUsaha['harga_usaha'] = \Input::get('harga_usaha');
+            $mDataUsaha['wilayah_offline_usaha'] = \Input::get('wilayah_offline_usaha');
+            $mDataUsaha['wilayah_online_usaha'] = \Input::get('wilayah_online_usaha');
+            $mDataUsaha['jumlahTenagaKerja_usaha'] = \Input::get('jumlahTenagaKerja_usaha');
+            $mDataUsaha['omset_usaha'] = \Input::get('omset_usaha');
+            $mDataUsaha['fb_usaha'] = \Input::get('fb_usaha');
+            $mDataUsaha['insta_usaha'] = \Input::get('insta_usaha');
+            $mDataUsaha['twiiter_usaha'] = \Input::get('twiiter_usaha');
+            $mDataUsaha['created'] = "aku";
+            $execute = MDU::where("kd_anggota",$insertedId)->update($mDataUsaha);
+        } else {
+            $mDataUsaha = new MDU;
+            $mDataUsaha->kd_anggota = $insertedId;
+            $mDataUsaha->brand_usaha = \Input::get('brand_usaha');
+            $mDataUsaha->lama_usaha = \Input::get('lama_usaha');
+            $mDataUsaha->jenisProd_usaha = \Input::get('jenisProd_usaha');
+            $mDataUsaha->alamat_usaha = \Input::get('alamat_usaha');
+            $mDataUsaha->rtRw_usaha = \Input::get('rtRw_usaha');
+            $mDataUsaha->kec_usaha = \Input::get('kec_usaha');
+            $mDataUsaha->kabKot_usaha = \Input::get('kabKot_usaha');
+            $mDataUsaha->kapasitas_usaha = \Input::get('kapasitas_usaha');
+            $mDataUsaha->harga_usaha = \Input::get('harga_usaha');
+            $mDataUsaha->wilayah_offline_usaha = \Input::get('wilayah_offline_usaha');
+            $mDataUsaha->wilayah_online_usaha = \Input::get('wilayah_online_usaha');
+            $mDataUsaha->jumlahTenagaKerja_usaha = \Input::get('jumlahTenagaKerja_usaha');
+            $mDataUsaha->omset_usaha = \Input::get('omset_usaha');
+            $mDataUsaha->fb_usaha = \Input::get('fb_usaha');
+            $mDataUsaha->insta_usaha = \Input::get('insta_usaha');
+            $mDataUsaha->twiiter_usaha = \Input::get('twiiter_usaha');
+            $mDataUsaha->created = "aku";
+            $mDataUsaha->save();
+        }
     }
 
     /**
      * save table m_data_docLegal
      * @return post
      */
-    private function saveDocFile($insertedId)
+    private function saveDocFile($status, $insertedId)
     {
-        $mDocFile = new MD;
-        $mDocFile->npwp_docLegal = \Input::get('npwp_docLegal');
-        $mDocFile->kd_anggota = $insertedId;
-        $mDocFile->situ_docLegal = \Input::get('situ_docLegal');
-        $mDocFile->siup_docLegal = \Input::get('siup_docLegal');
-        $mDocFile->tdp_docLegal = \Input::get('tdp_docLegal');
-        $mDocFile->bpom_docLegal = \Input::get('bpom_docLegal');
-        $mDocFile->pirt_docLegal = \Input::get('pirt_docLegal');
-        $mDocFile->halal_docLegal = \Input::get('halal_docLegal');
-        $mDocFile->bpom_docLegal = \Input::get('bpom_docLegal');
-        $mDocFile->hki_docLegal = \Input::get('hki_docLegal');
-        $mDocFile->merk_docLegal = \Input::get('merk_docLegal');
-        $mDocFile->lainnya_docLegal = \Input::get('lainnya_docLegal');
-        $mDocFile->created = "aku";
-        $mDocFile->save();
+        if ($status == 'update') {
+            $mDocFile['npwp_docLegal'] = \Input::get('npwp_docLegal');
+            $mDocFile['kd_anggota'] = $insertedId;
+            $mDocFile['situ_docLegal'] = \Input::get('situ_docLegal');
+            $mDocFile['siup_docLegal'] = \Input::get('siup_docLegal');
+            $mDocFile['tdp_docLegal'] = \Input::get('tdp_docLegal');
+            $mDocFile['bpom_docLegal'] = \Input::get('bpom_docLegal');
+            $mDocFile['pirt_docLegal'] = \Input::get('pirt_docLegal');
+            $mDocFile['halal_docLegal'] = \Input::get('halal_docLegal');
+            $mDocFile['bpom_docLegal'] = \Input::get('bpom_docLegal');
+            $mDocFile['hki_docLegal'] = \Input::get('hki_docLegal');
+            $mDocFile['merk_docLegal'] = \Input::get('merk_docLegal');
+            $mDocFile['lainnya_docLegal'] = \Input::get('lainnya_docLegal');
+            $mDocFile['created'] = "aku";
+            $execute = MD::where("kd_anggota",$insertedId)->update($mDocFile);
+        } else {
+            $mDocFile = new MD;
+            $mDocFile->npwp_docLegal = \Input::get('npwp_docLegal');
+            $mDocFile->kd_anggota = $insertedId;
+            $mDocFile->situ_docLegal = \Input::get('situ_docLegal');
+            $mDocFile->siup_docLegal = \Input::get('siup_docLegal');
+            $mDocFile->tdp_docLegal = \Input::get('tdp_docLegal');
+            $mDocFile->bpom_docLegal = \Input::get('bpom_docLegal');
+            $mDocFile->pirt_docLegal = \Input::get('pirt_docLegal');
+            $mDocFile->halal_docLegal = \Input::get('halal_docLegal');
+            $mDocFile->bpom_docLegal = \Input::get('bpom_docLegal');
+            $mDocFile->hki_docLegal = \Input::get('hki_docLegal');
+            $mDocFile->merk_docLegal = \Input::get('merk_docLegal');
+            $mDocFile->lainnya_docLegal = \Input::get('lainnya_docLegal');
+            $mDocFile->created = "aku";
+            $mDocFile->save();
+        }
     }
 
     /**
@@ -147,12 +234,14 @@ class ProfileController extends Controller
      * @return [type] [description]
      */
     private function uploadFile (){
-        $file = \Input::file('pasPhoto_anggota')->isValid();
-        $destinationPath = public_path().'/uploads'; // upload path
-        $extension = \Input::file('pasPhoto_anggota')->getClientOriginalExtension(); // getting image extension
-        $fileName = rand(11111, 99999).'.'.$extension; // renameing image
-        \Input::file('pasPhoto_anggota')->move($destinationPath, $fileName); // uploading file to given path;
-        return $fileName;
+        if (!empty(\Input::file('pasPhoto_anggota'))) {
+            $file = \Input::file('pasPhoto_anggota')->isValid();
+            $destinationPath = public_path().'/uploads'; // upload path
+            $extension = \Input::file('pasPhoto_anggota')->getClientOriginalExtension(); // getting image extension
+            $fileName = rand(11111, 99999).'.'.$extension; // renameing image
+            \Input::file('pasPhoto_anggota')->move($destinationPath, $fileName); // uploading file to given path;
+            return $fileName;
+        }
     }
 
     /**
@@ -160,9 +249,13 @@ class ProfileController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function photoProfile()
     {
-        //
+        $kd_anggota = \Session::get('kd_anggota');
+        // $getAll = MA::getALlData($kd_anggota);
+        // $data['allData'] = $getAll[0];
+        $data['kd_anggota'] = $kd_anggota;
+        return view("profile.pasPhoto.photoProfile", $data);
     }
 
     /**
@@ -171,9 +264,25 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function photoProfileUpload()
     {
-        //
+
+        if (!empty(\Input::file('file'))) {
+
+            $file = \Input::file('file')->isValid();
+            $destinationPath = public_path().'/uploads/profile'; // upload path
+            $extension = \Input::file('file')->getClientOriginalExtension(); // getting image extension
+            $fileName = rand(11111, 99999).'.'.$extension; // renameing image
+            \Input::file('file')->move($destinationPath, $fileName); // uploading file to given path;
+
+            $kd_anggota = \Session::get('kd_anggota');
+            $mAnggota =  MA::find($kd_anggota);;
+            $mAnggota->pasPhotoProfile = $fileName;
+            $mAnggota->update();
+
+            $result['filename'] = url('uploads/profile/'.$fileName);
+            return response()->json($result);
+        }
     }
 
     /**
