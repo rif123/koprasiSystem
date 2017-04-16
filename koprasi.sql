@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 15, 2017 at 11:51 AM
+-- Generation Time: Apr 16, 2017 at 03:40 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -330,15 +330,17 @@ CREATE TABLE `m_anggota` (
   `id_users` int(11) NOT NULL,
   `nm_anggota` varchar(100) DEFAULT NULL,
   `kd_jabatan` int(11) DEFAULT NULL,
-  `pasPhoto_anggota` varchar(225) DEFAULT NULL
+  `pasPhoto_anggota` varchar(225) DEFAULT NULL,
+  `pasPhotoProfile` varchar(225) DEFAULT NULL,
+  `pasPhotoProduk` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `m_anggota`
 --
 
-INSERT INTO `m_anggota` (`kd_anggota`, `id_users`, `nm_anggota`, `kd_jabatan`, `pasPhoto_anggota`) VALUES
-(82, 9, 'Rifky', 1, NULL);
+INSERT INTO `m_anggota` (`kd_anggota`, `id_users`, `nm_anggota`, `kd_jabatan`, `pasPhoto_anggota`, `pasPhotoProfile`, `pasPhotoProduk`) VALUES
+(82, 9, 'Rifky rachman', 1, NULL, '63014.jpeg', '75375.jpeg');
 
 -- --------------------------------------------------------
 
@@ -350,20 +352,39 @@ CREATE TABLE `m_data_docLegal` (
   `kd_docLegal` int(11) NOT NULL,
   `kd_anggota` int(11) DEFAULT NULL,
   `npwp_docLegal` varchar(100) DEFAULT NULL,
+  `file_npwp_docLegal` varchar(255) DEFAULT NULL,
   `situ_docLegal` varchar(100) DEFAULT NULL,
+  `file_situ_docLegal` varchar(255) DEFAULT NULL,
   `siup_docLegal` varchar(100) DEFAULT NULL,
+  `file_siup_docLegal` varchar(255) DEFAULT NULL,
   `tdp_docLegal` varchar(100) DEFAULT NULL,
+  `file_tdp_docLegal` varchar(255) DEFAULT NULL,
   `pirt_docLegal` varchar(100) DEFAULT NULL,
+  `file_pirt_docLegal` varchar(255) DEFAULT NULL,
   `halal_docLegal` varchar(100) DEFAULT NULL,
+  `file_halal_docLegal` varchar(255) DEFAULT NULL,
   `bpom_docLegal` varchar(100) DEFAULT NULL,
+  `file_bpom_docLegal` varchar(255) DEFAULT NULL,
   `hki_docLegal` varchar(100) DEFAULT NULL,
+  `file_hki_docLegal` varchar(255) DEFAULT NULL,
   `merk_docLegal` varchar(100) DEFAULT NULL,
-  `lainnya_docLegal` varchar(100) DEFAULT NULL,
+  `file_merk_docLegal` varchar(255) DEFAULT NULL,
+  `agreement_docLegal` varchar(100) DEFAULT NULL,
+  `file_agreement_docLegal` varchar(255) DEFAULT NULL,
   `created` varchar(255) DEFAULT NULL,
   `create_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated` varchar(255) DEFAULT NULL,
   `update_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `m_data_docLegal`
+--
+
+INSERT INTO `m_data_docLegal` (`kd_docLegal`, `kd_anggota`, `npwp_docLegal`, `file_npwp_docLegal`, `situ_docLegal`, `file_situ_docLegal`, `siup_docLegal`, `file_siup_docLegal`, `tdp_docLegal`, `file_tdp_docLegal`, `pirt_docLegal`, `file_pirt_docLegal`, `halal_docLegal`, `file_halal_docLegal`, `bpom_docLegal`, `file_bpom_docLegal`, `hki_docLegal`, `file_hki_docLegal`, `merk_docLegal`, `file_merk_docLegal`, `agreement_docLegal`, `file_agreement_docLegal`, `created`, `create_date`, `updated`, `update_date`) VALUES
+(1, NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, 'aku', '2017-04-15 20:08:37', NULL, NULL),
+(2, NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, 'aku', '2017-04-15 20:09:01', NULL, NULL),
+(3, 82, 'asdfa', '85621.jpeg', '', '12077.jpeg', '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, '', NULL, 'aku', '2017-04-15 20:55:36', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -389,6 +410,15 @@ CREATE TABLE `m_data_pribadi` (
   `updated` varchar(100) DEFAULT NULL,
   `update_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `m_data_pribadi`
+--
+
+INSERT INTO `m_data_pribadi` (`kd_data_pribadi`, `kd_anggota`, `tempat_lahir_pribadi`, `npwp_pribadi`, `noHp_pribadi`, `email_pribadi`, `alamat_pribadi`, `rtRw_pribadi`, `kec_pribadi`, `desKel_pribadi`, `wubTahun_pribadi`, `wubDinas_pribadi`, `created`, `create_date`, `updated`, `update_date`) VALUES
+(1, NULL, '', '', '', '', '', '', '', '', '', '', 'aku', '2017-04-15 20:08:37', NULL, NULL),
+(2, NULL, '', '', '', '', '', '', '', '', '', '', 'aku', '2017-04-15 20:09:01', NULL, NULL),
+(3, 82, 'garut ffff', '', '', '', 'asdfasdfas as dfas', '', '', '', '', '', 'aku', '2017-04-15 20:30:35', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -420,6 +450,15 @@ CREATE TABLE `m_data_usaha` (
   `edited` varchar(100) DEFAULT NULL,
   `edite_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `m_data_usaha`
+--
+
+INSERT INTO `m_data_usaha` (`kd_usaha`, `kd_anggota`, `brand_usaha`, `lama_usaha`, `jenisProd_usaha`, `alamat_usaha`, `rtRw_usaha`, `kec_usaha`, `kabKot_usaha`, `kapasitas_usaha`, `harga_usaha`, `wilayah_offline_usaha`, `wilayah_online_usaha`, `jumlahTenagaKerja_usaha`, `omset_usaha`, `fb_usaha`, `insta_usaha`, `twiiter_usaha`, `created`, `create_date`, `edited`, `edite_date`) VALUES
+(1, NULL, '', 0, '', '', '', '', '', '', 0, '', '', 0, 0, '', '', '', 'aku', NULL, NULL, NULL),
+(2, NULL, '', 0, '', '', '', '', '', '', 0, '', '', 0, 0, '', '', '', 'aku', NULL, NULL, NULL),
+(3, 82, '', 0, '', '', '', '', '', '', 0, '', '', 0, 0, '', '', '', 'aku', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -804,6 +843,18 @@ INSERT INTO `testimonial` (`id`, `customer_name`, `customer_status`, `testimoni`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `t_photo_produk`
+--
+
+CREATE TABLE `t_photo_produk` (
+  `id_photo_produk` int(11) NOT NULL,
+  `kd_anggota` int(11) DEFAULT NULL,
+  `name_photo` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `t_pinjaman`
 --
 
@@ -942,7 +993,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_grp`, `uname`, `email`, `password`, `id_level`, `remember_token`) VALUES
-(9, 1, 'admin', 'admin@admin.com', '$2y$10$kTJwyteB13BiPx6zjARaFOh54Ps/GljcLez7xNWazYfODEa13GDZa', 1, 'p82guw8ZoYusdqfXbKSpyhrx8inE9AVb4koQ5SzsF0FobOFnnT9XzGi2QCOr'),
+(9, 1, 'admin', 'admin@admin.com', '$2y$10$PmcUVEJRgmmIEBQxKL/pzeHMsmjLZYEnUxvjFk5oosm1yskMtohVi', 1, 'Fn18WSKySrgPbTxUZ9vU8MwXkISRhKqEdRPAJB61SbCFt1wzDYVetXG6ccPO'),
 (15, 2, 'Rifky', 'rifky.rachman@gmail.com', '$2y$10$yG6TzyHZpkaNWQVT6uuAtuxHaNt.BeYZAzS.jXNIE9k1FepOtw1oC', 1, 'BSOwGb2cbIcN4qPSgW9zLAXgstHPu08wpQdjRjSqG9zMQZGN6odtiPytab7z'),
 (16, 3, 'akbar', 'akbar@gmail.com', '$2y$10$GDyKw0F.GFOfA7LX.L0O8e9KJ3hegeSE14guuFmh1/.lqolaJ1PTW', 1, 'xuoS5Ipqwqa8DRVCJ835vXrUTFNklLfpJUE7rFbuz6gEfp3Mv0SaFXf4m1I5');
 
@@ -1196,6 +1247,13 @@ ALTER TABLE `testimonial`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `t_photo_produk`
+--
+ALTER TABLE `t_photo_produk`
+  ADD PRIMARY KEY (`id_photo_produk`),
+  ADD KEY `kd_anggota` (`kd_anggota`);
+
+--
 -- Indexes for table `t_pinjaman`
 --
 ALTER TABLE `t_pinjaman`
@@ -1320,17 +1378,17 @@ ALTER TABLE `m_anggota`
 -- AUTO_INCREMENT for table `m_data_docLegal`
 --
 ALTER TABLE `m_data_docLegal`
-  MODIFY `kd_docLegal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `kd_docLegal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `m_data_pribadi`
 --
 ALTER TABLE `m_data_pribadi`
-  MODIFY `kd_data_pribadi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `kd_data_pribadi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `m_data_usaha`
 --
 ALTER TABLE `m_data_usaha`
-  MODIFY `kd_usaha` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `kd_usaha` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `m_jabatan`
 --
@@ -1386,6 +1444,11 @@ ALTER TABLE `team`
 --
 ALTER TABLE `testimonial`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `t_photo_produk`
+--
+ALTER TABLE `t_photo_produk`
+  MODIFY `id_photo_produk` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `t_simpan_pokok`
 --
@@ -1469,6 +1532,12 @@ ALTER TABLE `m_pinjaman_anggunan`
 --
 ALTER TABLE `m_pinjaman_angsuran`
   ADD CONSTRAINT `key_pinjaman_angsuran` FOREIGN KEY (`no_pinjaman`) REFERENCES `t_pinjaman` (`no_pinjaman`);
+
+--
+-- Constraints for table `t_photo_produk`
+--
+ALTER TABLE `t_photo_produk`
+  ADD CONSTRAINT `key-photo` FOREIGN KEY (`kd_anggota`) REFERENCES `m_anggota` (`kd_anggota`);
 
 --
 -- Constraints for table `t_pinjaman`
