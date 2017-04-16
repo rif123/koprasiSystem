@@ -16,11 +16,6 @@
                 <small>(isi dengan lengkap & jelas)</small>
                 @include('profile.menuProfile')
             </h2>
-            <ul class="header-dropdown m-r--5">
-                <li class="dropdown">
-                     <button type="button" class="btn btn-primary waves-effect btn-pas-profile">SAVE</button>
-                </li>
-            </ul>
         </div>
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
