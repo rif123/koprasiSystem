@@ -235,7 +235,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <h2 class="card-inside-title">Agreement</h2>
+        <h2 class="card-inside-title">Lainnya</h2>
         <div class="col-md-4">
             <div class="input-group">
                 <div class="form-line">
@@ -260,17 +260,26 @@
     </div>
 
     <div class="col-md-12">
-        <h2 class="card-inside-title">Pas Photo</h2>
-        <div class="input-group">
-            <div class="form-line">
-                <input type="file" name="pasPhoto_anggota" class="form-control"
-                    value="{{!empty($allData->pasPhoto_anggota) ? $allData->pasPhoto_anggota : '' }}"
-                placeholder="Pas Photo">
+        <h2 class="card-inside-title">Lainnya</h2>
+        <div class="col-md-7">
+            <div class="input-group">
+                <div class="form-line">
+                    <input type="file" name="pasPhoto_anggota" class="form-control"
+                        value="{{!empty($allData->pasPhoto_anggota) ? $allData->pasPhoto_anggota : '' }}"
+                    placeholder="Pas Photo">
+                </div>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <img style="width:100%; height:100%" src="{{ url('/uploads/pasPhoto_anggota') }}/{{ !empty($allData->pasPhoto_anggota) ? $allData->file_agreement_docLegal : '' }}" alt="NO IMAGE" />
+            </div>
+        </div>
+
     </div>
 
     <div class="col-md-12">
+        <h2 class="card-inside-title">Agreement</h2>
         <div class="input-group">
             <div class="input-group input-group-lg">
                <span class="input-group-addon">

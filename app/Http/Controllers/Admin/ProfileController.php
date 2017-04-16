@@ -197,7 +197,7 @@ class ProfileController extends Controller
     private function saveDocFile($status, $insertedId)
     {
 
-        if ($status =! 'update') {
+        if ($status == 'update') {
             $mDocFile['kd_anggota'] = $insertedId;
             $mDocFile['npwp_docLegal'] = \Input::get('npwp_docLegal');
             $mDocFile['file_npwp_docLegal'] =  $this->uploadFileDocFIle('file_npwp_docLegal');
