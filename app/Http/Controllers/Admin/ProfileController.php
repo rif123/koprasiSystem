@@ -145,6 +145,7 @@ class ProfileController extends Controller
      */
     private function saveDataUsaha($status, $insertedId)
     {
+
         if ($status == 'update') {
             $mDataUsaha['kd_anggota'] = $insertedId;
             $mDataUsaha['brand_usaha'] = \Input::get('brand_usaha');
@@ -195,35 +196,59 @@ class ProfileController extends Controller
      */
     private function saveDocFile($status, $insertedId)
     {
-        if ($status == 'update') {
-            $mDocFile['npwp_docLegal'] = \Input::get('npwp_docLegal');
+
+        if ($status =! 'update') {
             $mDocFile['kd_anggota'] = $insertedId;
+            $mDocFile['npwp_docLegal'] = \Input::get('npwp_docLegal');
+            $mDocFile['file_npwp_docLegal'] =  $this->uploadFileDocFIle('file_npwp_docLegal');
             $mDocFile['situ_docLegal'] = \Input::get('situ_docLegal');
+            $mDocFile['file_situ_docLegal'] =  $this->uploadFileDocFIle('file_situ_docLegal');
             $mDocFile['siup_docLegal'] = \Input::get('siup_docLegal');
+            $mDocFile['file_siup_docLegal'] =  $this->uploadFileDocFIle('file_siup_docLegal');
             $mDocFile['tdp_docLegal'] = \Input::get('tdp_docLegal');
+            $mDocFile['file_tdp_docLegal'] =  $this->uploadFileDocFIle('file_tdp_docLegal');
             $mDocFile['bpom_docLegal'] = \Input::get('bpom_docLegal');
+            $mDocFile['file_bpom_docLegal'] =  $this->uploadFileDocFIle('file_bpom_docLegal');
+
             $mDocFile['pirt_docLegal'] = \Input::get('pirt_docLegal');
+            $mDocFile['file_pirt_docLegal'] =  $this->uploadFileDocFIle('file_pirt_docLegal');
+
             $mDocFile['halal_docLegal'] = \Input::get('halal_docLegal');
-            $mDocFile['bpom_docLegal'] = \Input::get('bpom_docLegal');
+            $mDocFile['file_halal_docLegal'] =  $this->uploadFileDocFIle('file_halal_docLegal');
+
             $mDocFile['hki_docLegal'] = \Input::get('hki_docLegal');
+            $mDocFile['file_hki_docLegal'] =  $this->uploadFileDocFIle('file_hki_docLegal');
+
             $mDocFile['merk_docLegal'] = \Input::get('merk_docLegal');
-            $mDocFile['lainnya_docLegal'] = \Input::get('lainnya_docLegal');
+            $mDocFile['file_merk_docLegal'] =  $this->uploadFileDocFIle('file_merk_docLegal');
+
+            $mDocFile['agreement_docLegal'] = \Input::get('agreement_docLegal');
+            $mDocFile['file_agreement_docLegal'] =  $this->uploadFileDocFIle('file_agreement_docLegal');
             $mDocFile['created'] = "aku";
-            $execute = MD::where("kd_anggota", $insertedId)->update($mDocFile);
+            $execute = MD::where("kd_anggota", $insertedId)->update(array_filter($mDocFile));
         } else {
             $mDocFile = new MD;
-            $mDocFile->npwp_docLegal = \Input::get('npwp_docLegal');
             $mDocFile->kd_anggota = $insertedId;
+            $mDocFile->npwp_docLegal = \Input::get('npwp_docLegal');
+            $mDocFile->file_npwp_docLegal =  $this->uploadFileDocFIle('file_npwp_docLegal');
             $mDocFile->situ_docLegal = \Input::get('situ_docLegal');
+            $mDocFile->file_situ_docLegal =  $this->uploadFileDocFIle('file_situ_docLegal');
             $mDocFile->siup_docLegal = \Input::get('siup_docLegal');
+            $mDocFile->file_siup_docLegal =  $this->uploadFileDocFIle('file_siup_docLegal');
             $mDocFile->tdp_docLegal = \Input::get('tdp_docLegal');
+            $mDocFile->file_tdp_docLegal =  $this->uploadFileDocFIle('file_tdp_docLegal');
             $mDocFile->bpom_docLegal = \Input::get('bpom_docLegal');
+            $mDocFile->file_bpom_docLegal =  $this->uploadFileDocFIle('file_bpom_docLegal');
             $mDocFile->pirt_docLegal = \Input::get('pirt_docLegal');
+            $mDocFile->file_pirt_docLegal =  $this->uploadFileDocFIle('file_pirt_docLegal');
             $mDocFile->halal_docLegal = \Input::get('halal_docLegal');
-            $mDocFile->bpom_docLegal = \Input::get('bpom_docLegal');
+            $mDocFile->file_halal_docLegal =  $this->uploadFileDocFIle('file_halal_docLegal');
             $mDocFile->hki_docLegal = \Input::get('hki_docLegal');
+            $mDocFile->file_hki_docLegal =  $this->uploadFileDocFIle('file_hki_docLegal');
             $mDocFile->merk_docLegal = \Input::get('merk_docLegal');
-            $mDocFile->lainnya_docLegal = \Input::get('lainnya_docLegal');
+            $mDocFile->file_merk_docLegal =  $this->uploadFileDocFIle('file_merk_docLegal');
+            $mDocFile->agreement_docLegal = \Input::get('agreement_docLegal');
+            $mDocFile->file_agreement_docLegal =  $this->uploadFileDocFIle('file_agreement_docLegal');
             $mDocFile->created = "aku";
             $mDocFile->save();
         }
@@ -245,6 +270,22 @@ class ProfileController extends Controller
         }
     }
 
+    /**
+     * upload image
+     * @return [type] [description]
+     */
+    private function uploadFileDocFIle($fn)
+    {
+
+        if (!empty(\Input::file($fn))) {
+            $file = \Input::file($fn)->isValid();
+            $destinationPath = public_path().'/uploads/'.$fn; // upload path
+            $extension = \Input::file($fn)->getClientOriginalExtension(); // getting image extension
+            $fileName = rand(11111, 99999).'.'.$extension; // renameing image
+            \Input::file($fn)->move($destinationPath, $fileName); // uploading file to given path;
+            return $fileName;
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *
