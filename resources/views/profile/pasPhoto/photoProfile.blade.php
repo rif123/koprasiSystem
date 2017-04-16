@@ -12,7 +12,7 @@
         <div class="card">
         <div class="header">
             <h2>
-                Simpanan Anggota Pokok
+                Simpanan Anggota Photo Profile
                 <small>(isi dengan lengkap & jelas)</small>
                 @include('profile.menuProfile')
             </h2>

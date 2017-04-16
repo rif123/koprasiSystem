@@ -351,19 +351,16 @@ class ProfileController extends Controller
 
         $id = \Auth::user()->id;
         $rules = array(
-            'uname'    => 'required|min:4',
-            'email' => 'required|email',
+            'oldpass'    => 'required',
+            'newpass' => 'required',
         );
-
         $validator = \Validator::make(\Input::all(), $rules);
 
         if ($validator->fails()) {
-            return \Redirect::to($_ENV['ADMIN_FOLDER'].'/setting/profile')->withErrors($validator);
+            return \Redirect::to($_ENV['ADMIN_FOLDER'].'/profile-ganti-password')->withErrors($validator);
         } else {
-            $update = US::find($id);
-            $update->uname = \Input::get('uname');
-            $update->email = \Input::get('email');
 
+            $update = US::find($id);
             if (\Input::has("newpass")) {
                 $oldpassword = \Input::get('oldpass');
                 $newpassword = \Input::get("newpass");
@@ -371,12 +368,12 @@ class ProfileController extends Controller
                 if (\Hash::check($oldpassword, \Auth::user()->password)) {
                     $update->password = \Hash::make($newpassword);
                 } else {
-                    return \Redirect::to($_ENV['ADMIN_FOLDER'].'/setting/profile')->withErrors(["Wrong old password"]);
+                    return \Redirect::to($_ENV['ADMIN_FOLDER'].'/profile-ganti-password')->withErrors(["Wrong old password"]);
                 }
             }
 
             $update->save();
-            return \Redirect::to($_ENV['ADMIN_FOLDER'].'/setting/profile')->with(["success"=>"Data saved"]);
+            return \Redirect::to($_ENV['ADMIN_FOLDER'].'/profile-ganti-password')->with(["success"=>"Data saved"]);
         }
     }
 }

@@ -12,7 +12,7 @@
         <div class="card">
         <div class="header">
             <h2>
-                Simpanan Anggota Pokok
+                Ganti Password
                 <small>(isi dengan lengkap & jelas)</small>
                 @include('profile.menuProfile')
             </h2>
@@ -40,24 +40,6 @@
                             @endif
                             <div class="body">
                                 <form name="edit" method="POST" action="{{url(route('profile.processGantiPassword'))}}" >
-                                    <h2 class="card-inside-title">Username</h2>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="material-icons">person</i>
-                                        </span>
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="uname" value="{{$uname}}" placeholder="Username" />
-                                        </div>
-                                    </div>
-                                    <h2 class="card-inside-title">Email</h2>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="material-icons">email</i>
-                                        </span>
-                                        <div class="form-line">
-                                            <input type="email" class="form-control" name="email" value="{{$email}}" placeholder="Email" />
-                                        </div>
-                                    </div>
                                     <div class="form-group">
                                         <h2 class="card-inside-title">Change Password</h2>
                                         <div class="form-line">
