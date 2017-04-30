@@ -12,5 +12,5 @@ class Spokok extends Model {
     protected $table = 't_simpan_pokok';
     protected $primaryKey = 'kd_spokok';
     public $timestamps = false;
-    protected $fillable = ['kd_spokok', 'no_spokok', 'jml_bayar_spokok', 'tgl_bayar_spokok', 'bukti_bayar_spokok', 'kd_anggota'];
+    protected $fillable = ['kd_spokok', 'no_spokok', 'jml_bayar_spokok', 'tgl_bayar_spokok', 'bukti_bayar_spokok', 'kd_anggota','status'];
 }

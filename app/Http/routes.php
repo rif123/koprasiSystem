@@ -191,6 +191,12 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::post('/config/group-edit', ['uses'=>'ConfigController@groupEdit', 'as'=>'config.groupEdit']);
         Route::get('/config/group-delete', ['uses'=>'ConfigController@groupDelete', 'as'=>'config.groupDelete']);
         // config group
+        //config gruoup Controll Pay Admin
+        Route::get('/config/controll-Pay',['uses'=> 'controllPayController@index', 'as'=>'config.pay']);
+        Route::get('/config/controll-Pay-detail/{id}',['uses'=> 'controllPayController@detail', 'as'=>'config.payDetail']);
+        Route::get('/config/controll-Pay-edit/{id}',['uses'=> 'controllPayController@edit', 'as'=>'config.payEdit']);
+
+        //config gruoup Controll Pay Admin
 
         // save obligation
         Route::get('/simpanan/wajib', ['uses'=>'SaveControllers@wajibList', 'as'=>'config.wajibList']);
@@ -209,6 +215,45 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/anggota', ['uses'=>'AnggotaController@generateTokenAnggota', 'as'=>'config.generateTokenAnggota']);
         Route::post('/anggota-generate', ['uses'=>'AnggotaController@generateToken', 'as'=>'config.generateToken']);
 
+
+
+        //Simpan wajib
+        Route::get('/simpan-wajib', ['uses'=>'simpanWajibController@index', 'as'=>'simpanan.moduleSimpan']);
+        Route::post('/simpan-wajib-save', ['uses'=>'simpanWajibController@create', 'as'=>'simpanan.save']);
+        Route::get('/simpan-wajib-edit/{id}', ['uses'=>'simpanWajibController@edit', 'as'=>'simpanan.edit']);
+        Route::post('/simpan-wajib-update', ['uses'=>'simpanWajibController@update', 'as'=>'simpanan.update']);
+        Route::get('/simpan-wajib-delete/{id}', ['uses'=>'simpanWajibController@delete', 'as'=>'simpanan.delete']);
+        //Simpan wajib
+
+        //Simpan Pokok
+        Route::get('/simpan-pokok', ['uses'=>'simpanPokokController@index', 'as'=>'simpanan.simpanPokok']);
+        Route::post('/simpan-pokok-save', ['uses'=>'simpanPokokController@create', 'as'=>'simpanan.savePokok']);
+        Route::get('/simpan-pokok-edit/{id}', ['uses'=>'simpanPokokController@edit', 'as'=>'simpanan.editPokok']);
+        Route::post('/simpan-pokok-update', ['uses'=>'simpanPokokController@update', 'as'=>'simpanan.updatePokok']);
+        Route::get('/simpan-pokok-delete/{id}', ['uses'=>'simpanPokokController@delete', 'as'=>'simpanan.deletePokok']);
+        //Simpan Pokok
+
+        //Management Income
+        Route::get('/management/income', ['uses'=>'managementincomeController@index', 'as'=>'management.income']);
+        Route::post('/management/income-save', ['uses'=>'managementincomeController@create', 'as'=>'management.incomesave']);
+        Route::get('/management/income-edit/{id}', ['uses'=>'managementincomeController@edit', 'as'=>'management.incomeedit']);
+        //Management Outcome
+
+        //Managemenet Income
+        Route::get('/management/outcome', ['uses'=>'managementoutcomeController@index', 'as'=>'management.outcome']);
+        Route::post('/management/outcome-update', ['uses'=>'managementoutcomeController@update', 'as'=>'management.outcomeupdate']);
+        Route::post('/management/outcome-save', ['uses'=>'managementoutcomeController@create', 'as'=>'management.outcomesave']);
+        Route::get('/management/outcome-edit/{id}', ['uses'=>'managementoutcomeController@edit', 'as'=>'management.outcomeedit']);
+        Route::post('/management/outcome-update', ['uses'=>'managementoutcomeController@update', 'as'=>'management.outcomeupdate']);
+        //Managemenet Income
+
+        //Management Report
+        Route::get('/management/report', ['uses'=>'managementreportController@index', 'as'=>'management.report']);
+        Route::get('/management/report-excel', ['uses'=>'managementreportController@excel', 'as'=>'management.report-excel']);
+        Route::get('/management/report-pdf', ['uses'=>'managementreportController@pdf', 'as'=>'management.report-pdf']);
+        
+
+        //Management Report
     });
 });
 
