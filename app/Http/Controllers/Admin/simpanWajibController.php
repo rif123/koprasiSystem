@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\Input;
+use App\liblary\Format;
 use Illuminate\Http\Request;
 use App\Models\Swajib as SW;
 
@@ -16,13 +17,55 @@ class simpanWajibController extends Controller
      */
     public function index()
     {
-        
-        
         $data['data'] = SW::all();
-
         return view("simpanan.wajib.simpanWajib",$data);
     }
-    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function indexAjax()
+    {
+        $draw=$_REQUEST['draw'];
+        $length=$_REQUEST['length'];
+        $start=$_REQUEST['start'];
+        $search=$_REQUEST['search']["value"];
+        $listWajib = new SW;
+        // ======= count ===== //
+        $total=SW::count();
+        // ======= count ===== //
+
+        $output=array();
+        $output['draw']=$draw;
+        $output['recordsTotal']=$output['recordsFiltered']=$total;
+        $output['data']=array();
+        $query = SW::getAll();
+
+        $list = [];
+        $ex = new Format;
+        foreach ($query as $key => $row) {
+            $json['jml_bayar_wajib'] = Format::getRp($row->jml_bayar_wajib);
+            $json['bkt_bayar_wajib'] = $row->bkt_bayar_wajib;
+            $json['tgl_bayar_wajib'] = date('M',strtotime($row->tgl_bayar_wajib));
+            // $json['kd_anggota'] = $row->kd_anggota;
+            if ($row->status == 1) {
+                $json['status']  = "Pending";
+            } elseif($row->status == 2) {
+                $json['status']  = "Reject";
+            } else {
+                $json['status']  = "Lunas";
+            }
+            $json['isButton']  = $row->status ;
+            $json['kd_swajib'] = $row->kd_swajib;
+            $list[] = $json;
+        }
+
+        $output['data']  = $list;
+        echo json_encode($output);
+    }
+
+
     public function create()
     {
 
@@ -37,11 +80,11 @@ class simpanWajibController extends Controller
        $Swajib->save();
        return \Redirect::to(route('simpanan.moduleSimpan'));
 
-      
+
     }
      public function edit($kd_swajib)
     {
-        
+
         $update = SW::where('kd_swajib',$kd_swajib)->get();
         $data   = [];
         $data['data'] = SW::all();
@@ -56,30 +99,30 @@ class simpanWajibController extends Controller
 
          public function update()
         {
-            
+
            $Swajib = SW::find(\Input::get('kd_swajib'));
            $Swajib->jml_bayar_wajib = \Input::get('jml_bayar_wajib');
            if (!empty(\Input::file('bkt_bayar_wajib'))) {
            $Swajib->bkt_bayar_wajib = $this->uploadfile('bkt_bayar_wajib');
            }
-               
+
            $Swajib->tgl_bayar_wajib = date('Y-m-d',strtotime(\Input::get('tgl_bayar_wajib')));
          /*  $Swajib->no_swajib = \Input::get('no_swajib');*/
            $Swajib->kd_anggota = \Session::get('kd_anggota');
            $Swajib->update();
            return \Redirect::to(route('simpanan.moduleSimpan'));
 
-          
+
         }
          public function delete($kd_swajib)
     {
-        
+
        $Swajib = SW::find($kd_swajib);
-       
+
        $Swajib->delete();
        return \Redirect::to(route('simpanan.moduleSimpan'));
 
-      
+
     }
 
 

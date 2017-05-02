@@ -193,6 +193,8 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         // config group
         //config gruoup Controll Pay Admin
         Route::get('/config/controll-Pay',['uses'=> 'controllPayController@index', 'as'=>'config.pay']);
+        Route::get('/config/controll-Pay-list',['uses'=> 'controllPayController@indexAjax', 'as'=>'config.payAjax']);
+
         Route::get('/config/controll-Pay-detail/{id}',['uses'=> 'controllPayController@detail', 'as'=>'config.payDetail']);
         Route::get('/config/controll-Pay-edit/{id}',['uses'=> 'controllPayController@edit', 'as'=>'config.payEdit']);
 
@@ -219,6 +221,9 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
 
         //Simpan wajib
         Route::get('/simpan-wajib', ['uses'=>'simpanWajibController@index', 'as'=>'simpanan.moduleSimpan']);
+        Route::get('/simpan-wajib-ajax', ['uses'=>'simpanWajibController@indexAjax', 'as'=>'simpanan.indexAjax']);
+
+
         Route::post('/simpan-wajib-save', ['uses'=>'simpanWajibController@create', 'as'=>'simpanan.save']);
         Route::get('/simpan-wajib-edit/{id}', ['uses'=>'simpanWajibController@edit', 'as'=>'simpanan.edit']);
         Route::post('/simpan-wajib-update', ['uses'=>'simpanWajibController@update', 'as'=>'simpanan.update']);
@@ -227,6 +232,9 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
 
         //Simpan Pokok
         Route::get('/simpan-pokok', ['uses'=>'simpanPokokController@index', 'as'=>'simpanan.simpanPokok']);
+        Route::get('/simpan-pokok-ajax', ['uses'=>'simpanPokokController@indexAjax', 'as'=>'simpananPokok.indexAjax']);
+
+
         Route::post('/simpan-pokok-save', ['uses'=>'simpanPokokController@create', 'as'=>'simpanan.savePokok']);
         Route::get('/simpan-pokok-edit/{id}', ['uses'=>'simpanPokokController@edit', 'as'=>'simpanan.editPokok']);
         Route::post('/simpan-pokok-update', ['uses'=>'simpanPokokController@update', 'as'=>'simpanan.updatePokok']);
@@ -251,7 +259,7 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/management/report', ['uses'=>'managementreportController@index', 'as'=>'management.report']);
         Route::get('/management/report-excel', ['uses'=>'managementreportController@excel', 'as'=>'management.report-excel']);
         Route::get('/management/report-pdf', ['uses'=>'managementreportController@pdf', 'as'=>'management.report-pdf']);
-        
+
 
         //Management Report
     });

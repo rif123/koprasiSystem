@@ -1,86 +1,101 @@
 @extends('layouts.index_no_require')
 @section('header')
-    <link href="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.css" rel="stylesheet" />
+<link href="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.css" rel="stylesheet" />
 @stop
-
 @section('content')
 @include('layouts.left')
 @include('layouts.right')
-<section class="content">.
-
-                <div class="container-fluid">
-                    <div class="row clearfix">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="card">
-
-
-                                <div class="header">
-                                    <h2>Controll Pay</h2>
-
-                                
-                                </div>
-
-                            <div class="body">
-                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
-                                    <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                    <label>Search:<input type="search" class="" placeholder="" aria-controls="DataTables_Table_0"></label>
-                                    </div>
-                                </div>
-                                        <thead>
-                                   <table class="table" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama Anggota</th>
-                                                <th>Nama Pembayaran</th>
-                                                <th>Bulan</th>
-                                                <th>Jumlah Bayar</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-striped">
-                                        <?php $no =1; ?>
-                                        @foreach($data as $key => $value)
-                                                
-                                                <tr>
-                                                <td>{{$no}}</td>
-                                                    <td>{{$value->nm_anggota}}</td>
-                                                    <td>{{$value->pay}}</td>
-                                                    <td>{{$value->payMonth}}</td>
-                                                    <td>{{$value->jml_bayar_wajib}}</td>
-                                                    @if ($value->status == 1)
-                                                        <th>Pending</th>
-                                                    @elseif($value->status ==2)
-                                                        <th>Reject</th>
-                                                    @elseif($value->status ==0)
-                                                        <th>Approve</th>
-                                                    @endif
-                                                    <td>
-
-                                                    @if ($value->pay =='Simpanan wajib')
-                                                        <?php $pay =1; ?>
-                                                    @else
-                                                        <?php $pay=2; ?> 
-                                                    @endif
-                                                        <a href="{{url('/admin/config/controll-Pay-detail/').'/'.$value->id_pay.'?pay='.$pay}}">
-                                                            <button class="btn btn-info waves-effect" type="button">
-                                                                    <i class="material-icons" style="color:white">remove_red_eyet</i>     
-                                                            Detail
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <?php $no++; ?>
-                                          @endforeach     
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Controll Pay</h2>
+                    </div>
+                    <div class="body">
+                            <table class="table listTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Anggota</th>
+                                        <th>Nama Pembayaran</th>
+                                        <th>Bulan</th>
+                                        <th>Jumlah Bayar</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </div>
+</section>
+@section('js')
+<script>
+var urlAjaxTable = "{{ URL::to(route('config.payAjax')) }}";
+var  urlEdit = "{{url('/admin/config/controll-Pay-detail/')}}";
+ var  urlDelete = "{{url('/admin/simpan-wajib-delete')}}";
+var listTable = $('.listTable').DataTable({
+        "processing": true,
+        "bFilter": true,
+        "bInfo": false,
+        "bLengthChange": false,
+        "serverSide": true,
+        "ajax": {
+             "url": urlAjaxTable,
+             "type": "GET"
+         },
+         "columns": [
+            { "data": "nm_anggota" },
+            { "data": "pay" },
+            { "data": "payMonth" },
+            { "data": "jml_bayar_wajib" },
+            { "data": "status" },
+            { "render": function (data, type, row, meta) {
+                if (row.pay =='Simpanan wajib') {
+                    var pay = 1;
+                }else{
+                    var pay = 2;
+                }
+                    if (row.isButton == 1) {
+                        var edit = $('<a><button>')
+                                    .attr('class', "btn bg-blue-grey waves-effect edit-menu")
+                                    .attr('href',urlEdit+'/'+row.id_pay+"?pay="+pay)
+                                    .text('Edit')
+                                    .wrap('<div></div>')
+                                    .parent()
+                                    .html();
+                        var del = $('<a><button>')
+                                    .attr('class', "btn btn-danger waves-effect delete-menu")
+                                    .attr('href',urlDelete+'/'+row.id_pay+"?pay="+pay)
+                                    .text('Delete')
+                                    .wrap('<div></div>')
+                                    .parent()
+                                    .html();
+                        return edit+" | "+del;
+                    } else {
+                        return "-";
+                    }
+                }
+            },
+        ],
+        "buttons": [
+           {
+               extend: 'collection',
+               text: 'Export',
+               buttons: [
+                   'copy',
+                   'excel',
+                   'csv',
+                   'pdf',
+                   'print'
+               ]
+           }
+       ]
+    });
+</script>
 @endsection
 @stop
 @stop

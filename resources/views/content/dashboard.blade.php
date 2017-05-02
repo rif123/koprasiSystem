@@ -170,6 +170,14 @@
                                     </a>
                                 </div>
                             @endif
+                            @if((\Session::get('rules') == '1') || (in_array("admin/contact", \Session::get('rules'))))
+                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                                    <a href="{{$_ENV['ADMIN_FOLDER'].'/config/controll-Pay'}}">
+                                    <button class="btn btn-warning btn-lg btn-block waves-effect" type="button">CONTROLL PAYMENT</button>
+                                    </a>
+                                </div>
+                            @endif
+
                             </div>
                         </div>
                             <div id="real_time_chart" class="dashboard-flot-chart"></div>

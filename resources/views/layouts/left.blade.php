@@ -71,3 +71,8 @@
                     </ul>
                 </div>
             </aside>
+<style>
+.slimScrollBar {
+    width:10px !important;
+}
+</style>

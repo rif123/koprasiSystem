@@ -197,22 +197,25 @@ class Helpers
 
     public static function convertMonth($param){
 
-        $listMonth = [
-            '1'=>'Januari',        
-            '2'=>'Februari',        
-            '3'=>'Maret',        
-            '4'=>'April',        
-            '5'=>'Mei',        
-            '6'=>'Juni',        
-            '7'=>'Juli',        
-            '8'=>'Agustus',        
-            '9'=>'Oktober',        
-            '10'=>'November',        
-            '11'=>'September',        
-            '12'=>'Desember'        
-        ];
-        return $listMonth[$param]; 
-
+        $listMonth = self::getMonth();
+        return $listMonth[$param];
     }
- 
+    public static function getMonth(){
+        $listMonth = [
+            '1'=>'Januari',
+            '2'=>'Februari',
+            '3'=>'Maret',
+            '4'=>'April',
+            '5'=>'Mei',
+            '6'=>'Juni',
+            '7'=>'Juli',
+            '8'=>'Agustus',
+            '9'=>'Oktober',
+            '10'=>'November',
+            '11'=>'September',
+            '12'=>'Desember'
+        ];
+        return $listMonth;
+    }
+
 }
