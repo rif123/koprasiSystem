@@ -245,6 +245,7 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/management/income', ['uses'=>'managementincomeController@index', 'as'=>'management.income']);
         Route::post('/management/income-save', ['uses'=>'managementincomeController@create', 'as'=>'management.incomesave']);
         Route::get('/management/income-edit/{id}', ['uses'=>'managementincomeController@edit', 'as'=>'management.incomeedit']);
+            Route::post('/management/income-edit', ['uses'=>'managementoutcomeController@update', 'as'=>'management.incomeupdate']);
         //Management Outcome
 
         //Managemenet Income

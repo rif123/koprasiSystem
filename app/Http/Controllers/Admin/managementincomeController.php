@@ -15,13 +15,13 @@ class managementincomeController extends Controller
      */
     public function index()
     {
-        
+
         $data['data'] = Ic::all();
 
 
         return view("management.income.income",$data);
     }
-    
+
     public function create()
     {
 
@@ -37,7 +37,7 @@ class managementincomeController extends Controller
     }
      public function edit($id_income)
     {
-        
+
         $update = Ic::where('id_income',$id_income)->get();
         $data   = [];
         $data['data'] = Ic::all();
@@ -62,17 +62,17 @@ class managementincomeController extends Controller
       $Income->kd_anggota = \Session::get('kd_anggota');
       $Income->update();
       return \Redirect::to(route('management.income'));
-          
+
         }
          public function delete($kd_spokok)
     {
-        
+
        /*$Spokok = SP::find($kd_spokok);
-       
+
        $Spokok->delete();
        return \Redirect::to(route('simpanan.simpanPokok'));
 */
-      
+
     }
 
 

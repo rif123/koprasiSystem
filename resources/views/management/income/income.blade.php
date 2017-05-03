@@ -19,18 +19,18 @@
                 <label>Search:<input type="search" class="" placeholder="" aria-controls="DataTables_Table_0"></label>
                 </div>
             </div>
-                                      
+
         </div>
         <div class="row clearfix">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <div class="body">
 
-                                
-                    @if(!empty($id_income))       
+
+                    @if(!empty($id_income))
                     <form id="form-menu" action="{{url(route('management.incomeupdate'))}}" method="post" enctype="multipart/form-data">
                      @else
                     <form id="form-menu" action="{{url(route('management.incomesave'))}}" method="post" enctype="multipart/form-data">
-                     @endif   
+                     @endif
                         {!! Form::token() !!}
                         <div class="row clearfix">
                             <h2 class="card-inside-title group-title">Jumlah Income</h2>
@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>  
+                        </div>
                         <div class="row clearfix">
                             <h2 class="card-inside-title group-title">PIC Income</h2>
                             <div class="col-md-12">
@@ -69,12 +69,12 @@
                                     </div>
                                 </div>
                              </div>
-                        </div>   
+                        </div>
 
                                 </div>
                             </div>
                         </div >
-                          
+
                         @if (!empty ($id_income))
                         <div class="row clearfix">
                             <div class="col-md-12">
@@ -101,32 +101,30 @@
                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                       <thead>
            <tr>
-                    <th>Jumla Income</th>
-                    <th>PIC Income</th>
-                    <th>Tanggal Bayar Income</th>
-                    <th>Keterangan Income</th>
-                    <th>Kode Anggota</th>
+                    <th>Jumlah</th>
+                    <th>PIC</th>
+                    <th>Tanggal</th>
+                    <th>Keterangan</th>
                     <th>action</th>
                 </tr>
                       </thead>
-                     @foreach($data as $key => $value) 
+                     @foreach($data as $key => $value)
                       <tbody>
-                          
+
                               <tr>
                                   <th>{{$value->jml_income}}</th>
                                   <th>{{$value->pic_income}}</th>
                                   <th>{{$value->tgl_income}}</th>
                                   <th>{{$value->ket_income}}</th>
-                                  <th>{{$value->kd_anggota}}</th>
-                                     <th> 
-                                  
+                                     <th>
+
                                     <a href="{{url('/admin/management/income-edit').'/'.$value->id_income}}">
-                                        
+
                                       <button type="button" class="btn bg-blue-grey waves-effect edit-menu" data-name-menu="" data-id-menu="" data-parent-menu=""  data-url-menu="" data-icon-menu="" >EDIT</button>
                                  </a>
                                   </th>
-                                  
-                    
+
+
                       </tbody>
                        @endforeach
                   </table>
@@ -148,7 +146,6 @@ $('#tgl_income').datepicker({
         autoclose: true,
         startDate: '-3d'
     });
-
 </script>
 @endsection
 @stop
