@@ -59,7 +59,7 @@ var listTable = $('.listTable').DataTable({
                 }else{
                     var pay = 2;
                 }
-                    if (row.isButton == 1) {
+                    // if (row.isButton == 1) {
                         var edit = $('<a><button>')
                                     .attr('class', "btn bg-blue-grey waves-effect edit-menu")
                                     .attr('href',urlEdit+'/'+row.id_pay+"?pay="+pay)
@@ -75,9 +75,9 @@ var listTable = $('.listTable').DataTable({
                                     .parent()
                                     .html();
                         return edit+" | "+del;
-                    } else {
-                        return "-";
-                    }
+                    // } else {
+                    //     return "-";
+                    // }
                 }
             },
         ],

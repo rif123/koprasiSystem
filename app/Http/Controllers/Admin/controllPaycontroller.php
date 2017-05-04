@@ -37,8 +37,6 @@ class controllPayController extends Controller
      */
     public function index()
     {
-        // $query['data']=CP::getAll();
-
         return view('config.controll.controllPay');
     }
     public function indexAjax()

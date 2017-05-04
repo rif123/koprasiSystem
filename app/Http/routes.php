@@ -216,6 +216,7 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
 
         Route::get('/anggota', ['uses'=>'AnggotaController@generateTokenAnggota', 'as'=>'config.generateTokenAnggota']);
         Route::post('/anggota-generate', ['uses'=>'AnggotaController@generateToken', 'as'=>'config.generateToken']);
+        Route::get('/get-anggota', ['uses'=>'AnggotaController@getAnggota', 'as'=>'config.getAnggota']);
 
 
 

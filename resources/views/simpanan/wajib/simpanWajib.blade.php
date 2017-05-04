@@ -129,6 +129,7 @@
                             </div>
                         </div>
                     </div>
+                    @if(\Session::get('user_grp') == 1)
                     <div class="row clearfix">
                         <div class="col-md-12">
                             <h5 class="card-inside-title group-title">Wilayah</h5>
@@ -139,6 +140,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-blue-grey waves-effect filterData">Cari</button>

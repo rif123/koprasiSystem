@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\Input;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Spokok as SP;
 use App\liblary\Format;
@@ -60,21 +61,38 @@ class simpanPokokController extends Controller
            $list[] = $json;
        }
        $output['data']  = $list;
-       echo json_encode($output);
+       return response()->json($output);
    }
 
 
     public function create()
     {
-        $Spokok = new SP;
-        $Spokok->jml_bayar_spokok = \Input::get('jml_bayar_spokok');
-        $Spokok->bukti_bayar_spokok = $this->uploadfile('bkt_bayar_spokok');
-        $Spokok->tgl_bayar_spokok = date('Y-m-d', strtotime(\Input::get('tgl_bayar_spokok')));
-        $Spokok->status = 1;
+        $rules=[
+            'jml_bayar_spokok'=>'required',
+            'bkt_bayar_spokok'=>'required',
+            'tgl_bayar_spokok'=>'required',
+        ];
+        $messages=[
+            'jml_bayar_spokok.required'=>config('constants.ERROR_JML_WAJIB'),
+            'bkt_bayar_spokok.required'=>config('constants.ERROR_BKT_WAJIB'),
+            'tgl_bayar_spokok.required'=>config('constants.ERROR_TGL_BAYAR_WAJIB'),
+        ];
+        $validator=Validator::make(\Input::all(), $rules, $messages);
 
-        $Spokok->kd_anggota = \Session::get('kd_anggota');
-        $Spokok->save();
-        return \Redirect::to(route('simpanan.simpanPokok'));
+        if ($validator->passes()) {
+            $Spokok = new SP;
+            $Spokok->jml_bayar_spokok = \Input::get('jml_bayar_spokok');
+            $Spokok->bukti_bayar_spokok = $this->uploadfile('bkt_bayar_spokok');
+            $Spokok->tgl_bayar_spokok = date('Y-m-d', strtotime(\Input::get('tgl_bayar_spokok')));
+            $Spokok->status = 1;
+
+            $Spokok->kd_anggota = \Session::get('kd_anggota');
+            $Spokok->save();
+            return \Redirect::to(route('simpanan.simpanPokok'));
+        } else {
+            $message = $validator->errors()->first();
+            return \Redirect::back()->withErrors($message);
+        }
     }
     public function edit($kd_spokok)
     {
@@ -92,26 +110,32 @@ class simpanPokokController extends Controller
 
     public function update()
     {
-        $Spokok = SP::find(\Input::get('kd_spokok'));
-        $Spokok->jml_bayar_spokok = \Input::get('jml_bayar_spokok');
-        if (!empty(\Input::file('bkt_bayar_spokok'))) {
-            $Spokok->bukti_bayar_spokok = $this->uploadfile('bkt_bayar_spokok');
-        }
-        $Spokok->tgl_bayar_spokok = date('Y-m-d', strtotime(\Input::get('tgl_bayar_spokok')));
-        $Spokok->kd_anggota = \Session::get('kd_anggota');
-        $Spokok->update();
-        return \Redirect::to(route('simpanan.simpanPokok'));
-           /*$Swajib = SW::find(\Input::get('kd_swajib'));
-           $Swajib->jml_bayar_wajib = \Input::get('jml_bayar_wajib');
-           if (!empty(\Input::file('bkt_bayar_wajib'))) {
-           $Swajib->bkt_bayar_wajib = $this->uploadfile('bkt_bayar_wajib');
-           }
 
-           $Swajib->tgl_bayar_wajib = date('Y-m-d',strtotime(\Input::get('tgl_bayar_wajib')));
-         /*  $Swajib->no_swajib = \Input::get('no_swajib');*/
-           /*$Swajib->kd_anggota = \Session::get('kd_anggota');
-           $Swajib->update();
-           return \Redirect::to(route('simpanan.moduleSimpan'));*/
+        $rules=[
+            'jml_bayar_spokok'=>'required',
+            'tgl_bayar_spokok'=>'required',
+        ];
+        $messages=[
+            'jml_bayar_spokok.required'=>config('constants.ERROR_JML_WAJIB'),
+            'tgl_bayar_spokok.required'=>config('constants.ERROR_TGL_BAYAR_WAJIB'),
+        ];
+        $validator=Validator::make(\Input::all(), $rules, $messages);
+
+        if ($validator->passes()) {
+
+            $Spokok = SP::find(\Input::get('kd_spokok'));
+            $Spokok->jml_bayar_spokok = \Input::get('jml_bayar_spokok');
+            if (!empty(\Input::file('bkt_bayar_spokok'))) {
+                $Spokok->bukti_bayar_spokok = $this->uploadfile('bkt_bayar_spokok');
+            }
+            $Spokok->tgl_bayar_spokok = date('Y-m-d', strtotime(\Input::get('tgl_bayar_spokok')));
+            $Spokok->kd_anggota = \Session::get('kd_anggota');
+            $Spokok->update();
+            return \Redirect::to(route('simpanan.simpanPokok'));
+        } else {
+            $message = $validator->errors()->first();
+            return \Redirect::back()->withErrors($message);
+        }
     }
     public function delete($kd_spokok)
     {

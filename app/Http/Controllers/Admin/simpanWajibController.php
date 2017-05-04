@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\Input;
+use Illuminate\Support\Facades\Validator;
 use App\liblary\Format;
 use Illuminate\Http\Request;
 use App\Models\Swajib as SW;
@@ -68,17 +69,33 @@ class simpanWajibController extends Controller
 
     public function create()
     {
+        $rules=[
+            'jml_bayar_wajib'=>'required',
+            'tgl_bayar_wajib'=>'required',
+            'bkt_bayar_wajib'=>'required',
+        ];
+        $messages=[
+            'jml_bayar_wajib.required'=>config('constants.ERROR_JML_WAJIB'),
+            'tgl_bayar_wajib.required'=>config('constants.ERROR_TGL_BAYAR_WAJIB'),
+            'bkt_bayar_wajib.required'=>config('constants.ERROR_BKT_WAJIB'),
+        ];
+        $validator=Validator::make(\Input::all(), $rules, $messages);
 
-       $Swajib = new SW;
-       $Swajib->jml_bayar_wajib = \Input::get('jml_bayar_wajib');
-       $Swajib->bkt_bayar_wajib = $this->uploadfile('bkt_bayar_wajib');
-       $Swajib->tgl_bayar_wajib = date('Y-m-d',strtotime(\Input::get('tgl_bayar_wajib')));
-       $Swajib->status = 1;
+        if ($validator->passes()) {
+           $Swajib = new SW;
+           $Swajib->jml_bayar_wajib = \Input::get('jml_bayar_wajib');
+           $Swajib->bkt_bayar_wajib = $this->uploadfile('bkt_bayar_wajib');
+           $Swajib->tgl_bayar_wajib = date('Y-m-d',strtotime(\Input::get('tgl_bayar_wajib')));
+           $Swajib->status = 1;
 
-     /*  $Swajib->no_swajib = \Input::get('no_swajib');*/
-       $Swajib->kd_anggota = \Session::get('kd_anggota');
-       $Swajib->save();
-       return \Redirect::to(route('simpanan.moduleSimpan'));
+         /*  $Swajib->no_swajib = \Input::get('no_swajib');*/
+           $Swajib->kd_anggota = \Session::get('kd_anggota');
+           $Swajib->save();
+           return \Redirect::to(route('simpanan.moduleSimpan'));
+        } else {
+            $message = $validator->errors()->first();
+            return \Redirect::back()->withErrors($message);
+        }
 
 
     }
@@ -99,19 +116,33 @@ class simpanWajibController extends Controller
 
          public function update()
         {
+            $rules=[
+                'jml_bayar_wajib'=>'required',
+                'tgl_bayar_wajib'=>'required',
+            ];
+            $messages=[
+                'jml_bayar_wajib.required'=>config('constants.ERROR_JML_WAJIB'),
+                'tgl_bayar_wajib.required'=>config('constants.ERROR_TGL_BAYAR_WAJIB'),
+            ];
+            $validator=Validator::make(\Input::all(), $rules, $messages);
 
-           $Swajib = SW::find(\Input::get('kd_swajib'));
-           $Swajib->jml_bayar_wajib = \Input::get('jml_bayar_wajib');
-           if (!empty(\Input::file('bkt_bayar_wajib'))) {
-           $Swajib->bkt_bayar_wajib = $this->uploadfile('bkt_bayar_wajib');
+            if ($validator->passes()) {
+
+               $Swajib = SW::find(\Input::get('kd_swajib'));
+               $Swajib->jml_bayar_wajib = \Input::get('jml_bayar_wajib');
+               if (!empty(\Input::file('bkt_bayar_wajib'))) {
+               $Swajib->bkt_bayar_wajib = $this->uploadfile('bkt_bayar_wajib');
+               }
+
+               $Swajib->tgl_bayar_wajib = date('Y-m-d',strtotime(\Input::get('tgl_bayar_wajib')));
+             /*  $Swajib->no_swajib = \Input::get('no_swajib');*/
+               $Swajib->kd_anggota = \Session::get('kd_anggota');
+               $Swajib->update();
+               return \Redirect::to(route('simpanan.moduleSimpan'));
+           } else {
+               $message = $validator->errors()->first();
+               return \Redirect::back()->withErrors($message);
            }
-
-           $Swajib->tgl_bayar_wajib = date('Y-m-d',strtotime(\Input::get('tgl_bayar_wajib')));
-         /*  $Swajib->no_swajib = \Input::get('no_swajib');*/
-           $Swajib->kd_anggota = \Session::get('kd_anggota');
-           $Swajib->update();
-           return \Redirect::to(route('simpanan.moduleSimpan'));
-
 
         }
          public function delete($kd_swajib)

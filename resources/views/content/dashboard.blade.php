@@ -74,84 +74,86 @@
 
                             <div class="body">
                             <div class="row clearfix">
-                            @if((\Session::get('rules') == '1') || (in_array("admin/carousel/add", \Session::get('rules'))))
+
+                            @if( \Session::get('rules') == '1')
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/carousel/add'}}">
                                     <button class="btn btn-success btn-lg btn-block waves-effect" type="button">ADD SLIDE </button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/post/add", \Session::get('rules'))))
+
+                            @if( \Session::get('rules') == '1' )
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/post/add'}}">
                                     <button class="btn btn-primary btn-lg btn-block waves-effect" type="button">ADD POST</button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/project_text/add", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1')
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/process_text/add'}}">
                                     <button class="btn bg-purple btn-lg btn-block waves-effect" type="button">ADD PROCESS TEXT</button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/project/add", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1')
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/project/add'}}">
                                         <button class="btn btn-danger btn-lg btn-block waves-effect" type="button">ADD PROJECT</button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/project/category/add", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1')
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/project/category/add'}}">
                                     <button class="btn btn-warning btn-lg btn-block waves-effect" type="button">ADD PROJECT CATEGORY</button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/skill/add", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1')
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/skill/add'}}">
                                     <button class="btn bg-pink btn-lg btn-block waves-effect" type="button">ADD SKILL</button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/team/add", \Session::get('rules'))))
+                            @if((\Session::get('rules') == '1') )
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/team/add'}}">
                                     <button class="btn bg-teal btn-lg btn-block waves-effect" type="button">ADD TEAM</button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/testimonial/add", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1')
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/testimonial/add'}}">
                                     <button class="btn bg-cyan btn-lg btn-block waves-effect" type="button">ADD TESTIMONIAL</button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/setting", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1' )
                                  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/setting'}}">
                                     <button class="btn bg-purple btn-lg btn-block waves-effect" type="button">SETTING GENERAL</button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/setting/footer", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1')
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/setting/footer'}}">
                                     <button class="btn btn-success btn-lg btn-block waves-effect" type="button">SETTING FOOTER TEXT </button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/setting/footer/social", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1')
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/setting/footer/social'}}">
                                     <button class="btn btn-primary btn-lg btn-block waves-effect" type="button">SETTING FOOTER SOCIAL</button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/setting/location", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1')
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/setting/location'}}">
                                     <button class="btn bg-blue btn-lg btn-block waves-effect" type="button">SETTING LOCATION</button>
@@ -163,14 +165,14 @@
                                         <button class="btn btn-danger btn-lg btn-block waves-effect" type="button">SETTING PROFIL</button>
                                     </a>
                                   </div>
-                            @if((\Session::get('rules') == '1') || (in_array("admin/contact", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1')
                                  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/contact'}}">
                                     <button class="btn btn-warning btn-lg btn-block waves-effect" type="button">SETTING CONTACT INFO</button>
                                     </a>
                                 </div>
                             @endif
-                            @if((\Session::get('rules') == '1') || (in_array("admin/contact", \Session::get('rules'))))
+                            @if(\Session::get('rules') == '1' )
                                  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/config/controll-Pay'}}">
                                     <button class="btn btn-warning btn-lg btn-block waves-effect" type="button">CONTROLL PAYMENT</button>
