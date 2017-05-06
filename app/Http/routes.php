@@ -244,13 +244,17 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
 
         //Management Income
         Route::get('/management/income', ['uses'=>'managementincomeController@index', 'as'=>'management.income']);
+        Route::get('/management/income-ajax', ['uses'=>'managementincomeController@indexAjax', 'as'=>'management.incomeajax']);
+
         Route::post('/management/income-save', ['uses'=>'managementincomeController@create', 'as'=>'management.incomesave']);
         Route::get('/management/income-edit/{id}', ['uses'=>'managementincomeController@edit', 'as'=>'management.incomeedit']);
-            Route::post('/management/income-edit', ['uses'=>'managementoutcomeController@update', 'as'=>'management.incomeupdate']);
+        Route::post('/management/income-edit', ['uses'=>'managementoutcomeController@update', 'as'=>'management.incomeupdate']);
         //Management Outcome
 
         //Managemenet Income
         Route::get('/management/outcome', ['uses'=>'managementoutcomeController@index', 'as'=>'management.outcome']);
+        Route::get('/management/outcome-ajax', ['uses'=>'managementoutcomeController@indexAjax', 'as'=>'management.outcomeajax']);
+
         Route::post('/management/outcome-update', ['uses'=>'managementoutcomeController@update', 'as'=>'management.outcomeupdate']);
         Route::post('/management/outcome-save', ['uses'=>'managementoutcomeController@create', 'as'=>'management.outcomesave']);
         Route::get('/management/outcome-edit/{id}', ['uses'=>'managementoutcomeController@edit', 'as'=>'management.outcomeedit']);
@@ -261,9 +265,13 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/management/report', ['uses'=>'managementreportController@index', 'as'=>'management.report']);
         Route::get('/management/report-excel', ['uses'=>'managementreportController@excel', 'as'=>'management.report-excel']);
         Route::get('/management/report-pdf', ['uses'=>'managementreportController@pdf', 'as'=>'management.report-pdf']);
-
+        //Management Report
 
         //Management Report
+        Route::get('/keuangan/income', ['uses'=>'managementincomeController@indexReadOnly', 'as'=>'management.incomeReadOnly']);
+        Route::get('/keuangan/outcome', ['uses'=>'managementoutcomeController@indexReadOnly', 'as'=>'management.outComeReadOnly']);
+        //Management Report
+
     });
 });
 

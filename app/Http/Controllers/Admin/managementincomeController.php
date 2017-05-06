@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\Input;
 use Illuminate\Http\Request;
 use App\Models\Income as Ic;
+use App\liblary\Format;
 class managementincomeController extends Controller
 {
     private $parser = array();
@@ -17,11 +18,50 @@ class managementincomeController extends Controller
     {
 
         $data['data'] = Ic::all();
-
-
         return view("management.income.income",$data);
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function indexAjax()
+    {
 
+        $draw=$_REQUEST['draw'];
+        $length=$_REQUEST['length'];
+        $start=$_REQUEST['start'];
+        $search=$_REQUEST['search']["value"];
+        $listWajib = new Ic;
+        // ======= count ===== //
+        $total=Ic::count();
+        // ======= count ===== //
+
+        $output=array();
+        $output['draw']=$draw;
+        $output['recordsTotal']=$output['recordsFiltered']=$total;
+        $output['data']=array();
+        $query = Ic::getAll();
+
+        $list = [];
+        $ex = new Format;
+        foreach ($query as $key => $row) {
+            $json['jml_income'] = Format::getRp($row->jml_income);
+            $json['pic_income'] = $row->pic_income;
+            $json['tgl_income'] = date('M', strtotime($row->tgl_income));
+            $json['ket_income'] = $row->ket_income;
+            $json['id_income'] = $row->id_income;
+            $list[] = $json;
+        }
+        $output['data']  = $list;
+        return response()->json($output);
+    }
+
+    public function indexReadOnly () {
+        $data['data'] = Ic::all();
+        return view("management.readonly.incomeReadonly",$data);
+    }
+    
     public function create()
     {
 
