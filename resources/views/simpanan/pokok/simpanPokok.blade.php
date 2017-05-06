@@ -35,6 +35,17 @@
                             </div>
                         </div>
                         <div class="row clearfix">
+                            <h2 class="card-inside-title group-title">tanggal bayar spokok</h2>
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="text" value="{{ !empty($tgl_bayar_spokok) ? date('d-m-Y' ,strtotime($tgl_bayar_spokok)) : ''}}" name="tgl_bayar_spokok" class="form-control date " id="tgl_bayar_spokok" placeholder="tanggal bayar Pokok" onClick="getAllMenu()">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div >
+                        <div class="row clearfix">
                             <h2 class="card-inside-title group-title">bukti bayar spokok</h2>
                             <div class="col-md-12">
                                 <div class="input-group">
@@ -47,17 +58,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row clearfix">
-                            <h2 class="card-inside-title group-title">tanggal bayar spokok</h2>
-                            <div class="col-md-12">
-                                <div class="input-group">
-                                    <div class="form-line">
-                                        <input type="text" value="{{ !empty($tgl_bayar_spokok) ? date('d-m-Y' ,strtotime($tgl_bayar_spokok)) : ''}}" name="tgl_bayar_spokok" class="form-control date " id="tgl_bayar_spokok" placeholder="tanggal bayar Pokok" onClick="getAllMenu()">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div >
                         @if (!empty ($kd_spokok))
                         <div class="row clearfix">
                             <div class="col-md-12">

@@ -43,7 +43,6 @@ class AnggotaController extends Controller
             $user = explode(' ', $nm);
             $userName = $user[0].substr($no_anggota, -3);
             $token  = $this->getToken();
-
             $checkUname  = US::where('uname', $userName)->count();
             if ($checkUname == 0) {
                 $insert = new US;

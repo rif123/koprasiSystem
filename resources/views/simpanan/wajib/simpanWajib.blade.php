@@ -34,6 +34,16 @@
                             </div>
                         </div>
                         <div class="row clearfix">
+                            <h2 class="card-inside-title group-title">tanggal bayar wajib</h2>
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="text" value="{{!empty($tgl_bayar_wajib) ? $tgl_bayar_wajib : '' }}" name="tgl_bayar_wajib" class="form-control date " id="tgl_bayar_wajib" placeholder="tanggal bayar wajib" onClick="getAllMenu()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div >
+                        <div class="row clearfix">
                             <h2 class="card-inside-title group-title">bkt bayar wajib</h2>
                             <div class="col-md-12">
                                 <div class="input-group">
@@ -46,16 +56,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row clearfix">
-                            <h2 class="card-inside-title group-title">tanggal bayar wajib</h2>
-                            <div class="col-md-12">
-                                <div class="input-group">
-                                    <div class="form-line">
-                                        <input type="text" value="{{!empty($tgl_bayar_wajib) ? $tgl_bayar_wajib : '' }}" name="tgl_bayar_wajib" class="form-control date " id="tgl_bayar_wajib" placeholder="tanggal bayar wajib" onClick="getAllMenu()">
-                                    </div>
-                                </div>
-                            </div>
-                        </div >
                         @if(!empty($kd_swajib))
                         <div class="row clearfix">
                             <div class="col-md-12">
