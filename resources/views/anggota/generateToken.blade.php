@@ -15,7 +15,7 @@
                     <form action="{{url(route('config.generateToken'))}}" method="post" enctype="multipart/form-data">
                         {!! Form::token() !!}
                         <div class="row clearfix">
-                            <h2 class="card-inside-title group-title">Nama Anggota <i>(otomatis cari anggota)</i></h2>
+                            <h2 class="card-inside-title group-title">Nama Anggota</h2>
                             <div class="col-md-12">
                                 <div class="input-group">
                                     <div class="form-line">
@@ -27,6 +27,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">credit_card</i>
+                                    </span>
+                                    <div class="form-line">
+                                          <input type="text" name="no_anggota"  class="form-control" placeholder="No Anggota">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
                         <div class="row clearfix">
                             <div class="col-md-3">
                                 <div class="input-group">
@@ -59,7 +72,7 @@
                                 </div>
                             </div>
                         </div>
-
+                    -->
                         <div class="row clearfix">
                             <div class="col-md-12">
                                 <button type="submit" class="btn bg-primary waves-effect" >Generate</button>

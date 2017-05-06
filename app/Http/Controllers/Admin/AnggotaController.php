@@ -30,25 +30,18 @@ class AnggotaController extends Controller
     {
         $rules=[
             'nm_anggota'=>'required',
-            'kode_wilayah'=>'required',
-            'tahun_wub'=>'required',
             'no_anggota'=>'required',
         ];
         $messages=[
             'nm_anggota.required'=>config('constants.ERROR_NAMA_ANGGOTA'),
-		    'kode_wilayah.required'=>config('constants.ERROR_KODE_WILAYAH'),
-		    'tahun_wub.required'=>config('constants.ERROR_TAHUN_WUB'),
 		    'no_anggota.required'=>config('constants.ERROR_NOMOR_ANGGOTA'),
         ];
         $validator=Validator::make(\Input::all(), $rules, $messages);
         if ($validator->passes()) {
-            $kode_wilayah = \Input::get('kode_wilayah');
-            $tahun_wub = \Input::get('tahun_wub');
             $no_anggota = \Input::get('no_anggota');
-            $merge =$kode_wilayah."".$tahun_wub."".$no_anggota;
             $nm = \Input::get('nm_anggota');
             $user = explode(' ', $nm);
-            $userName = $user[0].$no_anggota;
+            $userName = $user[0].substr($no_anggota, -3);
             $token  = $this->getToken();
 
             $checkUname  = US::where('uname', $userName)->count();
