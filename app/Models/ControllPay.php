@@ -16,7 +16,7 @@ class ControllPay extends Model
     private static $field = ['no_swajib', 'kd_anggota', 'jml_bayar_wajib', 'bkt_bayar_wajib', 'tgl_bayar_wajib'];
     public static function column_order()
     {
-        return  ['uname', 'group_name', 'payMonth','pasPhoto_anggota'];
+        return  ['nm_anggota', 'pay', 'payMonth','jml_bayar_wajib'];
     }
     public static function getAll()
     {
