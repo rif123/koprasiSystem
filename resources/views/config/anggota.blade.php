@@ -66,7 +66,22 @@ var listTable = $('.listTable').DataTable( {
          },
          "columns": [
             { "data": "no" },
-            { "data": "uname" },
+            { "render": function (data, type, row, meta) {
+                if (row.uname != null) {
+                    var detail = $('<a>')
+                                            .attr('class', "")
+                                            .attr('href',urlDetail+'/'+row.kd_anggota)
+                                            .text(row.uname)
+                                            .wrap('<div></div>')
+                                            .parent()
+                                            .html();
+                                return detail;
+                    } else {
+                        return "-";
+                    }
+                }
+            },
+
             { "render": function (data, type, row, meta) {
                 if (row.no_anggota != null) {
                     var detail = $('<a>')
