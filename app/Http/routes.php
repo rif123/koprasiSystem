@@ -199,7 +199,9 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/config/controll-Pay-edit/{id}',['uses'=> 'controllPayController@edit', 'as'=>'config.payEdit']);
         // config excel
         Route::get('/config/anggota', ['uses'=>'ConfigController@anggotaDetail', 'as'=>'config.anggotaDetail']);
+        Route::get('/config/anggota-excel-list', ['uses'=>'ConfigController@anggotaDetailExcelList', 'as'=>'config.anggotaDetailExcelList']);
         Route::get('/config/anggota-excel', ['uses'=>'ConfigController@anggotaDetailExcel', 'as'=>'config.anggotaDetailExcel']);
+
         Route::get('/config/anggota-ajax', ['uses'=>'ConfigController@anggotaDetailAjax', 'as'=>'config.anggotaDetailAjax']);
         Route::get('/config/anggota-detail/{id}', ['uses'=>'ConfigController@anggotaDetailAll', 'as'=>'config.anggotaDetailAll']);
 

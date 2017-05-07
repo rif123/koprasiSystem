@@ -14,7 +14,14 @@
                     Daftar anggota
                 </h2>
             </div>
+
         <div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                <div class="body pull-right">
+                    <button class="btn bg-blue waves-effect showFilter"><i class="material-icons">remove_red_eye</i>Filter</button>
+                    <button class="btn bg-teal waves-effect exportToExcel"><i class="material-icons">print</i>Excel</button>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable listTable">
@@ -40,12 +47,49 @@
             margin-left:15px
         }
     </style>
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">Filter Data</h4>
+                </div>
+                <div class="modal-body" style="height:100% !important;overflow-y:initial">
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <h5 class="card-inside-title group-title">Jenis Usaha</h5>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" name="jenisProd_usaha" class="form-control jenisProd_usaha" placeholder="jenis Usaha" value="" style="z-index:0 !important">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <h5 class="card-inside-title group-title">Wilayah</h5>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" name="kabKot_usaha" class="form-control kabKot_usaha" placeholder="kab/kot" value="" style="z-index:0 !important">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-blue-grey waves-effect filterData">Cari</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 @section('js')
 <script src="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.min.js"></script>
 
 <script>
     var urlAjaxTable = "{{ URL::to(route('config.anggotaDetailAjax')) }}";
+    var urlExportExcel = "{{ URL::to(route('config.anggotaDetailExcelList')) }}";
     var  urlDetail = "{{url('admin/config/anggota-detail')}}";
     var  urlImage = "{{url('/uploads/bkt_bayar_spokok/')}}";
 $('#tgl_bayar_spokok').datepicker({
@@ -67,7 +111,7 @@ var listTable = $('.listTable').DataTable( {
          "columns": [
             { "data": "no" },
             { "render": function (data, type, row, meta) {
-                if (row.uname != null) {
+                if (row.kd_anggota != null) {
                     var detail = $('<a>')
                                             .attr('class', "")
                                             .attr('href',urlDetail+'/'+row.kd_anggota)
@@ -99,21 +143,6 @@ var listTable = $('.listTable').DataTable( {
             },
             { "data": "kabKot_usaha" },
             { "data": "jenisProd_usaha" },
-            // { "render": function (data, type, row, meta) {
-            //         if (row.kd_anggota != null) {
-            //             var detail = $('<a><button>')
-            //                         .attr('class', "btn bg-blue-grey waves-effect edit-menu")
-            //                         .attr('href',urlDetail+'/'+row.kd_anggota)
-            //                         .text('Detail')
-            //                         .wrap('<div></div>')
-            //                         .parent()
-            //                         .html();
-            //             return detail;
-            //         } else {
-            //             return "-";
-            //         }
-            //     }
-            // }
         ],
         "buttons": [
            {
@@ -131,6 +160,84 @@ var listTable = $('.listTable').DataTable( {
        "aoColumnDefs": [
           { 'bSortable': false, 'aTargets': [ 0] }
        ]
+    });
+    $('.showFilter').click(function(){
+        $('#defaultModal').modal('show');
+    });
+    $('.filterData').click(function(){
+        $('#defaultModal').modal('hide');
+        var kabKot_usaha  = $('.kabKot_usaha').val();
+        var jenisProd_usaha  = $('.jenisProd_usaha').val();
+        $('.listTable').DataTable({
+            "processing": true,
+            "bFilter": true,
+            "bInfo": false,
+            "bLengthChange": false,
+            "serverSide": true,
+            "ajax": {
+                 "url": urlAjaxTable,
+                 "type": "GET",
+                 "data" : {kabKot_usaha : kabKot_usaha, jenisProd_usaha : jenisProd_usaha}
+             },
+             "columns": [
+                { "data": "no" },
+                { "render": function (data, type, row, meta) {
+                    if (row.kd_anggota != null) {
+                        var detail = $('<a>')
+                                                .attr('class', "")
+                                                .attr('href',urlDetail+'/'+row.kd_anggota)
+                                                .text(row.uname)
+                                                .wrap('<div></div>')
+                                                .parent()
+                                                .html();
+                                    return detail;
+                        } else {
+                            return "-";
+                        }
+                    }
+                },
+
+                { "render": function (data, type, row, meta) {
+                    if (row.no_anggota != null) {
+                        var detail = $('<a>')
+                                                .attr('class', "")
+                                                .attr('href',urlDetail+'/'+row.kd_anggota)
+                                                .text(row.no_anggota)
+                                                .wrap('<div></div>')
+                                                .parent()
+                                                .html();
+                                    return detail;
+                        } else {
+                            return "-";
+                        }
+                    }
+                },
+                { "data": "kabKot_usaha" },
+                { "data": "jenisProd_usaha" },
+            ],
+            "buttons": [
+               {
+                   extend: 'collection',
+                   text: 'Export',
+                   buttons: [
+                       'copy',
+                       'excel',
+                       'csv',
+                       'pdf',
+                       'print'
+                   ]
+               }
+           ],
+            "aoColumnDefs": [
+              { 'bSortable': false, 'aTargets': [ 0] }
+            ],
+            "destroy" : true
+      });
+    });
+    $('.exportToExcel').click(function(){
+        var kabKot_usaha  = $('.kabKot_usaha').val();
+        var jenisProd_usaha  = $('.jenisProd_usaha').val();
+        window.location = urlExportExcel+"?kabKot_usaha="+kabKot_usaha+"&jenisProd_usaha="+jenisProd_usaha;
     });
 </script>
 @endsection

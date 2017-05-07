@@ -70,6 +70,39 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $role = \DB::select($query);
         return $role;
     }
+
+
+    public static function mAnggotaList()
+    {
+        $get = \Input::all();
+        $where = "";
+        if (!empty($get['kabKot_usaha'])) {
+            if (!empty($where)) {
+                $where .= " and kabKot_usaha = '".$get['kabKot_usaha']."'";
+            } else {
+                $where .= " WHERE kabKot_usaha = '".$get['kabKot_usaha']."'";
+            }
+        }
+        if (!empty($get['jenisProd_usaha'])) {
+            if (!empty($where)) {
+                $where .= " and jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+            } else {
+                $where .= " WHERE jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+            }
+        }
+        $query = "select * from users as u
+                    LEFT JOIN m_anggota as ma on u.id = ma.id_users
+                    LEFT JOIN m_data_doclegal as mdd on mdd.kd_anggota = ma.kd_anggota
+                    LEFT JOIN m_data_pribadi as mdp on mdp.kd_anggota = ma.kd_anggota
+                    LEFT JOIN m_data_usaha as mdu on mdu.kd_anggota = ma.kd_anggota
+                    ".$where."
+                ";
+        
+        $role = \DB::select($query);
+        return $role;
+    }
+
+
     public static function mAllAnggota()
     {
         $kdAnggota = \Session::get('kd_anggota');
@@ -97,6 +130,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 $where .= " and MONTH(tgl_bayar_wajib) = ".$get['bln'];
             } else {
                 $where .= " WHERE MONTH(tgl_bayar_wajib) = ".$get['bln'];
+            }
+        }
+        if (!empty($get['kabKot_usaha'])) {
+            if (!empty($where)) {
+                $where .= " and kabKot_usaha = '".$get['kabKot_usaha']."'";
+            } else {
+                $where .= " WHERE kabKot_usaha = '".$get['kabKot_usaha']."'";
+            }
+        }
+        if (!empty($get['jenisProd_usaha'])) {
+            if (!empty($where)) {
+                $where .= " and jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+            } else {
+                $where .= " WHERE jenisProd_usaha = '".$get['jenisProd_usaha']."'";
             }
         }
         $order = "";
@@ -148,9 +195,23 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         }
         if (!empty($get['bln'])) {
             if (!empty($where)) {
-                $where .= " and MONTH(tgl_bayar_wajib) = ".$get['bln'];
+                $where .= " and MONTH(tgl_bayar_wajib) = '".$get['bln']."'";
             } else {
-                $where .= " WHERE MONTH(tgl_bayar_wajib) = ".$get['bln'];
+                $where .= " WHERE MONTH(tgl_bayar_wajib) = '".$get['bln']."'";
+            }
+        }
+        if (!empty($get['kabKot_usaha'])) {
+            if (!empty($where)) {
+                $where .= " and kabKot_usaha = '".$get['kabKot_usaha']."'";
+            } else {
+                $where .= " WHERE kabKot_usaha = '".$get['kabKot_usaha']."'";
+            }
+        }
+        if (!empty($get['jenisProd_usaha'])) {
+            if (!empty($where)) {
+                $where .= " and jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+            } else {
+                $where .= " WHERE jenisProd_usaha = '".$get['jenisProd_usaha']."'";
             }
         }
         $order = "";

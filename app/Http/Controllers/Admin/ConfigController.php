@@ -288,6 +288,12 @@ class ConfigController extends Controller
         $data['list'] = $listGroup[0];
         return view("config.anggota.export.detailAnggotaExcel", $data)->with('parser', $this->parser);
     }
+    public function anggotaDetailExcelList (){
+        $id = \Input::get('kd');
+        $listGroup = US::mAnggotaList();
+        $data['list'] = $listGroup;
+        return view("config.anggota.export.listAnggotaExcel", $data)->with('parser', $this->parser);
+    }
 
 
 }
