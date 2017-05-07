@@ -34,7 +34,7 @@
                                         <i class="material-icons">credit_card</i>
                                     </span>
                                     <div class="form-line">
-                                          <input type="text" name="no_anggota"  class="form-control" placeholder="No Anggota">
+                                          <input type="text" name="no_anggota"  class="form-control" id="txtboxToFilter" placeholder="No Anggota">
                                     </div>
                                 </div>
                             </div>
@@ -62,6 +62,7 @@
                                 <button type="button" class="btn bg-primary waves-effect copyButtonUser" data-clipboard-text="user = {{\Session::get('userName')}}  | password = {{\Session::get('token')}}">
                                     Copy
                                 </button>
+
                             </li>
                         </ul>
                     </div>
@@ -198,6 +199,24 @@ transform: rotate(360deg);
 <script src="{{ url('plugins/jquery-inputmask/jquery.inputmask.bundle.js')}}"></script>
 <script src="{{ URL::asset('') }}/js/clipboard.js"></script>
 <script>
+$(document).ready(function() {
+    $("#txtboxToFilter").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+             // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+             // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+});
+
 var clipboard = new Clipboard('.copyButtonUser');
 clipboard.on('success', function(e) {
     console.log(e);

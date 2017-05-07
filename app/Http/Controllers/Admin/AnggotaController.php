@@ -30,7 +30,7 @@ class AnggotaController extends Controller
     {
         $rules=[
             'nm_anggota'=>'required',
-            'no_anggota'=>'required',
+            'no_anggota'=>'required|numeric|min:6',
         ];
         $messages=[
             'nm_anggota.required'=>config('constants.ERROR_NAMA_ANGGOTA'),

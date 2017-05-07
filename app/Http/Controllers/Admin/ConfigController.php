@@ -251,7 +251,6 @@ class ConfigController extends Controller
        // ======= count ===== //
         $getCount = US::mAllAnggotaCount();
         $total = !empty($getCount[0]->count) ? $getCount[0]->count : 0;
-
        // ======= count ===== //
 
        $output=array();
