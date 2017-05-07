@@ -11,7 +11,7 @@
 
                 <div class="container-fluid">
                     <div class="block-header">
-                        <h2><a href="/{{$_ENV['ADMIN_FOLDER'].''}}">DASHBOARD </a> >>GUEST BOOK </h2>
+        
                     </div>
                     <div class="row clearfix">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -19,7 +19,7 @@
                                 <div class="header">
                                     <h2>GUEST BOOK</h2>
                                 <div class="body">
-                                    
+
                                     <table class="table" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -35,27 +35,27 @@
                                             @foreach($data as $a)
                                                 @if($a['has_read'] == '0')
                                                     <tr style="color:red">
-                                                @else    
+                                                @else
                                                     <tr>
-                                                @endif    
+                                                @endif
                                                     <td>{{$a['name']}}</td>
                                                     <td>{{$a['email']}}</td>
                                                     <td>{{$a['phone']}}</td>
                                                     @if($a['has_read'] == '0')
                                                         <td>Unread</td>
-                                                    @else    
+                                                    @else
                                                         <td>Read</td>
-                                                    @endif  
+                                                    @endif
                                                     <td>{{Date('d M Y',$a['date'])}}</td>
                                                     <td>
                                                         <a href="/{{$_ENV['ADMIN_FOLDER'].'/guest_book/delete/'.$a['id']}}" class="alertButton">
                                                             <button class="btn bg-red waves-effect" type="button">
-                                                                    <i class="material-icons">delete</i>                  
+                                                                    <i class="material-icons">delete</i>
                                                             </button>
                                                         </a>
                                                           <a href="/{{$_ENV['ADMIN_FOLDER'].'/guest_book_read/'.$a['id']}}">
                                                             <button type="button" class="btn btn-primary  waves-effect">
-                                                                    <i class="material-icons">remove_red_eye</i>                
+                                                                    <i class="material-icons">remove_red_eye</i>
                                                             </button>
                                                         </a>
                                                     </td>

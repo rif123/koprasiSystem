@@ -11,7 +11,7 @@
 
                 <div class="container-fluid">
                     <div class="block-header">
-                        <h2>POST</h2>
+                    
                     </div>
                     <div class="row clearfix">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -55,12 +55,12 @@
                                                     <td>
                                                         <a href="{{url($_ENV['ADMIN_FOLDER'].'/post/edit/'.$a->id)}}">
                                                             <button class="btn btn-info waves-effect" type="button">
-                                                                    <i class="material-icons" style="color:white">mode_edit</i>     
+                                                                    <i class="material-icons" style="color:white">mode_edit</i>
                                                             </button>
                                                         </a>
                                                         <a href="{{url($_ENV['ADMIN_FOLDER'].'/post/delete/'.$a->id)}}" class="alertButton">
                                                             <button class="btn bg-red waves-effect" type="button">
-                                                                    <i class="material-icons">delete</i>                  
+                                                                    <i class="material-icons">delete</i>
                                                             </button>
                                                         </a>
                                                     </td>

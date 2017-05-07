@@ -5,7 +5,6 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="block-header">
-                        <h2>Setting</h2>
                     </div>
                     <div class="row clearfix">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -58,7 +57,7 @@
                                                         <input type="hidden" name="sort[{{$a->id}}]" value="{{$a->order_show}}" />
                                                     @endif
                                                 </td>
-                                                    
+
                                                 <input type="hidden" name="id[]" value="{{$a->id}}" />
                                             </tr>
                                             @endforeach

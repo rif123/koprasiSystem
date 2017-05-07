@@ -36,10 +36,9 @@
 
                 <div class="container-fluid">
                     <div class="block-header">
-                        <h2>MEDIA MANAGER</h2>
                     </div>
                     <div class="row clearfix">
-                        
+
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="card">
                                 <div class="header">
@@ -59,7 +58,7 @@
                                 <div class="body">
                                 <form method="post" action="mediamanager/deletegroup">
                                             <span id="delete" style="display:none;position:fixed;z-index:99;right:40%;bottom:20%;"><button class="btn bg-red waves-effect" style="border-radius: 15px;" type="submit">
-                                              <i class="material-icons">delete</i>                  
+                                              <i class="material-icons">delete</i>
                                             </button></span>
                                     <table class="table" width="100%" cellspacing="0">
                                         <thead>
@@ -76,12 +75,12 @@
                                                     <td><input type="checkbox" name="chk[]" onChange="chk1(this)" value="{{$a['id']}}" id="{{$a['id']}}"/><label for="{{$a['id']}}"></label></td>
                                                     @if(file_exists(public_path().'/images/image-gallery/'.$a['id']))
                                                         <td class="photo-team"><img src="{{asset('images/image-gallery/'.$a['id'])}}" style="display:block;width:100%;"/></td>
-                                                    @endif                                         
+                                                    @endif
                                                     <td>{{$a['id']}}</td>
                                                     <td>
                                                         <a href="{{url($_ENV['ADMIN_FOLDER'].'/mediamanager/delete/'.urlencode($a['id']))}}" class="alertButton">
                                                             <button class="btn bg-red waves-effect" type="button">
-                                                                    <i class="material-icons">delete</i>                  
+                                                                    <i class="material-icons">delete</i>
                                                             </button>
                                                         </a>
                                                     </td>
