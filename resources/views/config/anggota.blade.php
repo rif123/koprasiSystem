@@ -23,10 +23,8 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Nomor Anggota</th>
-                            <th>Kec</th>
                             <th>Kab</th>
                             <th>Jenis Usaha</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,25 +67,38 @@ var listTable = $('.listTable').DataTable( {
          "columns": [
             { "data": "no" },
             { "data": "uname" },
-            { "data": "no_anggota" },
-            { "data": "kec_usaha" },
-            { "data": "kabKot_usaha" },
-            { "data": "jenisProd_usaha" },
             { "render": function (data, type, row, meta) {
-                    if (row.kd_anggota != null) {
-                        var detail = $('<a><button>')
-                                    .attr('class', "btn bg-blue-grey waves-effect edit-menu")
-                                    .attr('href',urlDetail+'/'+row.kd_anggota)
-                                    .text('Detail')
-                                    .wrap('<div></div>')
-                                    .parent()
-                                    .html();
-                        return detail;
+                if (row.no_anggota != null) {
+                    var detail = $('<a>')
+                                            .attr('class', "")
+                                            .attr('href',urlDetail+'/'+row.kd_anggota)
+                                            .text(row.no_anggota)
+                                            .wrap('<div></div>')
+                                            .parent()
+                                            .html();
+                                return detail;
                     } else {
                         return "-";
                     }
                 }
-            }
+            },
+            { "data": "kabKot_usaha" },
+            { "data": "jenisProd_usaha" },
+            // { "render": function (data, type, row, meta) {
+            //         if (row.kd_anggota != null) {
+            //             var detail = $('<a><button>')
+            //                         .attr('class', "btn bg-blue-grey waves-effect edit-menu")
+            //                         .attr('href',urlDetail+'/'+row.kd_anggota)
+            //                         .text('Detail')
+            //                         .wrap('<div></div>')
+            //                         .parent()
+            //                         .html();
+            //             return detail;
+            //         } else {
+            //             return "-";
+            //         }
+            //     }
+            // }
         ],
         "buttons": [
            {
@@ -103,7 +114,7 @@ var listTable = $('.listTable').DataTable( {
            }
        ],
        "aoColumnDefs": [
-          { 'bSortable': false, 'aTargets': [ 0, 6] }
+          { 'bSortable': false, 'aTargets': [ 0] }
        ]
     });
 </script>

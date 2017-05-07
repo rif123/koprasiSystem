@@ -265,7 +265,6 @@ class ConfigController extends Controller
             $json['no'] = $no;
             $json['uname'] = $row->uname;
             $json['no_anggota'] = $row->no_anggota;
-            $json['kec_usaha'] = $row->kec_usaha;
             $json['kabKot_usaha'] = $row->kabKot_usaha;
             $json['jenisProd_usaha'] = $row->jenisProd_usaha;
             $json['kd_anggota'] = $row->kdAggota;
