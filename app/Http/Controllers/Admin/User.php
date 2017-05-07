@@ -8,6 +8,7 @@ use App\Models\Mgroup as MG;
 use App\Models\MAnggota as MA;
 
 use App\Models\Rules as RL;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -74,20 +75,7 @@ class User extends Controller
 
     public function edit($id)
     {
-        // $data = US::where("id", $id)->with('user_level')->get()->toArray();
-        // $b= array();
-		//
-        // foreach ($data[0] as $a => $c) {
-        //     $b[$a] = $c;
-        // }
-		// print_R($b);die;
-        // if ((($b['id_level'] == '1') && (\Auth::User()->id_level != '1')) || ($b['id'] == '1')) {
-        //     return \Redirect::to($_ENV['ADMIN_FOLDER'].'/error');
-        // }
-
-        // $b['data'] =  UL::all();
         $bUserGroup =  US::find(['user_grp' => $id])->toArray();
-
 		$b['uname'] = $bUserGroup[0]['uname'];
 		$b['user_grp'] = $bUserGroup[0]['user_grp'];
 		$b['email'] = $bUserGroup[0]['email'];
@@ -109,17 +97,15 @@ class User extends Controller
         if ($validator->fails()) {
             return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user/edit/'.$id)->withErrors($validator);
         } else {
-            // try {
+                $checkUname = DB::table('users')->where('uname', \Input::get('uname'))->get();
+                if (!empty($checkUname) ) {
+                    if ($checkUname[0]->id != $id) {
+                        return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user/edit/'.$id)->withErrors(array('message' => 'Username/email already exist.'));
+                    }
+                }
+                DB::table('m_anggota')->where('id_users', $id)->update(['nm_anggota' => \Input::get('uname')]);
                 $insert = US::find($id);
-                // if ((($insert->id_level == '1') && (\Auth::User()->id_level != '1')) || ($id == '1')) {
-                //     return \Redirect::to($_ENV['ADMIN_FOLDER'].'/error');
-                // }
-                //
-                $dataAnggota = MA::where(['id_users', $id]);
-                $dataAnggota->nm_anggota = \Input::get('uname');
-                $dataAnggota->update();
-                // echo "OK";die;
-                // $insert->uname = \Input::get('uname');
+                $insert->uname = \Input::get('uname');
                 if (\Input::has('password')) {
                     $insert->password = \Hash::make(\Input::get('password'));
                 }
@@ -127,12 +113,6 @@ class User extends Controller
                 $insert->id_level = \Input::get('ugroup');
                 $insert->user_grp = \Input::get('ugroup');
                 $insert->update();
-
-
-
-            // } catch (\Exception $e) {
-            //     return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user/edit/'.$id)->withErrors(array('message' => 'Username/email already exist.'));
-            // }
         }
         return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user')->with(["success"=>"New data added.."]);
     }
