@@ -23,7 +23,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Nomor Anggota</th>
-                            <th>Kab</th>
+                            <th>Kab/kot</th>
                             <th>Jenis Usaha</th>
                         </tr>
                     </thead>
