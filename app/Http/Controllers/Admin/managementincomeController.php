@@ -61,7 +61,7 @@ class managementincomeController extends Controller
         $data['data'] = Ic::all();
         return view("management.readonly.incomeReadonly",$data);
     }
-    
+
     public function create()
     {
 

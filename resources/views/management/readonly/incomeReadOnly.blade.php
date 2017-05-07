@@ -22,9 +22,9 @@
                                 <thead>
                                     <tr>
                                         <th>Jumlah</th>
-                                        <th>PIC</th>
                                         <th>Tanggal</th>
                                         <th>Keterangan</th>
+                                        <th>PIC</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -63,9 +63,9 @@ var urlEdit = "{{url('/admin/management/income-edit')}}";
                  },
                  "columns": [
                     { "data": "jml_income" },
-                    { "data": "pic_income" },
                     { "data": "tgl_income" },
                     { "data": "ket_income" },
+                    { "data": "pic_income" },
                 ],
                 "buttons": [
                    {

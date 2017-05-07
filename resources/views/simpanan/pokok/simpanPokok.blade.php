@@ -90,8 +90,8 @@
                     <thead>
                         <tr>
                             <th>Jumlah</th>
+                            <th>Tanggal</th>
                             <th>Bukti</th>
-                            <th>Bulan</th>
                             <th>Status</th>
                             <th>action</th>
                         </tr>
@@ -173,13 +173,13 @@ var listTable = $('.listTable').DataTable( {
          },
          "columns": [
             { "data": "jml_bayar_spokok" },
+            { "data": "tgl_bayar_spokok" },
             {
                 "data": "bukti_bayar_spokok",
                 "render": function(data, type, row) {
                     return '<img src="'+urlImage+"/"+data+'" width="30px"/>';
                 }
             },
-            { "data": "tgl_bayar_spokok" },
             { "data": "status" },
             { "render": function (data, type, row, meta) {
                     if (row.isButton == 1) {

@@ -90,8 +90,8 @@
                         <thead>
                             <tr>
                                 <th>Jumlah</th>
+                                <th>Tanggal</th>
                                 <th>Bukti</th>
-                                <th>tanggal</th>
                                 <th>Status</th>
                                 <th>action</th>
                             </tr>
@@ -173,13 +173,13 @@
          },
          "columns": [
             { "data": "jml_bayar_wajib" },
+            { "data": "tgl_bayar_wajib" },
             {
                 "data": "bkt_bayar_wajib",
                 "render": function(data, type, row) {
                     return '<img src="'+urlImage+"/"+data+'" width="30px"/>';
                 }
             },
-            { "data": "tgl_bayar_wajib" },
             // { "data": "kd_anggota" },
             { "data": "status" },
             { "render": function (data, type, row, meta) {
@@ -239,13 +239,13 @@
              },
              "columns": [
                 { "data": "jml_bayar_wajib" },
+                { "data": "tgl_bayar_wajib" },
                 {
                     "data": "bkt_bayar_wajib",
                     "render": function(data, type, row) {
                         return '<img src="'+urlImage+"/"+data+'" width="30px"/>';
                     }
                 },
-                { "data": "tgl_bayar_wajib" },
                 // { "data": "kd_anggota" },
                 { "data": "status" },
                 { "render": function (data, type, row, meta) {

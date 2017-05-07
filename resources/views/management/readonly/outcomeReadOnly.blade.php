@@ -21,9 +21,9 @@
                         <thead>
                             <tr>
                                 <th>Jumlah</th>
-                                <th>PIC</th>
                                 <th>Tanggal</th>
                                 <th>Keterangan</th>
+                                <th>PIC</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -61,9 +61,9 @@ var listTable = $('.listTable').DataTable( {
          },
          "columns": [
             { "data": "jml_outcome" },
-            { "data": "pic_outcome" },
             { "data": "tgl_outcome" },
             { "data": "ket_outcome" },
+            { "data": "pic_outcome" },
         ],
         "buttons": [
            {
