@@ -91,9 +91,9 @@
                         <thead>
                             <tr>
                                 <th>Jumlah</th>
-                                <th>PIC</th>
                                 <th>Tanggal</th>
                                 <th>Keterangan</th>
+                                <th>PIC</th>
                                 <th>action</th>
                             </tr>
                         </thead>
@@ -132,9 +132,9 @@ var listTable = $('.listTable').DataTable( {
          },
          "columns": [
             { "data": "jml_outcome" },
-            { "data": "pic_outcome" },
             { "data": "tgl_outcome" },
             { "data": "ket_outcome" },
+            { "data": "pic_outcome" },
             { "render": function (data, type, row, meta) {
                 var edit = $('<a><button>')
                             .attr('class', "btn bg-blue-grey waves-effect edit-menu")
@@ -143,17 +143,7 @@ var listTable = $('.listTable').DataTable( {
                             .wrap('<div></div>')
                             .parent()
                             .html();
-                // var del = $('<a><button>')
-                //             .attr('class', "btn btn-danger waves-effect delete-menu")
-                //             .attr('href',urlDelete+'/'+row.id_outcome)
-                //             .text('Delete')
-                //             .wrap('<div></div>')
-                //             .parent()
-                //             .html();
                 return edit;
-            // } else {
-            //     return "-";
-            // }
                 }
             },
         ],

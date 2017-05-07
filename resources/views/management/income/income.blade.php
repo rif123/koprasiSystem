@@ -91,9 +91,9 @@
                         <thead>
                             <tr>
                                 <th>Jumlah</th>
-                                <th>PIC</th>
                                 <th>Tanggal</th>
                                 <th>Keterangan</th>
+                                <th>PIC</th>
                                 <th>action</th>
                             </tr>
                         </thead>
@@ -132,9 +132,9 @@ var urlEdit = "{{url('/admin/management/income-edit')}}";
                  },
                  "columns": [
                     { "data": "jml_income" },
-                    { "data": "pic_income" },
                     { "data": "tgl_income" },
                     { "data": "ket_income" },
+                    { "data": "pic_income" },
                     { "render": function (data, type, row, meta) {
                             // if (row.isButton == 1) {
                                 var edit = $('<a><button>')
@@ -144,17 +144,7 @@ var urlEdit = "{{url('/admin/management/income-edit')}}";
                                             .wrap('<div></div>')
                                             .parent()
                                             .html();
-                                // var del = $('<a><button>')
-                                //             .attr('class', "btn btn-danger waves-effect delete-menu")
-                                //             .attr('href',urlDelete+'/'+row.id_outcome)
-                                //             .text('Delete')
-                                //             .wrap('<div></div>')
-                                //             .parent()
-                                //             .html();
                                 return edit;
-                            // } else {
-                            //     return "-";
-                            // }
                         }
                     },
                 ],
