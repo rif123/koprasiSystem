@@ -38,7 +38,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
     public static function column_order()
     {
-        return  ['uname', 'group_name', 'pasPhoto_anggota','kd_anggota','id'];
+        return  ['uname', 'group_name', 'pasPhoto_anggota','kdAggota','id'];
     }
 
     public static function mGroup()
@@ -76,9 +76,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $input = \Input::get('search.value');
         $get = \Input::all();
 
-        $where = "";
+        $where = " where u.user_grp = 5 ";
         if (!empty($input)) {
-            $where = "WHERE ";
             $count = count(self::column_order()) -1;
             foreach (self::column_order() as $key => $value) {
                 $where .= $value . " LIKE '%".$input."%'";
@@ -108,9 +107,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             $limit  = "LIMIT ".$length." OFFSET ".$start;
         }
         $query = "
-                select * from users as u
+                select *, ma.kd_anggota as kdAggota from users as u
                 LEFT JOIN m_anggota as ma on u.id = ma.id_users
                 LEFT JOIN menu_group as mg on u.user_grp = mg.user_grp
+                LEFT JOIN m_data_usaha as mdu on mdu.kd_anggota = ma.kd_anggota
                 ".$where."
 				".$order."
                 ".$limit."
@@ -125,9 +125,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $input = \Input::get('search.value');
         $get = \Input::all();
 
-        $where = "";
+        $where = " where u.user_grp = 5 ";
         if (!empty($input)) {
-            $where = "WHERE ";
             $count = count(self::column_order()) -1;
             foreach (self::column_order() as $key => $value) {
                 $where .= $value . " LIKE '%".$input."%'";
@@ -157,6 +156,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 select count(id) as count from users as u
                 LEFT JOIN m_anggota as ma on u.id = ma.id_users
                 LEFT JOIN menu_group as mg on u.user_grp = mg.user_grp
+                LEFT JOIN m_data_usaha as mdu on  mdu.kd_anggota = ma.kd_anggota
                 ".$where."
 				".$order."
                 ".$limit."

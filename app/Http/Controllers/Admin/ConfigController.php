@@ -238,8 +238,9 @@ class ConfigController extends Controller
 
     public function anggotaDetail(){
 
-        $listMenu = MA::all()->sortByDesc("id_menu");
-        $data['listMenu'] = $listMenu;
+        // $listMenu = MA::all()->sortByDesc("id_menu");
+        // $data['listMenu'] = $listMenu;
+        $data = [];
         return view("config.anggota", $data)->with('parser', $this->parser);
     }
     public function anggotaDetailAjax () {
@@ -260,13 +261,18 @@ class ConfigController extends Controller
         $query = US::mAllAnggota();
         $list = [];
         $ex = new Format;
+        $no = 1;
         foreach ($query as $key => $row) {
+            $json['no'] = $no;
             $json['uname'] = $row->uname;
-            $json['group_name'] = $row->group_name;
-            $json['pasPhoto_anggota'] = $row->pasPhoto_anggota;
-            $json['kd_anggota'] = $row->kd_anggota;
+            $json['nm_anggota'] = $row->nm_anggota;
+            $json['kec_usaha'] = $row->kec_usaha;
+            $json['kabKot_usaha'] = $row->kabKot_usaha;
+            $json['jenisProd_usaha'] = $row->jenisProd_usaha;
+            $json['kd_anggota'] = $row->kdAggota;
             $json['id'] = $row->id;
             $list[] = $json;
+            $no++;
         }
         $output['data']  = $list;
         echo json_encode($output);

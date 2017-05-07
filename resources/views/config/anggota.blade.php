@@ -20,9 +20,12 @@
                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable listTable">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Group</th>
-                            <th>Image</th>
+                            <th>No</th>
+                            <th>Nomor Anggota</th>
+                            <th>Nama</th>
+                            <th>Kec</th>
+                            <th>Kab</th>
+                            <th>Jenis Usaha</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -63,15 +66,14 @@ var listTable = $('.listTable').DataTable( {
              "type": "GET"
          },
          "columns": [
+            { "data": "no" },
             { "data": "uname" },
-            { "data": "group_name" },
-            {
-                "data": "pasPhoto_anggota",
-                "render": function(data, type, row) {
-                    return '<img src="'+urlImage+"/"+row.pasPhoto_anggota+'" width="30px"/>';
-                }
-            },
+            { "data": "nm_anggota" },
+            { "data": "kec_usaha" },
+            { "data": "kabKot_usaha" },
+            { "data": "jenisProd_usaha" },
             { "render": function (data, type, row, meta) {
+                console.log(row);
                     if (row.kd_anggota != null) {
                         var detail = $('<a><button>')
                                     .attr('class', "btn bg-blue-grey waves-effect edit-menu")
