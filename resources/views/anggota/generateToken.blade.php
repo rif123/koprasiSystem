@@ -39,40 +39,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--
-                        <div class="row clearfix">
-                            <div class="col-md-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">credit_card</i>
-                                    </span>
-                                    <div class="form-line">
-                                          <input type="text" name="kode_wilayah"  class="form-control kode-wilayah" placeholder="Kode Wilayah (3 Digit)">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">credit_card</i>
-                                    </span>
-                                    <div class="form-line">
-                                          <input type="text" name="tahun_wub" class="form-control tahun-wub" placeholder="Tahun Wub (2 digit)">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">credit_card</i>
-                                    </span>
-                                    <div class="form-line">
-                                          <input type="text" name="no_anggota" class="form-control no_anggota" placeholder="Nomor Anggota (3 Digit)">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    -->
                         <div class="row clearfix">
                             <div class="col-md-12">
                                 <button type="submit" class="btn bg-primary waves-effect" >Generate</button>
@@ -81,7 +47,7 @@
                     </form>
                     <hr></hr>
                     @if (\Session::has('userName'))
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-md-offset-4 body bg-pink" style="border:1px solid #000;">
+                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-md-offset-4 body bg-pink" style="border:1px solid #000;">
                         Generate Berhasil
                         <ul class="dashboard-stat-list">
                             <li>
@@ -92,6 +58,11 @@
                                 Password
                                 <span class="pull-right"><b>{{\Session::get('token')}}</b></span>
                             </li>
+                            <li>
+                                <button type="button" class="btn bg-primary waves-effect copyButtonUser" data-clipboard-text="user = {{\Session::get('userName')}}  | password = {{\Session::get('token')}}">
+                                    Copy
+                                </button>
+                            </li>
                         </ul>
                     </div>
                     @endif
@@ -99,6 +70,8 @@
             </div>
         </div>
     </div>
+        <input type="hidden" id="copyTarget" value="xxxxx{{\Session::get('userName')}} | {{\Session::get('token')}}"  />
+
     <style>
         h2.group-title{
             margin-left:15px
@@ -223,7 +196,24 @@ transform: rotate(360deg);
 @section('js')
 <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.js"></script>
 <script src="{{ url('plugins/jquery-inputmask/jquery.inputmask.bundle.js')}}"></script>
+<script src="{{ URL::asset('') }}/js/clipboard.js"></script>
 <script>
+var clipboard = new Clipboard('.copyButtonUser');
+clipboard.on('success', function(e) {
+    console.log(e);
+});
+
+clipboard.on('error', function(e) {
+    console.log(e);
+});
+var clipboardPassword = new Clipboard('.copyButtonPassword');
+clipboardPassword.on('success', function(e) {
+    console.log(e);
+});
+
+clipboardPassword.on('error', function(e) {
+    console.log(e);
+});
 var urlGerUserAnggota = "{{ url(route('config.getAnggota')) }}";
 $.widget("ui.autocomplete", $.ui.autocomplete, {
 

@@ -38,7 +38,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
     public static function column_order()
     {
-        return  ['uname', 'group_name', 'pasPhoto_anggota','kdAggota','id'];
+        return  ['uname', 'no_anggota', 'kec_usaha','jenisProd_usaha', 'ma.kd_anggota','id'];
     }
 
     public static function mGroup()
@@ -78,6 +78,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         $where = " where u.user_grp = 5 ";
         if (!empty($input)) {
+            if (!empty($where)) {
+                $where .= " AND ";
+            } else {
+                $where .= " ";
+            }
+
             $count = count(self::column_order()) -1;
             foreach (self::column_order() as $key => $value) {
                 $where .= $value . " LIKE '%".$input."%'";
@@ -118,7 +124,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $listData = \DB::select($query);
         return $listData;
     }
-
     public static function mAllAnggotaCount()
     {
         $kdAnggota = \Session::get('kd_anggota');
@@ -127,6 +132,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         $where = " where u.user_grp = 5 ";
         if (!empty($input)) {
+            if (!empty($where)) {
+                $where .= " AND ";
+            } else {
+                $where .= " ";
+            }
+
             $count = count(self::column_order()) -1;
             foreach (self::column_order() as $key => $value) {
                 $where .= $value . " LIKE '%".$input."%'";

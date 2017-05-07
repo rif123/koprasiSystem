@@ -50,6 +50,7 @@ class AnggotaController extends Controller
                 $insert->password = \Hash::make($token);
                 $insert->email = "";
                 $insert->id_level = 4;
+                $insert->no_anggota = $no_anggota;
                 $insert->user_grp = 5;
                 $insert->save();
                 $dataAnggota = new MAN;

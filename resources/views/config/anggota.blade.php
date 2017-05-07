@@ -21,8 +21,8 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nomor Anggota</th>
                             <th>Nama</th>
+                            <th>Nomor Anggota</th>
                             <th>Kec</th>
                             <th>Kab</th>
                             <th>Jenis Usaha</th>
@@ -45,6 +45,7 @@
 </section>
 @section('js')
 <script src="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.min.js"></script>
+
 <script>
     var urlAjaxTable = "{{ URL::to(route('config.anggotaDetailAjax')) }}";
     var  urlDetail = "{{url('admin/config/anggota-detail')}}";
@@ -68,12 +69,11 @@ var listTable = $('.listTable').DataTable( {
          "columns": [
             { "data": "no" },
             { "data": "uname" },
-            { "data": "nm_anggota" },
+            { "data": "no_anggota" },
             { "data": "kec_usaha" },
             { "data": "kabKot_usaha" },
             { "data": "jenisProd_usaha" },
             { "render": function (data, type, row, meta) {
-                console.log(row);
                     if (row.kd_anggota != null) {
                         var detail = $('<a><button>')
                                     .attr('class', "btn bg-blue-grey waves-effect edit-menu")
@@ -101,6 +101,9 @@ var listTable = $('.listTable').DataTable( {
                    'print'
                ]
            }
+       ],
+       "aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [ 0, 6] }
        ]
     });
 </script>

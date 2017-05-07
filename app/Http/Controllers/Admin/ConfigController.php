@@ -265,7 +265,7 @@ class ConfigController extends Controller
         foreach ($query as $key => $row) {
             $json['no'] = $no;
             $json['uname'] = $row->uname;
-            $json['nm_anggota'] = $row->nm_anggota;
+            $json['no_anggota'] = $row->no_anggota;
             $json['kec_usaha'] = $row->kec_usaha;
             $json['kabKot_usaha'] = $row->kabKot_usaha;
             $json['jenisProd_usaha'] = $row->jenisProd_usaha;
