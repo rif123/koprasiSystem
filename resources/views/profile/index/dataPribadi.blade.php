@@ -57,17 +57,6 @@
         </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-        <h2 class="card-inside-title">Kecamatan</h2>
-        <div class="form-group form-float">
-            <div class="form-line">
-                <input type="text" class="form-control" name="kec_pribadi"
-                    value="{{!empty($allData->kec_pribadi) ? $allData->kec_pribadi : '' }}"
-                >
-                <label class="form-label">Kecamatan</label>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
         <h2 class="card-inside-title">Desa/Kelurahan</h2>
         <div class="form-group form-float">
             <div class="form-line">
@@ -78,7 +67,29 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+        <h2 class="card-inside-title">Kecamatan</h2>
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="text" class="form-control" name="kec_pribadi"
+                    value="{{!empty($allData->kec_pribadi) ? $allData->kec_pribadi : '' }}"
+                >
+                <label class="form-label">Kecamatan</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <h2 class="card-inside-title">Kab/kot</h2>
+        <div class="form-group form-float">
+            <div class="form-line">
+                <input type="text" class="form-control" name="kabkot_pribadi"
+                    value="{{!empty($allData->kabkot_pribadi) ? $allData->kabkot_pribadi : '' }}"
+                >
+                <label class="form-label">Kecamatan</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
         <h2 class="card-inside-title">WUB Tahun</h2>
         <div class="form-group form-float">
             <div class="form-line">
@@ -89,7 +100,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
         <h2 class="card-inside-title">WUB Dinas</h2>
         <div class="form-group form-float">
             <div class="form-line">

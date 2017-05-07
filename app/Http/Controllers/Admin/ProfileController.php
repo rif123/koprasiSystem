@@ -116,6 +116,7 @@ class ProfileController extends Controller
             $mPribadi['alamat_pribadi'] = !empty(\Input::get('alamat_pribadi')) ? \Input::get('alamat_pribadi') : "";
             $mPribadi['rtRw_pribadi'] = !empty(\Input::get('rtRw_pribadi')) ? \Input::get('rtRw_pribadi') : "";
             $mPribadi['kec_pribadi'] = !empty(\Input::get('kec_pribadi')) ? \Input::get('kec_pribadi') : "";
+            $mPribadi['kabkot_pribadi'] = !empty(\Input::get('kec_pribadi')) ? \Input::get('kabkot_pribadi') : "";
             $mPribadi['desKel_pribadi'] = !empty(\Input::get('desKel_pribadi')) ? \Input::get('desKel_pribadi') : "";
             $mPribadi['wubTahun_pribadi'] = !empty(\Input::get('wubTahun_pribadi')) ? \Input::get('wubTahun_pribadi') : "";
             $mPribadi['wubDinas_pribadi'] = !empty(\Input::get('wubDinas_pribadi')) ? \Input::get('wubDinas_pribadi') : "";
@@ -130,6 +131,7 @@ class ProfileController extends Controller
             $mPribadi->alamat_pribadi = \Input::get('alamat_pribadi');
             $mPribadi->rtRw_pribadi = \Input::get('rtRw_pribadi');
             $mPribadi->kec_pribadi = \Input::get('kec_pribadi');
+            $mPribadi->kabkot_pribadi = \Input::get('kabkot_pribadi');
             $mPribadi->desKel_pribadi = \Input::get('desKel_pribadi');
             $mPribadi->wubTahun_pribadi = \Input::get('wubTahun_pribadi');
             $mPribadi->wubDinas_pribadi = \Input::get('wubDinas_pribadi');
