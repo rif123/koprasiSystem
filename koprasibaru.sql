@@ -11,7 +11,7 @@
  Target Server Version : 50505
  File Encoding         : utf-8
 
- Date: 05/07/2017 16:18:14 PM
+ Date: 05/07/2017 18:56:08 PM
 */
 
 SET NAMES utf8;
@@ -99,13 +99,13 @@ CREATE TABLE `m_anggota` (
   KEY `key_anggota` (`id_users`),
   CONSTRAINT `key_anggota` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`),
   CONSTRAINT `key_jabatan` FOREIGN KEY (`kd_jabatan`) REFERENCES `m_jabatan` (`kd_jabatan`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 --  Records of `m_anggota`
 -- ----------------------------
 BEGIN;
-INSERT INTO `m_anggota` VALUES ('82', '9', 'Rifky rachman', '1', null, '63014.jpeg', '75375.jpeg'), ('83', '35', 'masuk809', null, null, null, null);
+INSERT INTO `m_anggota` VALUES ('82', '9', 'Rifky rachman', '1', null, '63014.jpeg', '75375.jpeg'), ('83', '35', 'masuk809', null, null, null, null), ('84', '36', 'huhuy080', null, null, null, null), ('85', '37', 'lolo231', null, null, null, null), ('86', '38', 'kodokkkfas', null, null, null, null), ('87', '39', 'asasf234', null, null, null, null), ('88', '40', 'asfas534', null, null, null, null), ('89', '41', 'aasdfasfda534', null, null, null, null), ('90', '42', 'ccca234', null, null, null, null), ('91', '43', 'asfasdfas222', null, null, null, null), ('92', '44', 'asdfa555', null, null, null, null), ('93', '45', 'ggg342', null, null, null, null), ('94', '46', 'asdfasfdatretertr231', null, null, null, null);
 COMMIT;
 
 -- ----------------------------
@@ -805,23 +805,22 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_grp` int(11) DEFAULT NULL,
   `uname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `no_anggota` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `id_level` int(11) NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uname` (`uname`),
-  KEY `id_level` (`id_level`),
   KEY `user_grp` (`user_grp`),
-  CONSTRAINT `user_group_menu` FOREIGN KEY (`user_grp`) REFERENCES `menu_group` (`user_grp`),
-  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_level`) REFERENCES `user_level` (`id_level`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `user_group_menu` FOREIGN KEY (`user_grp`) REFERENCES `menu_group` (`user_grp`)
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 --  Records of `users`
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` VALUES ('9', '1', 'admin', 'admin@admin.com', '$2y$10$PmcUVEJRgmmIEBQxKL/pzeHMsmjLZYEnUxvjFk5oosm1yskMtohVi', '1', 'irCsm1i2HubTYZ3LGpRsXsqEqYKpZKXagIEfAB67nID7rceVgnQNJ3GhodnW'), ('15', '2', 'Rifky', 'rifky.rachman@gmail.com', '$2y$10$yG6TzyHZpkaNWQVT6uuAtuxHaNt.BeYZAzS.jXNIE9k1FepOtw1oC', '1', 'BSOwGb2cbIcN4qPSgW9zLAXgstHPu08wpQdjRjSqG9zMQZGN6odtiPytab7z'), ('16', '3', 'akbar', 'akbar@gmail.com', '$2y$10$GDyKw0F.GFOfA7LX.L0O8e9KJ3hegeSE14guuFmh1/.lqolaJ1PTW', '1', 'xuoS5Ipqwqa8DRVCJ835vXrUTFNklLfpJUE7rFbuz6gEfp3Mv0SaFXf4m1I5'), ('26', '5', 'Rifky000', '', '$2y$10$9mYNEXKrW4Pt.SkizYO6Tu9mlrod0ogK/ClBnTRgkY85AWvyptIle', '4', null), ('27', '5', 'Rifky111', '', '$2y$10$ohKiMvPf5tVX.c/275YpSOEvCj..SJVQi0bc4fIDyFZ0ymaw5yJ8.', '4', null), ('28', '5', 'Rifky222', '', '$2y$10$ahPaJvALdLElOypkiMel8ONl55tNvU6ID0nkH3z2lUaNrgPq0tgFG', '4', null), ('29', '5', 'asdfasfda234', '', '$2y$10$BbFzgeZ62X0EQiTFc6qT/OxvQrDYnObFzWfxVIzHgUD/mC6CBQAq.', '4', 'gIqLz8Anep6HtHhPv33owfZALZTLPmAtKqmPuQ8Jy8exgsqPcsNR7IfY1mry'), ('30', '5', 'xxx098908090', '', '$2y$10$NLIHlUBjTFIOPcuSvO2HYeQXTwYQervxTQBSbhmQ2uO8k0ghgzIx.', '4', null), ('31', '5', 'rr979', '', '$2y$10$jRdxKi2ZA50QzyMyRHMX/.emVxz2cmsI7uRI58NGME2xZvduQHMHW', '4', null), ('32', '5', 'xxx000', '', '$2y$10$dyED.mEsAf0oL.dFqqg.yuk9TgePZ4o9i9imwTD/KNCblbpoDLPIS', '4', null), ('33', '5', 'kiki455', '', '$2y$10$kKC8mxb.9QcKiBUtdi/JeemoT8r0tBTTKKdZ2DxnXKLd4jvIPC2Ku', '4', '6Jz6wAAFKtKOmfRtaBwig85fZQK3jt3VyZ9MeyLrFuixXIca7GrdT9TO9tvH'), ('34', '5', 'dodol455', '', '$2y$10$gE/OsVU0/wrjtcADgm6UUu5yXEm2WYdDf3itm5zJqDCIIgJQCR6Mm', '4', null), ('35', '5', 'masuk809', '', '$2y$10$ERlzKW4YMn0IfUyFNC/BfupItWc3j0XqWFlkSQAoXCloQHXuIRPhC', '4', null);
+INSERT INTO `users` VALUES ('9', '1', 'admin', null, 'admin@admin.com', '$2y$10$PmcUVEJRgmmIEBQxKL/pzeHMsmjLZYEnUxvjFk5oosm1yskMtohVi', '1', 'irCsm1i2HubTYZ3LGpRsXsqEqYKpZKXagIEfAB67nID7rceVgnQNJ3GhodnW'), ('15', '2', 'Rifky', null, 'rifky.rachman@gmail.com', '$2y$10$yG6TzyHZpkaNWQVT6uuAtuxHaNt.BeYZAzS.jXNIE9k1FepOtw1oC', '1', 'BSOwGb2cbIcN4qPSgW9zLAXgstHPu08wpQdjRjSqG9zMQZGN6odtiPytab7z'), ('16', '3', 'akbar', null, 'akbar@gmail.com', '$2y$10$GDyKw0F.GFOfA7LX.L0O8e9KJ3hegeSE14guuFmh1/.lqolaJ1PTW', '1', 'xuoS5Ipqwqa8DRVCJ835vXrUTFNklLfpJUE7rFbuz6gEfp3Mv0SaFXf4m1I5'), ('26', '5', 'Rifky000', null, '', '$2y$10$9mYNEXKrW4Pt.SkizYO6Tu9mlrod0ogK/ClBnTRgkY85AWvyptIle', '4', null), ('27', '5', 'Rifkyxxx', null, 'rifky@kudo.co.id', '$2y$10$T6W7T2jyzsdXBmYEOJTXQ.09TO4Oosyc97UwpbrqHjEPiLscHJxji', '5', null), ('28', '5', 'Rifky222', null, '', '$2y$10$ahPaJvALdLElOypkiMel8ONl55tNvU6ID0nkH3z2lUaNrgPq0tgFG', '4', null), ('29', '5', 'asdfasfda234', null, '', '$2y$10$BbFzgeZ62X0EQiTFc6qT/OxvQrDYnObFzWfxVIzHgUD/mC6CBQAq.', '4', 'gIqLz8Anep6HtHhPv33owfZALZTLPmAtKqmPuQ8Jy8exgsqPcsNR7IfY1mry'), ('30', '5', 'xxx098908090', null, '', '$2y$10$NLIHlUBjTFIOPcuSvO2HYeQXTwYQervxTQBSbhmQ2uO8k0ghgzIx.', '4', null), ('31', '5', 'rr979', null, '', '$2y$10$jRdxKi2ZA50QzyMyRHMX/.emVxz2cmsI7uRI58NGME2xZvduQHMHW', '4', null), ('32', '5', 'xxx000', null, '', '$2y$10$dyED.mEsAf0oL.dFqqg.yuk9TgePZ4o9i9imwTD/KNCblbpoDLPIS', '4', null), ('33', '5', 'kiki455', null, '', '$2y$10$kKC8mxb.9QcKiBUtdi/JeemoT8r0tBTTKKdZ2DxnXKLd4jvIPC2Ku', '4', '6Jz6wAAFKtKOmfRtaBwig85fZQK3jt3VyZ9MeyLrFuixXIca7GrdT9TO9tvH'), ('34', '5', 'dodolxxx', null, 'rifky@kudo.co.id', '$2y$10$W12OLbFykdMVdEtrQxHfSesxZg0NY1T6AlWLrUFWKk/uLbZ/yYd.i', '5', null), ('35', '5', 'masuk809', null, '', '$2y$10$ERlzKW4YMn0IfUyFNC/BfupItWc3j0XqWFlkSQAoXCloQHXuIRPhC', '4', null), ('36', '5', 'huhuy080', null, '', '$2y$10$eyn3vDoDGuhxrkYOvFhKQ.0FSWXIF9rWqJR0HCLJWE0KfQve3RFRC', '4', null), ('37', '5', 'lolo231', '1231231231', '', '$2y$10$geVwDAWTB5dpPBwcsi1jDObT0gVsE3E8nZNQ8xAymkQAHZiSmFElu', '4', null), ('38', '5', 'kodokkkfas', 'asdfasdfas', '', '$2y$10$OliurUlWFp3DNIMf4h0nceXo30mPT.kyJLjhFjcsuRejzjhH0Xkci', '4', null), ('39', '5', 'asasf234', '234234', '', '$2y$10$v1dNUoKWknuS8JO78d5ul.O6YtEMMFPTXi.97O2Nw3X1eVkcstkd2', '4', null), ('40', '5', 'asfas534', '4534534', '', '$2y$10$FtKENe4tY7Pa6H8VEZIPa.cqtLEKmO41EtX8FBJlQ1PWYq18XOatO', '4', null), ('41', '5', 'aasdfasfda534', '2334534', '', '$2y$10$uMa6Z25c4aLX/dAToGrKG.iKz0OWDBUhRyFy0I7bzmxYLUgQEF35W', '4', null), ('42', '5', 'ccca234', '234234234', '', '$2y$10$A994k.LREXkuvidSh357LespfpdOsfA9NoTh5CZLqrgvQiELOYBPu', '4', null), ('43', '5', 'asfasdfas222', '2222222', '', '$2y$10$yU.Mu9PgMDIiQzzyb8ilMuHBfA5.6WNn0a14NtDWUxVfjjy106fr.', '4', null), ('44', '5', 'asdfa555', '5555555', '', '$2y$10$H1GVsgkFdkzNu3sO3mu8uufEjwt9LvDMk0dIShfoA2xRY8ce1U29q', '4', null), ('45', '5', 'ggg342', '2342342', '', '$2y$10$wbjdAGZyWD8bj7DWiIFYM.ExugdA98C3RdN8oiRR7lFMHFTtLubsO', '4', null), ('46', '5', 'asdfasfdatretertr231', '1231231', '', '$2y$10$WAX9H7wUuAX3JoOeydFVr.L.7JpqmKOTVzV2xLtIN4TyFFXvIRl32', '4', null);
 COMMIT;
 
 -- ----------------------------
