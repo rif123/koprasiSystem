@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User_level as UL;
 use App\Models\User as US;
 use App\Models\Mgroup as MG;
+use App\Models\MAnggota as MA;
 
 use App\Models\Rules as RL;
 
@@ -57,6 +58,13 @@ class User extends Controller
                 $insert->id_level = 1;
                 $insert->user_grp = \Input::get('ugroup');
                 $insert->save();
+
+                $dataAnggota = new MA;
+                $dataAnggota->id_users = $insert->id;
+                $dataAnggota->nm_anggota = \Input::get('uname');
+                $dataAnggota->save();
+
+
             // } catch (\Exception $e) {
             //     return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user/add')->withErrors(array('message' => 'Username/email already exist.'));
             // }
@@ -90,9 +98,9 @@ class User extends Controller
     public function editProcess($id)
     {
         $rules = array(
-            'uname'    => 'required|alpha|min:4',
+            'uname'    => 'required',
             'password'    => 'min:4',
-            'ugroup'    => 'required|min:1',
+            'ugroup'    => 'required',
             'email'    => 'required|email',
         );
 
@@ -101,23 +109,30 @@ class User extends Controller
         if ($validator->fails()) {
             return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user/edit/'.$id)->withErrors($validator);
         } else {
-            try {
+            // try {
                 $insert = US::find($id);
-                if ((($insert->id_level == '1') && (\Auth::User()->id_level != '1')) || ($id == '1')) {
-                    return \Redirect::to($_ENV['ADMIN_FOLDER'].'/error');
-                }
-                $insert->uname = \Input::get('uname');
+                // if ((($insert->id_level == '1') && (\Auth::User()->id_level != '1')) || ($id == '1')) {
+                //     return \Redirect::to($_ENV['ADMIN_FOLDER'].'/error');
+                // }
+                //
+                $dataAnggota = MA::where(['id_users', $id]);
+                $dataAnggota->nm_anggota = \Input::get('uname');
+                $dataAnggota->update();
+                // echo "OK";die;
+                // $insert->uname = \Input::get('uname');
                 if (\Input::has('password')) {
                     $insert->password = \Hash::make(\Input::get('password'));
                 }
                 $insert->email = \Input::get('email');
                 $insert->id_level = \Input::get('ugroup');
                 $insert->user_grp = \Input::get('ugroup');
+                $insert->update();
 
-                $insert->save();
-            } catch (\Exception $e) {
-                return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user/edit/'.$id)->withErrors(array('message' => 'Username/email already exist.'));
-            }
+
+
+            // } catch (\Exception $e) {
+            //     return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user/edit/'.$id)->withErrors(array('message' => 'Username/email already exist.'));
+            // }
         }
         return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user')->with(["success"=>"New data added.."]);
     }
