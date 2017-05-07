@@ -17,25 +17,37 @@ class Swajib extends Model
     {
         $kdAnggota = \Session::get('kd_anggota');
         $input = \Input::get('search.value');
-		$get = \Input::all();
-		$where = "";
+        $get = \Input::all();
+        $where = "";
         if (!empty($input)) {
             $where = " WHERE pay like '%".$input."%' OR total like '%".$input."%' ";
         }
 
-		if (!empty($get['bln'])) {
-			if (!empty($where)) {
-				$where .= " and MONTH(tgl_bayar_wajib) = ".$get['bln'];
-			} else {
-				$where .= " WHERE MONTH(tgl_bayar_wajib) = ".$get['bln'];
-			}
-		}
+        if (!empty($get['bln'])) {
+            if (!empty($where)) {
+                $where .= " and MONTH(tgl_bayar_wajib) = ".$get['bln'];
+            } else {
+                $where .= " WHERE MONTH(tgl_bayar_wajib) = ".$get['bln'];
+            }
+        }
+        if (!empty($get['wilayah'])) {
+            if (!empty($where)) {
+                $where .= " or wilayah_offline_usaha  like '%".$get['wilayah']."%'";
+            } else {
+                $where .= " WHERE wilayah_offline_usaha like '%".$get['wilayah']."%'";
+            }
+            if (!empty($where)) {
+                $where .= " or wilayah_online_usaha  like '%".$get['wilayah']."%'";
+            } else {
+                $where .= " WHERE wilayah_online_usaha like '%".$get['wilayah']."%'";
+            }
+        }
 
         if (!empty($kdAnggota)) {
             if (!empty($where)) {
-                $where .= " and kd_anggota = ".$kdAnggota;
+                $where .= " and tsw.kd_anggota = ".$kdAnggota;
             } else {
-                $where .= " WHERE kd_anggota = ".$kdAnggota;
+                $where .= " WHERE tsw.kd_anggota = ".$kdAnggota;
             }
         }
 
@@ -51,7 +63,9 @@ class Swajib extends Model
         $start = \Input::get('start');
         $length = \Input::get('length');
         $limit  = "LIMIT ".$length." OFFSET ".$start;
-        $query = " select * from t_simpan_wajib
+        $query = " select * from t_simpan_wajib as tsw
+                    LEFT JOIN m_anggota ma on tsw.kd_anggota  = ma.kd_anggota
+                    LEFT JOIN m_data_usaha mdu on mdu.kd_anggota = tsw.kd_anggota
 				".$where."
 				".$order."
                 ".$limit."

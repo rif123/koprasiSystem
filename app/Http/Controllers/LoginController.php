@@ -54,10 +54,6 @@ class LoginController extends Controller
                         'password' => \Input::get('password')
                         );
             if(\Auth::attempt($userdata,$remember)){
-                    if(\Auth::User()->user_level->rules != '1'){
-                        \Session::put('rules', unserialize(\Auth::User()->user_level->rules));
-                    }
-                    else{
                         $anggota = US::mAnggota(\Auth::User()->id);
                         $dataSession = [
                             'UserId' =>     \Auth::User()->id,
@@ -69,7 +65,6 @@ class LoginController extends Controller
                             'rules' =>      \Auth::User()->user_level->rules
                         ];
                         \Session::put($dataSession);
-                    }
                     $a = array("admin","admin/error","admin/home","admin/logout","admin/logout","admin/setting/profile");
                     \Session::put('whitelist', $a);
                     return redirect('admin');

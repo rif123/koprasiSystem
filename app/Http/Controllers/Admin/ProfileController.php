@@ -53,7 +53,6 @@ class ProfileController extends Controller
             // save M_anggota
             if ($checkAnggota[0]->kdAggota >= 1) {
                 $mAnggota =  MA::find($kd_anggota);
-                ;
                 $mAnggota->nm_anggota = \Input::get('nm_anggota');
                 $mAnggota->pasPhoto_anggota = $this->uploadFile();
                 $mAnggota->update();

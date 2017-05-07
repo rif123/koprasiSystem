@@ -34,11 +34,25 @@ class Spokok extends Model {
                 $where .= " WHERE MONTH(tgl_bayar_spokok) = ".$get['bln'];
             }
         }
+
+        if (!empty($get['wilayah'])) {
+            if (!empty($where)) {
+                $where .= " or wilayah_offline_usaha  like '%".$get['wilayah']."%'";
+            } else {
+                $where .= " WHERE wilayah_offline_usaha like '%".$get['wilayah']."%'";
+            }
+            if (!empty($where)) {
+                $where .= " or wilayah_online_usaha  like '%".$get['wilayah']."%'";
+            } else {
+                $where .= " WHERE wilayah_online_usaha like '%".$get['wilayah']."%'";
+            }
+        }
+
         if (!empty($kdAnggota)) {
             if (!empty($where)) {
-                $where .= " and kd_anggota = ".$kdAnggota;
+                $where .= " and tsw.kd_anggota = ".$kdAnggota;
             } else {
-                $where .= " WHERE kd_anggota = ".$kdAnggota;
+                $where .= " WHERE tsw.kd_anggota = ".$kdAnggota;
             }
         }
 
@@ -55,11 +69,14 @@ class Spokok extends Model {
         $start = \Input::get('start');
         $length = \Input::get('length');
         $limit  = "LIMIT ".$length." OFFSET ".$start;
-        $query = " select * from t_simpan_pokok
+        $query = " select * from t_simpan_pokok as tsw
+                    LEFT JOIN m_anggota ma on tsw.kd_anggota  = ma.kd_anggota
+                    LEFT JOIN m_data_usaha mdu on mdu.kd_anggota = tsw.kd_anggota
 				".$where."
 				".$order."
                 ".$limit."
                 ";
+        // print_R($query);die;
         $listData = \DB::select($query);
         return $listData;
     }

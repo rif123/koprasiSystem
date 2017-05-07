@@ -96,6 +96,7 @@ class controllPayController extends Controller
 
         return view('config.controll.controllDetail', $result);
     }
+
     public function edit($id_pay)
     {
         if (\Input::get('pay')== 1) {
@@ -109,5 +110,15 @@ class controllPayController extends Controller
         $url ='admin/config/controll-Pay-detail/'.$id_pay.'?pay='.\Input::get('pay');
 
         return \Redirect::to($url);
+    }
+    public function exportExcel (){
+        if (!empty(\Input::get('search'))) {
+            \Input::merge(['search' => ['value' => \Input::get('search')]]);
+        }
+        $query = CP::getAll();
+        if (!empty($query)) {
+            $result['data'] = $query;
+            return view('config.export.exportControllPay', $result);
+        }
     }
 }

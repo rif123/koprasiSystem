@@ -1,15 +1,16 @@
-<?php 
+<?php
+$nameRandonm = "report-income-".strtotime(date('Ymdhis'));
 header("Pragma: public");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
 header("Content-Type: application/force-download");
 header("Content-Type: application/octet-stream");
 header("Content-Type: application/download");
-header("Content-Disposition: attachment;filename='tester.xls'");
+header("Content-Disposition: attachment;filename=".$nameRandonm.".xls");
 header("Content-Transfer-Encoding: binary ");
  ?>
 
-    
+
 <center><th><h2> REPORT INCOME AND OUTCOME </h2></th></center>
 
 
@@ -24,9 +25,9 @@ header("Content-Transfer-Encoding: binary ");
                                             </tr>
                                         </thead>
                                         <tbody class="table-striped">
-                                            <?php 
-                                            $income =0; 
-                                            $outcome =0; 
+                                            <?php
+                                            $income =0;
+                                            $outcome =0;
                                             $total =0;
 
                                             ?>
@@ -37,23 +38,22 @@ header("Content-Transfer-Encoding: binary ");
                                                     <td>{{!empty ($value[0]->jml_income) ? Helpers::getRp($value[0]->jml_income) : "Rp.0" }} </td>
                                                     <td>{{!empty ($value[0]->jml_outcome) ? Helpers::getRp($value[0]->jml_outcome) : "Rp.0" }} </td>
                                                     <td>{{!empty ($value[0]->total) ? Helpers::getRp($value[0]->total) : "Rp.0" }} </td>
-                                                    
+
                                                 </tr>
-                                                <?php 
+                                                <?php
                                                 $income += !empty ($value[0]->jml_income) ? $value[0]->jml_income : 0 ;
                                                 $outcome += !empty ($value[0]->jml_outcome) ? $value[0]->jml_outcome : 0 ;
                                                 $total += !empty ($value[0]->total) ? $value[0]->total : 0 ;
 
                                                 ?>
-                                            @endforeach 
+                                            @endforeach
 
                                                 <tr>
                                                     <th colspan="2">TOTAL</th>
                                                     <th >{{Helpers::getRp($income)}}</th>
                                                     <th >{{Helpers::getRp($outcome)}}</th>
                                                     <th >{{Helpers::getRp($total)}}</th>
-                                                    
-                                                </tr>    
+
+                                                </tr>
                                         </tbody>
                                     </table>
- 

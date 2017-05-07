@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\MAnggota as MA;
 use App\Models\User as US;
-
+use App\Models\MAnggota as MAN;
 class AnggotaController extends Controller
 {
     private $parser = [];
@@ -52,8 +52,13 @@ class AnggotaController extends Controller
                 $insert->id_level = 4;
                 $insert->user_grp = 5;
                 $insert->save();
+                $dataAnggota = new MAN;
+                $dataAnggota->id_users = $insert->id;
+                $dataAnggota->nm_anggota = $userName;
+                $dataAnggota->save();
                 \Session::flash('userName', $userName);
                 \Session::flash('token', $token);
+
                 return \Redirect::to(route('config.generateTokenAnggota'));
             } else {
                 $message = "User dengan ".$userName." sudah terdaftar !";

@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\MenuAdmin as MA;
 use App\Models\Mrole as MR;
 use App\Models\Mgroup as MG;
+use App\Models\User as US;
+use App\liblary\Format;
+
 
 // use App\liblary\Helpers as HP;
 
@@ -233,6 +236,54 @@ class ConfigController extends Controller
         return \Redirect::to(route('config.menuGroup'));
     }
 
+    public function anggotaDetail(){
+
+        $listMenu = MA::all()->sortByDesc("id_menu");
+        $data['listMenu'] = $listMenu;
+        return view("config.anggota", $data)->with('parser', $this->parser);
+    }
+    public function anggotaDetailAjax () {
+        $draw=$_REQUEST['draw'];
+        $length=$_REQUEST['length'];
+        $start=$_REQUEST['start'];
+        $search=$_REQUEST['search']["value"];
+       // ======= count ===== //
+        $getCount = US::mAllAnggotaCount();
+        $total = !empty($getCount[0]->count) ? $getCount[0]->count : 0;
+
+       // ======= count ===== //
+
+       $output=array();
+        $output['draw']=$draw;
+        $output['recordsTotal']=$output['recordsFiltered']=$total;
+        $output['data']=array();
+        $query = US::mAllAnggota();
+        $list = [];
+        $ex = new Format;
+        foreach ($query as $key => $row) {
+            $json['uname'] = $row->uname;
+            $json['group_name'] = $row->group_name;
+            $json['pasPhoto_anggota'] = $row->pasPhoto_anggota;
+            $json['kd_anggota'] = $row->kd_anggota;
+            $json['id'] = $row->id;
+            $list[] = $json;
+        }
+        $output['data']  = $list;
+        echo json_encode($output);
+    }
+
+    public function anggotaDetailAll($id) {
+        $listGroup = US::mAnggotaDetail($id);
+        $data['list'] = $listGroup[0];
+        return view("config.anggota.detailAnggota", $data)->with('parser', $this->parser);
+    }
+
+    public function anggotaDetailExcel (){
+        $id = \Input::get('kd');
+        $listGroup = US::mAnggotaDetail($id);
+        $data['list'] = $listGroup[0];
+        return view("config.anggota.export.detailAnggotaExcel", $data)->with('parser', $this->parser);
+    }
 
 
 }

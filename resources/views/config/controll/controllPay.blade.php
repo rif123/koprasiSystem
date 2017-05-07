@@ -6,6 +6,7 @@
 @include('layouts.left')
 @include('layouts.right')
 <section class="content">
+
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -14,6 +15,11 @@
                         <h2>Controll Pay</h2>
                     </div>
                     <div class="body">
+                        <a class="exportExcel" href="#" >
+                            <button type="button" class="btn bg-teal waves-effect">
+                                <i class="material-icons">print</i>Excel
+                            </button>
+                        </a>
                             <table class="table listTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -34,9 +40,16 @@
 </section>
 @section('js')
 <script>
+var exportExcel = "{{url(route('config.exportExcel'))}}";
 var urlAjaxTable = "{{ URL::to(route('config.payAjax')) }}";
 var  urlEdit = "{{url('/admin/config/controll-Pay-detail/')}}";
- var  urlDelete = "{{url('/admin/simpan-wajib-delete')}}";
+var  urlDelete = "{{url('/admin/simpan-wajib-delete')}}";
+$('.exportExcel').click(function(){
+    var filter = $('div.dataTables_filter input').val();
+    window.location  = exportExcel+"?search="+filter;
+});
+
+
 var listTable = $('.listTable').DataTable({
         "processing": true,
         "bFilter": true,
@@ -59,7 +72,6 @@ var listTable = $('.listTable').DataTable({
                 }else{
                     var pay = 2;
                 }
-                    // if (row.isButton == 1) {
                         var edit = $('<a><button>')
                                     .attr('class', "btn bg-blue-grey waves-effect edit-menu")
                                     .attr('href',urlEdit+'/'+row.id_pay+"?pay="+pay)
@@ -75,9 +87,6 @@ var listTable = $('.listTable').DataTable({
                                     .parent()
                                     .html();
                         return edit+" | "+del;
-                    // } else {
-                    //     return "-";
-                    // }
                 }
             },
         ],

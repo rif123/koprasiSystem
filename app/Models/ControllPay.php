@@ -16,7 +16,7 @@ class ControllPay extends Model
     private static $field = ['no_swajib', 'kd_anggota', 'jml_bayar_wajib', 'bkt_bayar_wajib', 'tgl_bayar_wajib'];
     public static function column_order()
     {
-        return  ['nm_anggota', 'pay', 'payMonth','jml_bayar_wajib','status'];
+        return  ['uname', 'group_name', 'payMonth','pasPhoto_anggota'];
     }
     public static function getAll()
     {
@@ -51,8 +51,10 @@ class ControllPay extends Model
         // limit 10 OFFSET 1
         $start = \Input::get('start');
         $length = \Input::get('length');
-        $limit  = "LIMIT ".$length." OFFSET ".$start;
-
+        $limit = "";
+        if (!empty($start) && !empty($length)) {
+            $limit  = "LIMIT ".$length." OFFSET ".$start;
+        }
         $query = "
                 select * from (
                     select  tsw.tgl_bayar_wajib,  tsw.kd_anggota,  tsw.status, tsw.jml_bayar_wajib, tsw.bkt_bayar_wajib,  'Simpanan wajib' as pay,  MONTHNAME(tgl_bayar_wajib) as payMonth, kd_swajib as id_pay

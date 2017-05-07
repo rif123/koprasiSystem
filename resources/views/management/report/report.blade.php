@@ -11,14 +11,9 @@
                     <div class="row clearfix">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="card">
-
-
                                 <div class="header">
-                                    <h2>Controll Pay</h2>
-
-                                
+                                    <h2>Report Keuangan</h2>
                                 </div>
-
                             <div class="body">
                                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
                                     <div id="DataTables_Table_0_filter" class="dataTables_filter">
@@ -30,16 +25,16 @@
                             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> </div>
                                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                 <a href="{{url('/admin/management/report-excel')}}">
-                                <button type="button" class="btn bg-teal waves-effect">
-                                    <i class="material-icons">print</i>Excel
-                                </button>
+                                    <button type="button" class="btn bg-teal waves-effect">
+                                        <i class="material-icons">print</i>Excel
+                                    </button>
                                 </a>
                                 <a href="{{url('/admin/management/report-pdf')}}" class="hidden">
                                 <button type="button" class="btn bg-red waves-effect">
                                     <i class="material-icons">print</i>PDF
                                 </button>
                                 </a>
-                                
+
 
                                 </div>
                                         <thead>
@@ -54,7 +49,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="table-striped">
-                                        
+
                                             @foreach($data as $key =>$value)
                                                 <tr>
                                                     <td>{{$key}}</td>
@@ -62,9 +57,9 @@
                                                     <td>{{!empty ($value[0]->jml_income) ? Helpers::getRp($value[0]->jml_income) : "Rp.0" }} </td>
                                                     <td>{{!empty ($value[0]->jml_outcome) ? Helpers::getRp($value[0]->jml_outcome) : "Rp.0" }} </td>
                                                     <td>{{!empty ($value[0]->total) ? Helpers::getRp($value[0]->total) : "Rp.0" }} </td>
-                                                    
+
                                                 </tr>
-                                            @endforeach     
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

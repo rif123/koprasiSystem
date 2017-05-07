@@ -52,9 +52,12 @@ class Helpers
      */
     private static function queryMenu($user_grp, $parent)
     {
+
+
         $query = "select * from menu_admin as ma
                     where ma.parent_menu  = '".$parent."' and
                     id_menu IN (select id_menu from menu_role where user_grp='".$user_grp."')";
+
         $menu = DB::select($query);
         $data = collect($menu)->map(function ($x) {
             return (array) $x;

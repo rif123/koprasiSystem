@@ -24,7 +24,7 @@
                         @endif
                         {!! Form::token() !!}
                         <div class="row clearfix">
-                            <h2 class="card-inside-title group-title">Jumlah Bayar Wajib</h2>
+                            <h2 class="card-inside-title group-title">Jumlah Bayar</h2>
                             <div class="col-md-12">
                                 <div class="input-group">
                                     <div class="form-line">
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="row clearfix">
-                            <h2 class="card-inside-title group-title">tanggal bayar wajib</h2>
+                            <h2 class="card-inside-title group-title">Tanggal Bayar</h2>
                             <div class="col-md-12">
                                 <div class="input-group">
                                     <div class="form-line">
@@ -44,7 +44,7 @@
                             </div>
                         </div >
                         <div class="row clearfix">
-                            <h2 class="card-inside-title group-title">bkt bayar wajib</h2>
+                            <h2 class="card-inside-title group-title">Bukti Bayar</h2>
                             <div class="col-md-12">
                                 <div class="input-group">
                                     <div class="form-line">
