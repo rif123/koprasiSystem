@@ -4,9 +4,9 @@
         <div class="input-group">
             <div class="form-line">
                 <select name="jenisProd_usaha" class="form-control">
-                    <option value="1">Konveksi</option>
-                    <option value="2">Makanan</option>
-                    <option value="3">Jasa</option>
+                    @foreach($jenisUsaha as $k => $v)
+                        <option value="{{ $v->nama_jenis_usaha }}">{{$v->nama_jenis_usaha}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>

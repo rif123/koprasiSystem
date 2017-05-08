@@ -11,7 +11,7 @@
  Target Server Version : 50505
  File Encoding         : utf-8
 
- Date: 05/08/2017 21:44:20 PM
+ Date: 05/08/2017 23:32:47 PM
 */
 
 SET NAMES utf8;
@@ -259,6 +259,23 @@ CREATE TABLE `m_jenis_simpanan` (
   `kd_jsimpanan` int(11) NOT NULL,
   PRIMARY KEY (`kd_jsimpanan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+--  Table structure for `m_jenis_usaha`
+-- ----------------------------
+DROP TABLE IF EXISTS `m_jenis_usaha`;
+CREATE TABLE `m_jenis_usaha` (
+  `kd_jenis_usaha` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_jenis_usaha` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`kd_jenis_usaha`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+--  Records of `m_jenis_usaha`
+-- ----------------------------
+BEGIN;
+INSERT INTO `m_jenis_usaha` VALUES ('1', 'Konveksi'), ('2', 'Makanan'), ('3', 'Jasa'), ('4', 'Baju');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `m_menu_dashboard`

@@ -59,7 +59,22 @@
                             <h5 class="card-inside-title group-title">Jenis Usaha</h5>
                             <div class="input-group">
                                 <div class="form-line">
-                                    <input type="text" name="jenisProd_usaha" class="form-control jenisProd_usaha" placeholder="jenis Usaha" value="" style="z-index:0 !important">
+                                    <select name="jenisProd_usaha" class="form-control jenisProd_usaha">
+                                        @foreach($jenisUsaha as $k => $v)
+                                            <option value="{{ $v->nama_jenis_usaha }}">{{$v->nama_jenis_usaha}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <h5 class="card-inside-title group-title">Kab/Kot</h5>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" name="kabKot_usaha" class="form-control kabKot_usaha" placeholder="kab/kot" value="" style="z-index:0 !important">
                                 </div>
                             </div>
                         </div>
@@ -167,7 +182,7 @@ var listTable = $('.listTable').DataTable( {
     $('.filterData').click(function(){
         $('#defaultModal').modal('hide');
         var kabKot_usaha  = $('.kabKot_usaha').val();
-        var jenisProd_usaha  = $('.jenisProd_usaha').val();
+        var jenisProd_usaha  = $('.jenisProd_usaha :selected').val();
         $('.listTable').DataTable({
             "processing": true,
             "bFilter": true,

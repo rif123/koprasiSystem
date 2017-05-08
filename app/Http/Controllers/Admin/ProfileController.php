@@ -25,6 +25,9 @@ class ProfileController extends Controller
     {
         $kd_anggota = \Session::get('kd_anggota');
         $getAll = MA::getALlData($kd_anggota);
+        $query  = "select * from m_jenis_usaha";
+        $getJenisUsaha = \DB::select($query);
+        $data['jenisUsaha'] = $getJenisUsaha;
         $data['allData'] = $getAll[0];
         $data['selectedMenu'] = '';
         return view("profile.index", $data)->with('parser', $this->parser);

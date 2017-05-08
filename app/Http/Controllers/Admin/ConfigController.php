@@ -240,7 +240,9 @@ class ConfigController extends Controller
 
         // $listMenu = MA::all()->sortByDesc("id_menu");
         // $data['listMenu'] = $listMenu;
-        $data = [];
+        $query  = "select * from m_jenis_usaha";
+        $getJenisUsaha = \DB::select($query);
+        $data['jenisUsaha'] = $getJenisUsaha;
         return view("config.anggota", $data)->with('parser', $this->parser);
     }
     public function anggotaDetailAjax () {
