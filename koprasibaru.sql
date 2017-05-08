@@ -11,7 +11,7 @@
  Target Server Version : 50505
  File Encoding         : utf-8
 
- Date: 05/08/2017 23:32:47 PM
+ Date: 05/08/2017 23:45:02 PM
 */
 
 SET NAMES utf8;
@@ -221,7 +221,7 @@ CREATE TABLE `m_data_usaha` (
 --  Records of `m_data_usaha`
 -- ----------------------------
 BEGIN;
-INSERT INTO `m_data_usaha` VALUES ('1', '88', '', '0', 'Baju', '', '', '', 'Bandung', '', '0', '', '', '0', '0', '', '', '', 'aku', null, null, null), ('2', '89', '', '0', 'Mobil', '', '', '', 'Jakarta', '', '0', '', '', '0', '0', '', '', '', 'aku', null, null, null), ('3', '82', '', '0', '', '', '', '', 'Bandung', '', '0', 'Bandung', '', '0', '0', '', '', '', 'aku', null, null, null);
+INSERT INTO `m_data_usaha` VALUES ('1', '88', '', '0', 'Baju', '', '', '', 'Bandung', '', '0', '', '', '0', '9000', '', '', '', 'aku', null, null, null), ('2', '89', '', '0', 'Mobil', '', '', '', 'Jakarta', '', '0', '', '', '0', '10000', '', '', '', 'aku', null, null, null), ('3', '82', '', '0', '', '', '', '', 'Bandung', '', '0', 'Bandung', '', '0', '20000', '', '', '', 'aku', null, null, null);
 COMMIT;
 
 -- ----------------------------
