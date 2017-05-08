@@ -10,7 +10,7 @@
     <div class="card">
         <div class="header">
             <h2>
-                FORM MENU
+                Outcome Koprasi
             </h2>
         </div>
         <div class="row clearfix">
