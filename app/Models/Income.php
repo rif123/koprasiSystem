@@ -88,10 +88,28 @@ class Income extends Model {
             $col  = $colum[$_GET['order']['0']['column']];
             $order = "ORDER BY  ".$col." ".$_GET['order']['0']['dir'];
         }
+
+        if (!empty($get['bln'])) {
+            if (!empty($where)) {
+                $where .= " and MONTH(tgl_income) = '".$get['bln']."'";
+            } else {
+                $where .= " WHERE MONTH(tgl_income) = '".$get['bln']."'";
+            }
+        }
+        if (!empty($get['PIC'])) {
+            if (!empty($where)) {
+                $where .= " and pic_income  like '%".$get['PIC']."%'";
+            } else {
+                $where .= " WHERE pic_income  like '%".$get['PIC']."%'";
+            }
+        }
         // limit 10 OFFSET 1
         $start = \Input::get('start');
         $length = \Input::get('length');
-        $limit  = "LIMIT ".$length." OFFSET ".$start;
+        $limit = "";
+        if (!empty($length) &&  !empty($length)) {
+            $limit  = "LIMIT ".$length." OFFSET ".$start;
+        }
         $query = " select * from t_income
 				".$where."
 				".$order."

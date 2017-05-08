@@ -13,6 +13,12 @@
         </div>
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="body pull-right">
+                  <button class="btn bg-blue waves-effect showFilter">Filter</button>
+                  <button class="btn bg-blue-grey waves-effect exportExcel">Excel</button>
+              </div>
+          </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable listTable">
                         <thead>
@@ -34,11 +40,51 @@
         margin-left:15px
         }
     </style>
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h4 class="modal-title" id="defaultModalLabel">Filter Data</h4>
+               </div>
+               <div class="modal-body" style="height:100% !important;overflow-y:initial">
+                   <div class="row clearfix">
+                       <div class="col-md-12">
+                           <h5 class="card-inside-title group-title">Bulan</h5>
+                           <div class="input-group">
+                               <div class="form-line">
+                                   <select class="form-control" id="blnFilter">
+                                       <option value=""> ---- Pilih Bulan --- </option>
+                                       @foreach(Helpers::getMonth() as $key => $val)
+                                           <option value="{{$key}}">{{$val}}</option>
+                                       @endforeach
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="row clearfix">
+                       <div class="col-md-12">
+                           <h5 class="card-inside-title group-title">PIC</h5>
+                           <div class="input-group">
+                               <div class="form-line">
+                                   <input type="text" name="pic" class="form-control PIC" placeholder="PIC" value="" style="z-index:0 !important">
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn bg-blue-grey waves-effect filterData">Cari</button>
+               </div>
+           </div>
+       </div>
+   </div>
 </section>
 @section('js')
 <script src="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.min.js"></script>
 <script>
 var urlAjaxTable = "{{ url(route('management.viewIncomeAjax')) }}";
+var urlAjaxExcel = "{{ url(route('management.viewIncomeExcel')) }}";
 var urlEdit = "{{url('/admin/management/income-edit')}}";
     $('#tgl_income').datepicker({
             format: 'dd-mm-yyyy',
@@ -83,7 +129,7 @@ var urlEdit = "{{url('/admin/management/income-edit')}}";
             $('.filterData').click(function(){
                 $('#defaultModal').modal('hide');
                 var bln  = $('#blnFilter :selected').val();
-                var wilayah  = $('.wilayah').val();
+                var PIC  = $('.PIC').val();
                 $('.listTable').DataTable( {
                     "processing": true,
                     "bFilter": false,
@@ -93,44 +139,22 @@ var urlEdit = "{{url('/admin/management/income-edit')}}";
                     "ajax": {
                          "url": urlAjaxTable,
                          "type": "GET",
-                         "data" : {bln : bln, wilayah : wilayah}
+                         "data" : {bln : bln, PIC : PIC}
                      },
                      "columns": [
-                        { "data": "jml_bayar_spokok" },
-                        {
-                            "data": "bukti_bayar_spokok",
-                            "render": function(data, type, row) {
-                                return '<img src="'+urlImage+"/"+data+'" width="30px"/>';
-                            }
-                        },
-                        { "data": "tgl_bayar_spokok" },
-                        { "data": "status" },
-                        { "render": function (data, type, row, meta) {
-                                if (row.isButton == 1) {
-                                    var edit = $('<a><button>')
-                                                .attr('class', "btn bg-blue-grey waves-effect edit-menu")
-                                                .attr('href',urlEdit+'/'+row.kd_spokok)
-                                                .text('Edit')
-                                                .wrap('<div></div>')
-                                                .parent()
-                                                .html();
-                                    var del = $('<a><button>')
-                                                .attr('class', "btn btn-danger waves-effect delete-menu")
-                                                .attr('href',urlDelete+'/'+row.kd_spokok)
-                                                .text('Delete')
-                                                .wrap('<div></div>')
-                                                .parent()
-                                                .html();
-                                    return edit+" | "+del;
-                                } else {
-                                    return "-";
-                                }
-                            }
-                        },
+                        { "data": "jml_income" },
+                        { "data": "tgl_income" },
+                        { "data": "ket_income" },
+                        { "data": "pic_income" },
                     ],
                   "destroy" : true
               });
             });
+    $('.exportExcel').click(function() {
+        var bln  = $('#blnFilter :selected').val();
+        var PIC  = $('.PIC').val();
+        window.location = urlAjaxExcel+"?bln="+bln+"&pic="+PIC;
+    });
 </script>
 @endsection
 @stop

@@ -256,6 +256,7 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
 
         Route::get('/management/view-income', ['uses'=>'managementincomeController@viewIncome', 'as'=>'management.viewIncome']);
         Route::get('/management/view-income-ajax', ['uses'=>'managementincomeController@viewIncomeAjax', 'as'=>'management.viewIncomeAjax']);
+        Route::get('/management/view-income-excel', ['uses'=>'managementincomeController@viewIncomeExcel', 'as'=>'management.viewIncomeExcel']);
 
         Route::post('/management/income-save', ['uses'=>'managementincomeController@create', 'as'=>'management.incomesave']);
         Route::get('/management/income-edit/{id}', ['uses'=>'managementincomeController@edit', 'as'=>'management.incomeedit']);
