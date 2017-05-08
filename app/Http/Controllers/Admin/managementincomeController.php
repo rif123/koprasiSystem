@@ -118,7 +118,6 @@ class managementincomeController extends Controller
      */
     public function viewIncomeAjax()
     {
-
         $draw=$_REQUEST['draw'];
         $length=$_REQUEST['length'];
         $start=$_REQUEST['start'];
@@ -140,13 +139,19 @@ class managementincomeController extends Controller
         foreach ($query as $key => $row) {
             $json['jml_income'] = Format::getRp($row->jml_income);
             $json['pic_income'] = $row->pic_income;
-            $json['tgl_income'] = date('M', strtotime($row->tgl_income));
+            $json['tgl_income'] = date('d M Y', strtotime($row->tgl_income));
             $json['ket_income'] = $row->ket_income;
             $json['id_income'] = $row->id_income;
             $list[] = $json;
         }
         $output['data']  = $list;
         return response()->json($output);
+    }
+
+    public function viewIncomeExcel (){
+        $query = Ic::getAllIncome();
+        $param['data'] = $query;
+        return view("management.view.export.incomeExcel",$param);
     }
 
 

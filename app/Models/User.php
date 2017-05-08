@@ -97,7 +97,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                     LEFT JOIN m_data_usaha as mdu on mdu.kd_anggota = ma.kd_anggota
                     ".$where."
                 ";
-        
+
         $role = \DB::select($query);
         return $role;
     }
