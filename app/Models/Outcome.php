@@ -82,6 +82,24 @@ class Outcome extends Model {
                 }
             }
         }
+
+
+        if (!empty($get['bln'])) {
+            if (!empty($where)) {
+                $where .= " and MONTH(tgl_outcome) = '".$get['bln']."'";
+            } else {
+                $where .= " WHERE MONTH(tgl_outcome) = '".$get['bln']."'";
+            }
+        }
+        if (!empty($get['PIC'])) {
+            if (!empty($where)) {
+                $where .= " and pic_outcome like '%".$get['PIC']."%'";
+            } else {
+                $where .= " WHERE pic_outcome  like '%".$get['PIC']."%'";
+            }
+        }
+
+
         $order = "";
         if (!empty(\Input::get('order'))) { // here order processing
             $colum  = self::column_order();
@@ -91,7 +109,10 @@ class Outcome extends Model {
         // limit 10 OFFSET 1
         $start = \Input::get('start');
         $length = \Input::get('length');
-        $limit  = "LIMIT ".$length." OFFSET ".$start;
+       $limit = "";
+        if (!empty($length) &&  !empty($length)) {
+            $limit  = "LIMIT ".$length." OFFSET ".$start;
+        }
         $query = " select * from t_outcome
                 ".$where."
                 ".$order."

@@ -269,6 +269,7 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         
         Route::get('/management/view-outcome', ['uses'=>'managementoutcomeController@viewOutcome', 'as'=>'management.viewoutcome']);
         Route::get('/management/view-outcome-ajax', ['uses'=>'managementoutcomeController@viewOutcomeAjax', 'as'=>'management.viewOutcomeAjax']);
+        Route::get('/management/view-outcome-excel', ['uses'=>'managementoutcomeController@viewOutcomeExcel', 'as'=>'management.viewOutcomeExcel']);
 
         Route::post('/management/outcome-update', ['uses'=>'managementoutcomeController@update', 'as'=>'management.outcomeupdate']);
         Route::post('/management/outcome-save', ['uses'=>'managementoutcomeController@create', 'as'=>'management.outcomesave']);

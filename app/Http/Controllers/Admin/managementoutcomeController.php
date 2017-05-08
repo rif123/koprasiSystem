@@ -142,7 +142,15 @@ class managementoutcomeController extends Controller
         $output['data']  = $list;
         return response()->json($output);
     }
+    public function viewOutcomeExcel(){
+          $query = Oc::getAllOutcome();
+        $param['data'] = $query;
+        return view("management.view.export.outcomeExcel",$param);
 
+
+
+
+    }
 
 
 
