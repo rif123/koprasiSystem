@@ -11,7 +11,7 @@
  ?>
 
 
-<center><th><h2> REPORT INCOME AND OUTCOME </h2></th></center>
+<center><th><h2> REPORT INCOME</h2></th></center>
 
 
                                    <table class="table" width="200px" cellspacing="0" border="1">
