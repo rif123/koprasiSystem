@@ -60,6 +60,7 @@
                             <div class="input-group">
                                 <div class="form-line">
                                     <select name="jenisProd_usaha" class="form-control jenisProd_usaha">
+                                        <option value=""> -- Jenis usaha -- </option>
                                         @foreach($jenisUsaha as $k => $v)
                                             <option value="{{ $v->nama_jenis_usaha }}">{{$v->nama_jenis_usaha}}</option>
                                         @endforeach
@@ -86,6 +87,17 @@
                             <div class="input-group">
                                 <div class="form-line">
                                     <input type="text" name="kabKot_usaha" class="form-control kabKot_usaha" placeholder="kab/kot" value="" style="z-index:0 !important">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <h5 class="card-inside-title group-title">Omset</h5>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <input type="text" name="omset_usaha" class="form-control omset_usaha" placeholder="Omset usaha" value="" style="z-index:0 !important">
                                 </div>
                             </div>
                         </div>
@@ -183,6 +195,7 @@ var listTable = $('.listTable').DataTable( {
         $('#defaultModal').modal('hide');
         var kabKot_usaha  = $('.kabKot_usaha').val();
         var jenisProd_usaha  = $('.jenisProd_usaha :selected').val();
+        var omset_usaha  = $('.omset_usaha').val();
         $('.listTable').DataTable({
             "processing": true,
             "bFilter": true,
@@ -192,7 +205,7 @@ var listTable = $('.listTable').DataTable( {
             "ajax": {
                  "url": urlAjaxTable,
                  "type": "GET",
-                 "data" : {kabKot_usaha : kabKot_usaha, jenisProd_usaha : jenisProd_usaha}
+                 "data" : {kabKot_usaha : kabKot_usaha, jenisProd_usaha : jenisProd_usaha, omset_usaha : omset_usaha}
              },
              "columns": [
                 { "data": "no" },
@@ -252,7 +265,8 @@ var listTable = $('.listTable').DataTable( {
     $('.exportToExcel').click(function(){
         var kabKot_usaha  = $('.kabKot_usaha').val();
         var jenisProd_usaha  = $('.jenisProd_usaha').val();
-        window.location = urlExportExcel+"?kabKot_usaha="+kabKot_usaha+"&jenisProd_usaha="+jenisProd_usaha;
+        var omset_usaha  = $('.omset_usaha').val();
+        window.location = urlExportExcel+"?kabKot_usaha="+kabKot_usaha+"&jenisProd_usaha="+jenisProd_usaha+"&omset_usaha="+omset_usaha;
     });
 </script>
 @endsection

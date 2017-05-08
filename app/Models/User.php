@@ -90,6 +90,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 $where .= " WHERE jenisProd_usaha = '".$get['jenisProd_usaha']."'";
             }
         }
+        if (!empty($get['omset_usaha'])) {
+            if (!empty($where)) {
+                $where .= " and omset_usaha = '".$get['omset_usaha']."'";
+            } else {
+                $where .= " WHERE omset_usaha = '".$get['omset_usaha']."'";
+            }
+        }
         $query = "select * from users as u
                     LEFT JOIN m_anggota as ma on u.id = ma.id_users
                     LEFT JOIN m_data_doclegal as mdd on mdd.kd_anggota = ma.kd_anggota
@@ -144,6 +151,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 $where .= " and jenisProd_usaha = '".$get['jenisProd_usaha']."'";
             } else {
                 $where .= " WHERE jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+            }
+        }
+        if (!empty($get['omset_usaha'])) {
+            if (!empty($where)) {
+                $where .= " and omset_usaha = '".$get['omset_usaha']."'";
+            } else {
+                $where .= " WHERE omset_usaha = '".$get['omset_usaha']."'";
             }
         }
         $order = "";
@@ -212,6 +226,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 $where .= " and jenisProd_usaha = '".$get['jenisProd_usaha']."'";
             } else {
                 $where .= " WHERE jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+            }
+        }
+
+        if (!empty($get['omset_usaha'])) {
+            if (!empty($where)) {
+                $where .= " and omset_usaha = '".$get['omset_usaha']."'";
+            } else {
+                $where .= " WHERE omset_usaha = '".$get['omset_usaha']."'";
             }
         }
         $order = "";
