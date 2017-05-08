@@ -2,7 +2,6 @@
 @section('header')
     <link href="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.css" rel="stylesheet" />
 @stop
-
 @section('content')
 @include('layouts.left')
 @include('layouts.right')
@@ -12,7 +11,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="card">
                                 <div class="header">
-                                    <h2>Report Keuangan</h2>
+                                    <h2>Report Keuangan Income</h2>
                                 </div>
                             <div class="body">
                                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">

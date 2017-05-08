@@ -35,8 +35,8 @@ class managementreportController extends Controller {
 	public function index()
 	{
 		$dataArray =[];
-			
-		for ($i=1; $i <=12 ; $i++) { 
+
+		for ($i=1; $i <=12 ; $i++) {
 				$dataArray[$i] = RP::getReport($i);
 
 		}
@@ -54,7 +54,7 @@ class managementreportController extends Controller {
 		}
 		$parameter['pay'] =$pay;
 		$result['result'] =CP::getOne($parameter);
-		
+
 		return view('config.controll.controllDetail',$result);
 
 
@@ -66,23 +66,23 @@ class managementreportController extends Controller {
 
 		if (\Input::get('pay')== 1) {
 	   $parameter = SW::find($id_pay);
-		
+
 		}elseif(\Input::get('pay') == 2){
 	   $parameter = SP::find($id_pay);
-        }   
-       $parameter->status = \Input::get('status');    
+        }
+       $parameter->status = \Input::get('status');
        $parameter->kd_anggota = \Session::get('kd_anggota');
-       $parameter->update();		
+       $parameter->update();
        $url ='admin/config/controll-Pay-detail/'.$id_pay.'?pay='.\Input::get('pay');
-       
+
        return \Redirect::to($url);
 
 	}
 	public function excel(){
 
 	$dataArray =[];
-			
-		for ($i=1; $i <=12 ; $i++) { 
+
+		for ($i=1; $i <=12 ; $i++) {
 				$dataArray[$i] = RP::getReport($i);
 
 		}
@@ -93,8 +93,8 @@ class managementreportController extends Controller {
 	public function pdf(){
 
 	$dataArray =[];
-			
-		for ($i=1; $i <=12 ; $i++) { 
+
+		for ($i=1; $i <=12 ; $i++) {
 				$dataArray[$i] = RP::getReport($i);
 
 		}
