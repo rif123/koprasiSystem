@@ -265,6 +265,9 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         //Managemenet Income
         Route::get('/management/outcome', ['uses'=>'managementoutcomeController@index', 'as'=>'management.outcome']);
         Route::get('/management/outcome-ajax', ['uses'=>'managementoutcomeController@indexAjax', 'as'=>'management.outcomeajax']);
+        
+        Route::get('/management/view-outcome', ['uses'=>'managementoutcomeController@viewOutcome', 'as'=>'management.viewoutcome']);
+        Route::get('/management/view-outcome-ajax', ['uses'=>'managementoutcomeController@viewOutcomeAjax', 'as'=>'management.viewOutcomeAjax']);
 
         Route::post('/management/outcome-update', ['uses'=>'managementoutcomeController@update', 'as'=>'management.outcomeupdate']);
         Route::post('/management/outcome-save', ['uses'=>'managementoutcomeController@create', 'as'=>'management.outcomesave']);

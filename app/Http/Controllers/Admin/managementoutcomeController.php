@@ -105,13 +105,46 @@ class managementoutcomeController extends Controller
         $Outcome->update();
         return \Redirect::to(route('management.outcome'));
     }
-    public function delete($kd_spokok)
+     public function viewOutcome (){
+        $data = [];
+        return view("management.view.voutcome",$data);
+    }
+  
+        public function viewOutcomeAjax()
     {
 
-       /*$Spokok = SP::find($kd_spokok);
+        $draw=$_REQUEST['draw'];
+        $length=$_REQUEST['length'];
+        $start=$_REQUEST['start'];
+        $search=$_REQUEST['search']["value"];
+        $listWajib = new Oc;
+        // ======= count ===== //
+        $total=Oc::getAllOutcome();
+        $total=count($total);
+        // ======= count ===== //
 
-       $Spokok->delete();
-       return \Redirect::to(route('simpanan.simpanPokok'));
-*/
+        $output=array();
+        $output['draw']=$draw;
+        $output['recordsTotal']=$output['recordsFiltered']=$total;
+        $output['data']=array();
+        $query = Oc::getAllOutcome();
+
+        $list = [];
+        $ex = new Format;
+        foreach ($query as $key => $row) {
+            $json['jml_outcome'] = Format::getRp($row->jml_outcome);
+            $json['pic_outcome'] = $row->pic_outcome;
+            $json['tgl_outcome'] = date('M', strtotime($row->tgl_outcome));
+            $json['ket_outcome'] = $row->ket_outcome;
+            $json['id_outcome'] = $row->id_outcome;
+            $list[] = $json;
+        }
+        $output['data']  = $list;
+        return response()->json($output);
     }
+
+
+
+
+
 }
