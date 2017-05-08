@@ -11,7 +11,7 @@
         <div class="card">
         <div class="header">
             <h2>
-                FORM MENU
+                FORM SIMPANAN POKOK
                 <small>(isi dengan lengkap & jelas)</small>
             </h2>
         </div>
