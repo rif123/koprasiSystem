@@ -49,7 +49,10 @@ class Income extends Model {
         // limit 10 OFFSET 1
         $start = \Input::get('start');
         $length = \Input::get('length');
-        $limit  = "LIMIT ".$length." OFFSET ".$start;
+        $limit = "";
+        if(!empty($length) && !empty($start)) {
+            $limit  = "LIMIT ".$length." OFFSET ".$start;
+        }
         $query = " select * from t_income
 				".$where."
 				".$order."
@@ -59,6 +62,57 @@ class Income extends Model {
         return $listData;
     }
 
+    public static function getAllForSum()
+    {
+        $kdAnggota = \Session::get('kd_anggota');
+        $input = \Input::get('search.value');
+        $get = \Input::all();
+        $where = "";
+        if (!empty($input)) {
+            $where = "WHERE ";
+            $count = count(self::column_order()) -1;
+            foreach (self::column_order() as $key => $value) {
+                if ($value == 'tgl_income') {
+                    $where .= "MONTHNAME(".$value.")" . " LIKE '%".$input."%'";
+                    if ($key <  $count) {
+                        $where .= " OR ";
+                    }
+                } else {
+                    $where .= $value . " LIKE '%".$input."%'";
+                    if ($key <  $count) {
+                        $where .= " OR ";
+                    }
+                }
+            }
+        }
+        $order = "";
+        if (!empty(\Input::get('order'))) { // here order processing
+            $colum  = self::column_order();
+            $col  = $colum[$_GET['order']['0']['column']];
+            $order = "ORDER BY  ".$col." ".$_GET['order']['0']['dir'];
+        }
+        if (!empty($kdAnggota)) {
+            if (!empty($where)) {
+                $where .= " and kd_anggota = '".$kdAnggota."'";
+            } else {
+                $where .= " WHERE kd_anggota = '".$kdAnggota."'";
+            }
+        }
+        // limit 10 OFFSET 1
+        $start = \Input::get('start');
+        $length = \Input::get('length');
+        $limit = "";
+        if(!empty($length) && !empty($start)) {
+            $limit  = "LIMIT ".$length." OFFSET ".$start;
+        }
+        $query = " select * from t_income
+				".$where."
+				".$order."
+                ".$limit."
+                ";
+        $listData = \DB::select($query);
+        return $listData;
+    }
     public static function getAllIncome()
     {
         $kdAnggota = \Session::get('kd_anggota');

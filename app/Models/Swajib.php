@@ -62,7 +62,10 @@ class Swajib extends Model
         // limit 10 OFFSET 1
         $start = \Input::get('start');
         $length = \Input::get('length');
-        $limit  = "LIMIT ".$length." OFFSET ".$start;
+        $limit ="";
+        if(!empty($limit)) {
+            $limit  = "LIMIT ".$length." OFFSET ".$start;
+        }
         $query = " select * from t_simpan_wajib as tsw
                     LEFT JOIN m_anggota ma on tsw.kd_anggota  = ma.kd_anggota
                     LEFT JOIN m_data_usaha mdu on mdu.kd_anggota = tsw.kd_anggota
