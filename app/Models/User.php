@@ -146,13 +146,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 $where .= " WHERE kabKot_usaha = '".$get['kabKot_usaha']."'";
             }
         }
-        if (!empty($get['jenisProd_usaha'])) {
-            if (!empty($where)) {
-                $where .= " and jenisProd_usaha = '".$get['jenisProd_usaha']."'";
-            } else {
-                $where .= " WHERE jenisProd_usaha = '".$get['jenisProd_usaha']."'";
-            }
-        }
+        // if (!empty($get['jenisProd_usaha'])) {
+        //     if (!empty($where)) {
+        //         $where .= " and jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+        //     } else {
+        //         $where .= " WHERE jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+        //     }
+        // }
         if (!empty($get['omset_usaha'])) {
             if (!empty($where)) {
                 $where .= " and omset_usaha = '".$get['omset_usaha']."'";
@@ -160,6 +160,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 $where .= " WHERE omset_usaha = '".$get['omset_usaha']."'";
             }
         }
+        // next update field
+        if (!empty($get['jenisProd_usaha'])) {
+            if (!empty($where)) {
+                $where .= " and jenis_usaha = '".$get['jenisProd_usaha']."'";
+            } else {
+                $where .= " WHERE jenis_usaha = '".$get['jenisProd_usaha']."'";
+            }
+        }
+
         $order = "";
         if (!empty(\Input::get('order'))) { // here order processing
             $colum  = self::column_order();
@@ -221,14 +230,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 $where .= " WHERE kabKot_usaha = '".$get['kabKot_usaha']."'";
             }
         }
+        // if (!empty($get['jenisProd_usaha'])) {
+        //     if (!empty($where)) {
+        //         $where .= " and jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+        //     } else {
+        //         $where .= " WHERE jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+        //     }
+        // }
+
+        // next update field
         if (!empty($get['jenisProd_usaha'])) {
             if (!empty($where)) {
-                $where .= " and jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+                $where .= " and jenis_usaha = '".$get['jenisProd_usaha']."'";
             } else {
-                $where .= " WHERE jenisProd_usaha = '".$get['jenisProd_usaha']."'";
+                $where .= " WHERE jenis_usaha = '".$get['jenisProd_usaha']."'";
             }
         }
-
         if (!empty($get['omset_usaha'])) {
             if (!empty($where)) {
                 $where .= " and omset_usaha = '".$get['omset_usaha']."'";
