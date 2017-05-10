@@ -113,17 +113,20 @@
                 value="{{!empty($allData->kapasitas_usaha) ? $allData->kapasitas_usaha : '' }}"
                 placeholder="Kapasitas">
             </div>
+            <span class="input-group-addon">/Bulan</span>
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
                 <input type="text" name="harga_usaha" class="form-control date"
                     value="{{!empty($allData->harga_usaha) ? $allData->harga_usaha : '' }}"
                 placeholder="Harga Jual">
             </div>
+            <span class="input-group-addon">/Bulan</span>
         </div>
     </div>
+    <!--
     <div class="col-md-1">
         <div class="input-group">
             <div class="form-line">
@@ -132,6 +135,7 @@
             </div>
         </div>
     </div>
+-->
 </div>
 
 
