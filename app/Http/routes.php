@@ -255,7 +255,7 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/management/income-ajax', ['uses'=>'managementincomeController@indexAjax', 'as'=>'management.incomeajax']);
 
         Route::get('/management/view-income', ['uses'=>'managementincomeController@viewIncome', 'as'=>'management.viewIncome']);
-        Route::get('/management/view-income-ajax', ['uses'=>'managementincomeController@viewIncomeAjax', 'as'=>'management.viewIncomeAjax']);
+        Route::get('/management/view-income-excel-ajax', ['uses'=>'managementincomeController@viewIncomeAjax', 'as'=>'management.viewIncomeAjax']);
         Route::get('/management/view-income-excel', ['uses'=>'managementincomeController@viewIncomeExcel', 'as'=>'management.viewIncomeExcel']);
 
         Route::post('/management/income-save', ['uses'=>'managementincomeController@create', 'as'=>'management.incomesave']);
@@ -264,10 +264,12 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         //Management Outcome
 
         //Managemenet Income
+        Route::get('/management/view-income-excel', ['uses'=>'managementincomeController@viewIncomeExcel', 'as'=>'management.viewIncomeExcel']);
         Route::get('/management/outcome', ['uses'=>'managementoutcomeController@index', 'as'=>'management.outcome']);
         Route::get('/management/outcome-ajax', ['uses'=>'managementoutcomeController@indexAjax', 'as'=>'management.outcomeajax']);
         
         Route::get('/management/view-outcome', ['uses'=>'managementoutcomeController@viewOutcome', 'as'=>'management.viewoutcome']);
+        Route::post('/management/income-edit', ['uses'=>'managementoutcomeController@update', 'as'=>'management.incomeupdate']);
         Route::get('/management/view-outcome-ajax', ['uses'=>'managementoutcomeController@viewOutcomeAjax', 'as'=>'management.viewOutcomeAjax']);
         Route::get('/management/view-outcome-excel', ['uses'=>'managementoutcomeController@viewOutcomeExcel', 'as'=>'management.viewOutcomeExcel']);
 
@@ -287,6 +289,15 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/keuangan/income', ['uses'=>'managementincomeController@indexReadOnly', 'as'=>'management.incomeReadOnly']);
         Route::get('/keuangan/outcome', ['uses'=>'managementoutcomeController@indexReadOnly', 'as'=>'management.outComeReadOnly']);
         //Management Report
+
+        //Jenis Usaha
+        Route::get('/jenis-Usaha', ['uses'=>'jenisUsahaController@index', 'as'=>'jenis.usaha']);
+        Route::post('/jenis-usaha-save', ['uses'=>'jenisUsahaController@create', 'as'=>'jenis.usahaSave']);
+        Route::post('/jenis-Usaha-edit', ['uses'=>'jenisUsahaController@update', 'as'=>'jenis.usahaUpdate']);
+        Route::get('/jenis-Usaha-delete/{id}', ['uses'=>'jenisUsahaController@delete', 'as'=>'jenis.usahaDelete']);
+        Route::get('/jenis-Usaha-edit/{id}', ['uses'=>'jenisUsahaController@edit', 'as'=>'jenis.usahaEdit']);
+        Route::get('/jenis-usaha-ajax', ['uses'=>'jenisUsahaController@indexAjax', 'as'=>'jenis.usahaajax']);
+
 
     });
 });

@@ -13,5 +13,6 @@ return [
     'ERROR_JML_WAJIB' => 'Jumlah pembayaran Wajib di isi',
     'ERROR_TGL_BAYAR_WAJIB' => 'Tanggal Wajib di isi',
     'ERROR_BKT_WAJIB' => 'file Wajib di isi',
+    'ERROR_NM_JNS_USAHA' => 'Nama Jenis Usaha Wajib Di isi',
 
 ];

@@ -47,7 +47,7 @@
 </div>
 <div class="row clearfix">
     <h2 class="card-inside-title group-title">Alamat</h2>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="input-group">
             <div class="form-line">
                 <input type="text" name="alamat_usaha" class="form-control date"
@@ -73,12 +73,21 @@
                 placeholder="Kecamatan">
             </div>
         </div>
+    </div> 
+    <div class="col-md-2">
+        <div class="input-group">
+            <div class="form-line">
+                <input type="text" name="kel_usaha" class="form-control date"
+                value="{{!empty($allData->kel_usaha) ? $allData->kel_usaha : '' }}"
+                placeholder="Kelurahan">
+            </div>
+        </div>
     </div>
     <div class="col-md-2">
         <div class="input-group">
             <div class="form-line">
                 <input type="text" name="kabKot_usaha" class="form-control date"
-                    value="{{!empty($allData->kabKot_usaha) ? $allData->kabKot_usaha : '' }}"
+                    value=""
                 placeholder="Kab/Kot">
             </div>
         </div>
@@ -96,7 +105,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div class="input-group">
             <div class="form-line">
                 <input type="text" name="harga_usaha" class="form-control date"
@@ -105,7 +114,16 @@
             </div>
         </div>
     </div>
+    <div class="col-md-1">
+        <div class="input-group">
+            <div class="form-line">
+                <input type="text" name="harga_usaha" class="form-control date"
+                placeholder="/Bulan" value="/Bulan" disabled>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <div class="row clearfix">
     <h2 class="card-inside-title group-title">Wilayah Pemasaran</h2>

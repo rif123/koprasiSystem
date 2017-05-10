@@ -158,6 +158,7 @@ class ProfileController extends Controller
             $mDataUsaha['alamat_usaha'] = \Input::get('alamat_usaha');
             $mDataUsaha['rtRw_usaha'] = \Input::get('rtRw_usaha');
             $mDataUsaha['kec_usaha'] = \Input::get('kec_usaha');
+            $mDataUsaha['kel_usaha'] = \Input::get('kel_usaha');
             $mDataUsaha['kabKot_usaha'] = \Input::get('kabKot_usaha');
             $mDataUsaha['kapasitas_usaha'] = \Input::get('kapasitas_usaha');
             $mDataUsaha['harga_usaha'] = \Input::get('harga_usaha');
@@ -179,6 +180,7 @@ class ProfileController extends Controller
             $mDataUsaha->alamat_usaha = \Input::get('alamat_usaha');
             $mDataUsaha->rtRw_usaha = \Input::get('rtRw_usaha');
             $mDataUsaha->kec_usaha = \Input::get('kec_usaha');
+            $mDataUsaha->kel_usaha = \Input::get('kel_usaha');
             $mDataUsaha->kabKot_usaha = \Input::get('kabKot_usaha');
             $mDataUsaha->kapasitas_usaha = \Input::get('kapasitas_usaha');
             $mDataUsaha->harga_usaha = \Input::get('harga_usaha');

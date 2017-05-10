@@ -54,5 +54,18 @@
         }
     </style>
 </section>
+@section('js')
+<script >
+    
+$('#tanggal_lahir_pribadi').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true,
+        startDate: '-3d'
+    });
+
+
+    
+</script>
+@endsection
 @stop
 @stop
