@@ -46,6 +46,16 @@
     </div>
 </div>
 <div class="row clearfix">
+    <div class="input-group" style="width:0px">
+        <div class="input-group input-group-lg" style="margin-right: 30px;">
+           <span class="input-group-addon">
+                   <input type="checkbox" class="filled-in event-address-pribadi" id="ig_checkbox">
+               <label for="ig_checkbox">Pilih jika alamat sama alamat pribadi</label>
+           </span>
+       </div>
+    </div>
+</div>
+<div class="row clearfix">
     <h2 class="card-inside-title group-title">Alamat</h2>
     <div class="col-md-4">
         <div class="input-group">
@@ -73,7 +83,7 @@
                 placeholder="Kecamatan">
             </div>
         </div>
-    </div> 
+    </div>
     <div class="col-md-2">
         <div class="input-group">
             <div class="form-line">
@@ -87,7 +97,7 @@
         <div class="input-group">
             <div class="form-line">
                 <input type="text" name="kabKot_usaha" class="form-control date"
-                    value=""
+                    value="{{!empty($allData->kabKot_usaha) ? $allData->kabKot_usaha : '' }}"
                 placeholder="Kab/Kot">
             </div>
         </div>
@@ -103,17 +113,20 @@
                 value="{{!empty($allData->kapasitas_usaha) ? $allData->kapasitas_usaha : '' }}"
                 placeholder="Kapasitas">
             </div>
+            <span class="input-group-addon">/Bulan</span>
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
         <div class="input-group">
             <div class="form-line">
                 <input type="text" name="harga_usaha" class="form-control date"
                     value="{{!empty($allData->harga_usaha) ? $allData->harga_usaha : '' }}"
                 placeholder="Harga Jual">
             </div>
+            <span class="input-group-addon">/Bulan</span>
         </div>
     </div>
+    <!--
     <div class="col-md-1">
         <div class="input-group">
             <div class="form-line">
@@ -122,6 +135,7 @@
             </div>
         </div>
     </div>
+-->
 </div>
 
 
