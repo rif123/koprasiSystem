@@ -77,11 +77,8 @@ $(document).ready(function(){
             $("input[name='kabKot_usaha']").val("");
         }
     });
-    // $('.event-address-pribadi').click(function(){
-
-    // })
+    
 });
-
 // pre-submit callback
 function showRequest(formData, jqForm, options) {
     var queryString = $.param(formData);

@@ -109,14 +109,13 @@
                 </div>
                 <!-- #END# Widgets -->
                 <!-- CPU Usage -->
-                    @if( \Session::get('rules') != '5')
+            @if( \Session::get('rules') == '5')
                 <div class="row clearfix">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
                         <div class="card">
-                            <div class="header">
+                            <div class= "header">
                                 <h2>FAST LINK</h2>
-
                             </div>
 
                             <div class="body">
@@ -129,10 +128,7 @@
                                     </a>
                                 </div>
                             @endif
-                            <?php
-                            // echo "<pre>";
-                            //     print_R(\Session::get('user_grp'));die;
-                            ?>
+
                             @if( \Session::get('rules') == '1')
                                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                                     <a href="{{$_ENV['ADMIN_FOLDER'].'/post/add'}}">
@@ -240,14 +236,27 @@
                     </div>
                 </div>
                 @else
-
+                <!-- Basic Card -->
+                <a href="{{url('/admin/detail')}}">
+                   <div class="row clearfix">
+                       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 showDetail">
+                           <div class="card">
+                               <div class="header">
+                                   <h2>
+                                       Basic Card Title <small>Description text here...</small>
+                                   </h2>
+                               </div>
+                               <div class="body">
+                                   Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                </a>
+       <!-- #END# Basic Card -->
                 @endif
                 <!-- #END# CPU Usage -->
                 </div>
         </section>
     @stop
-    @section('akbar')
-
-    haloooooo
-    @STOP
 @stop
