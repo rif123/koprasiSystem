@@ -79,7 +79,7 @@ class simpanWajibController extends Controller
             'tgl_bayar_wajib.required'=>config('constants.ERROR_TGL_BAYAR_WAJIB'),
             'bkt_bayar_wajib.required'=>config('constants.ERROR_BKT_WAJIB'),
         ];
-        $validator=Validator::make(\Input::all(), $rules, $messages);
+           $validator=Validator::make(\Input::all(), $rules, $messages);
 
         if ($validator->passes()) {
            $Swajib = new SW;
