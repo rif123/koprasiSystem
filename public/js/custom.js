@@ -16,7 +16,8 @@ define([
 		'profile',
 		'sweetAlert',
 		'menu',
-		'group'
+		'group',
+		'jqueryDatePicker'
 
 	], function ($){
 		$(document).ready(function(){

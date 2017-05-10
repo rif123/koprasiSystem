@@ -35,12 +35,15 @@ require.config({
 			deps: ['jquery']
 		},
 		'profile' : {
-			deps: ['jquery']
+			deps: ['jquery', 'jqueryDatePicker']
 		},
 		'menu' : {
 			deps: ['jquery']
 		},
 		'group' : {
+			deps: ['jquery']
+		},
+		'jqueryDatePicker' : {
 			deps: ['jquery']
 		}
 	},
@@ -63,6 +66,7 @@ require.config({
         jquerydatatables  : 'plugins/jquery-datatable/jquery.dataTables',
         leanmodal  : 'plugins/jquery-leanmodal/jquery.leanModal.min',
         jqueryForm  : 'plugins/form/jqueryForm',
+        jqueryDatePicker  : 'plugins/bootsrap-datepicker/bootstrap-datepicker.min',
         profile  : 'js/profile/profile',
 		menu 	: 'js/menu/menu',
 		group 	: 'js/group/group',

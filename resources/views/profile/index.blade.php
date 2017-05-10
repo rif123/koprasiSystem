@@ -2,6 +2,7 @@
 @section('content')
 @include('layouts.left')
 @include('layouts.right')
+<link href="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.css" rel="stylesheet" />
 <section class="content">
     <div class="container-fluid">
         <div class="card">
@@ -54,18 +55,6 @@
         }
     </style>
 </section>
-@section('js')
-<script >
-    
-$('#tanggal_lahir_pribadi').datepicker({
-        format: 'dd-mm-yyyy',
-        autoclose: true,
-        startDate: '-3d'
-    });
 
-
-    
-</script>
-@endsection
 @stop
 @stop

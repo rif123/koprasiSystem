@@ -46,6 +46,13 @@ $(document).ready(function(){
         $('#form-anggota input').attr("readonly", false);
     });
     $('#form-anggota input').attr('readonly', 'readonly');
+
+
+    $('#tanggal_lahir_pribadi').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+            startDate: '-3d'
+        });
 });
 
 // pre-submit callback

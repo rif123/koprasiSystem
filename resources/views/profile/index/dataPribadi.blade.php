@@ -10,7 +10,7 @@
      <div class="input-group">
         <div class="form-line">
             <input type="text" class="form-control" name="tempat_lahir_pribadi" placeholder="Tempat Lahir"
-            value="" 
+            value=""
             />
         </div>
       </div>
@@ -20,12 +20,12 @@
         <div class="input-group">
             <div class="form-line">
                 <input type="text" class="form-control" name="tanggal_lahir_pribadi" placeholder="Tanggal Lahir"
-                value="" id = "tanggal_lahir_pribadi" onClick="getAllMenu()"
+                value="" id="tanggal_lahir_pribadi" onClick="getAllMenu()"
             />
             </div>
         </div>
       </div>
-  
+
     <h2 class="card-inside-title">NPWP</h2>
     <div class="input-group">
         <div class="form-line">
@@ -124,4 +124,3 @@
             </div>
         </div>
     </div>
-

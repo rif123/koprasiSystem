@@ -6,10 +6,12 @@
 <script>
 	var baseAsset = "{{ URL::asset('') }}";
 </script>
-@yield("js")
+
 <script data-main="{{ URL::asset('') }}js/config" src="{{ URL::asset('js/requirejs.js') }}"></script>
 <script>
 	require(['config'], function (){
 	     require([baseAsset+"js/custom.js"]);
 	});
 </script>
+
+@yield("js")
