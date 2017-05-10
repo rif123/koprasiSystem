@@ -2,7 +2,7 @@
     <div class="input-group">
         <div class="form-line">
             <input type="text" class="form-control" name="nm_anggota" placeholder="Name"
-            value=""/>
+            value="{{!empty($allData->nm_anggota) ? $allData->nm_anggota : '' }}"/>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -10,7 +10,7 @@
      <div class="input-group">
         <div class="form-line">
             <input type="text" class="form-control" name="tempat_lahir_pribadi" placeholder="Tempat Lahir"
-            value=""
+            value="{{!empty($allData->tempat_lahir_pribadi) ? $allData->tempat_lahir_pribadi : '' }}"
             />
         </div>
       </div>
@@ -20,7 +20,7 @@
         <div class="input-group">
             <div class="form-line">
                 <input type="text" class="form-control" name="tanggal_lahir_pribadi" placeholder="Tanggal Lahir"
-                value="" id="tanggal_lahir_pribadi" onClick="getAllMenu()"
+                value="{{!empty($allData->tanggal_lahir_pribadi) ? date('d-m-Y',strtotime($allData->tanggal_lahir_pribadi)): '' }}" id="tanggal_lahir_pribadi" onClick="getAllMenu()"
             />
             </div>
         </div>

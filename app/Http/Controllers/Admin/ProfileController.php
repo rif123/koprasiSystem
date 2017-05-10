@@ -112,6 +112,7 @@ class ProfileController extends Controller
     {
         if ($status == 'update') {
             $mPribadi['tempat_lahir_pribadi'] = !empty(\Input::get('tempat_lahir_pribadi')) ? \Input::get('tempat_lahir_pribadi') : "";
+            $mPribadi['tanggal_lahir_pribadi'] = !empty(\Input::get('tanggal_lahir_pribadi')) ? date('Y-m-d',strtotime(\Input::get('tanggal_lahir_pribadi'))) : "";
             $mPribadi['kd_anggota'] = $insertedId;
             $mPribadi['npwp_pribadi'] = !empty(\Input::get('npwp_pribadi')) ? \Input::get('npwp_pribadi') : "";
             $mPribadi['noHp_pribadi'] = !empty(\Input::get('noHp_pribadi')) ? \Input::get('noHp_pribadi') : "";
@@ -127,6 +128,7 @@ class ProfileController extends Controller
         } else {
             $mPribadi = new MP;
             $mPribadi->tempat_lahir_pribadi = \Input::get('tempat_lahir_pribadi');
+            $mPribadi->tanggal_lahir_pribadi = date('Y-m-d',strtotime(\Input::get('tanggal_lahir_pribadi')));
             $mPribadi->kd_anggota = $insertedId;
             $mPribadi->npwp_pribadi = \Input::get('npwp_pribadi');
             $mPribadi->noHp_pribadi = \Input::get('noHp_pribadi');

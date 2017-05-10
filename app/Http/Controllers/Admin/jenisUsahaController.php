@@ -101,12 +101,21 @@ class jenisUsahaController extends Controller
         $validator=Validator::make(\Input::all(), $rules, $messages);
             
              
-        if ($validator->passes()) {                     
+        if ($validator->passes()) {
+            $check =JU::getJenisUsaha();
+        
+            if (empty($check)){
+ 
             $Spokok = new JU;
             $Spokok->nama_jenis_usaha = \Input::get('nama_jenis_usaha');
             $Spokok->save();
             return \Redirect::to(route('jenis.usaha'));
             
+            }else {
+                $message = config('constants.ERROR_NMA_JNS_USAHA');
+            return \Redirect::back()->withErrors($message);
+
+            }                     
                   
             
         } else {
