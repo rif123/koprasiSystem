@@ -48,4 +48,17 @@ class JenisUsaha extends Model
         $listData = \DB::select($query);
         return $listData;
     }
+      public static function getJenisUsaha()
+    {
+         $nama_usaha = \Input::get('nama_jenis_usaha');   
+        $query = "SELECT nama_jenis_usaha FROM m_jenis_usaha 
+               WHERE nama_jenis_usaha= '".$nama_usaha."'";
+
+        // print_R($query);die;
+        $listData = \DB::select($query);
+        return $listData;
+
+    }    
+
+
   }

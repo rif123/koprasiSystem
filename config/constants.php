@@ -14,5 +14,6 @@ return [
     'ERROR_TGL_BAYAR_WAJIB' => 'Tanggal Wajib di isi',
     'ERROR_BKT_WAJIB' => 'file Wajib di isi',
     'ERROR_NM_JNS_USAHA' => 'Nama Jenis Usaha Wajib Di isi',
+    'ERROR_NMA_JNS_USAHA' => 'Nama Jenis Usaha Sudah Terdaftar',
 
 ];
