@@ -53,6 +53,30 @@ $(document).ready(function(){
             autoclose: true,
             startDate: '-3d'
         });
+    $(".event-address-pribadi").change(function() {
+        if($(this).prop('checked') == true) {
+                var ap = $("input[name='alamat_pribadi']").val();
+                var rt = $("input[name='rtRw_pribadi']").val();
+                var kp = $("input[name='kec_pribadi']").val();
+                var dp = $("input[name='desKel_pribadi']").val();
+                var kabkot = $("input[name='kabkot_pribadi']").val();
+
+                $("input[name='alamat_usaha']").val(ap);
+                $("input[name='rtRw_usaha']").val(rt);
+                $("input[name='kec_usaha']").val(kp);
+                $("input[name='kel_usaha']").val(dp);
+                $("input[name='kabKot_usaha']").val(kabkot);
+        } else {
+            $("input[name='alamat_usaha']").val("");
+            $("input[name='rtRw_usaha']").val("");
+            $("input[name='kec_usaha']").val("");
+            $("input[name='kel_usaha']").val("");
+            $("input[name='kabKot_usaha']").val("");
+        }
+    });
+    // $('.event-address-pribadi').click(function(){
+
+    // })
 });
 
 // pre-submit callback
