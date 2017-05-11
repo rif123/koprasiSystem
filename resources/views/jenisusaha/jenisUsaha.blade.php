@@ -77,6 +77,8 @@
 </section>
 @section('js')
 <script src="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.min.js"></script>
+ <script src="{{ URL::asset('') }}plugins/sweetalert/sweetalert.min.js"></script>
+
 <script>
 var urlAjaxTable = "{{ url(route('jenis.usahaajax')) }}";
 var urlEdit = "{{url('/admin/jenis-Usaha-edit')}}";
@@ -95,21 +97,21 @@ var listTable = $('.listTable').DataTable( {
          "columns": [
             { "data": "nama_jenis_usaha" },
             { "render": function (data, type, row, meta) {
-                console.log(row)
-                var edit = $('<a><button>')
-                            .attr('class', "btn bg-blue-grey waves-effect edit-menu")
-                            .attr('href',urlEdit+'/'+row.kd_jenis_usaha)
-                            .text('Edit')
-                            .wrap('<div></div>')
-                            .parent()
-                            .html();
-                 var del = $('<a><button>')
-                        .attr('class', "btn btn-danger waves-effect delete-menu")
-                        .attr('href',urlDelete+'/'+row.kd_jenis_usaha)
-                        .text('Delete')
-                        .wrap('<div></div>')
-                        .parent()
-                        .html();
+                console.log(row)   
+                        var edit = $('<a><button>')
+                                    .attr('class', "btn bg-blue-grey waves-effect edit-menu")
+                                    .attr('href',urlEdit+'/'+row.kd_jenis_usaha)
+                                    .text('Edit')
+                                    .wrap('<div></div>')
+                                    .parent()
+                                    .html();
+                        var del = $('<button>')
+                                    .attr('class', "btn btn-danger waves-effect delete-menu")
+                                    .attr('onclick', "deletProcess('"+row.kd_jenis_usaha+"')")
+                                    .text('Delete')
+                                    .wrap('<div></div>')
+                                    .parent()
+                                    .html();
                  return edit+" | "+del;
                 }
             },
@@ -131,7 +133,19 @@ var listTable = $('.listTable').DataTable( {
            }
        ]
     });
-        
+ function deletProcess(kd_jenis_usaha){
+    swal({
+        title: "Apakah anda yakin ?",
+        text: "Anda akan menghapus data.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete ",
+        closeOnConfirm: true,
+    }, function () {
+         window.location.href = urlDelete+'/'+kd_jenis_usaha;
+     });
+  }        
 </script>
 @endsection
 @stop

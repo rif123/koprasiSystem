@@ -150,6 +150,7 @@
 </section>
 @section('js')
 <script src="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.min.js"></script>
+ <script src="{{ URL::asset('') }}plugins/sweetalert/sweetalert.min.js"></script>
 <script>
     var urlAjaxTable = "{{ URL::to(route('simpananPokok.indexAjax')) }}";
     var  urlEdit = "{{url('/admin/simpan-pokok-edit')}}";
@@ -183,6 +184,7 @@ var listTable = $('.listTable').DataTable( {
             { "data": "status" },
             { "render": function (data, type, row, meta) {
                     if (row.isButton == 1) {
+                        
                         var edit = $('<a><button>')
                                     .attr('class', "btn bg-blue-grey waves-effect edit-menu")
                                     .attr('href',urlEdit+'/'+row.kd_spokok)
@@ -190,13 +192,15 @@ var listTable = $('.listTable').DataTable( {
                                     .wrap('<div></div>')
                                     .parent()
                                     .html();
-                        var del = $('<a><button>')
+                        var del = $('<button>')
                                     .attr('class', "btn btn-danger waves-effect delete-menu")
-                                    .attr('href',urlDelete+'/'+row.kd_spokok)
+                                    .attr('onclick', "deletProcess('"+row.kd_spokok+"')")
                                     .text('Delete')
                                     .wrap('<div></div>')
                                     .parent()
                                     .html();
+                        return edit+" | "+del;
+                    
                         return edit+" | "+del;
                     } else {
                         return "-";
@@ -249,20 +253,22 @@ var listTable = $('.listTable').DataTable( {
                 { "data": "status" },
                 { "render": function (data, type, row, meta) {
                         if (row.isButton == 1) {
-                            var edit = $('<a><button>')
-                                        .attr('class', "btn bg-blue-grey waves-effect edit-menu")
-                                        .attr('href',urlEdit+'/'+row.kd_spokok)
-                                        .text('Edit')
-                                        .wrap('<div></div>')
-                                        .parent()
-                                        .html();
-                            var del = $('<a><button>')
-                                        .attr('class', "btn btn-danger waves-effect delete-menu")
-                                        .attr('href',urlDelete+'/'+row.kd_spokok)
-                                        .text('Delete')
-                                        .wrap('<div></div>')
-                                        .parent()
-                                        .html();
+                            
+                        var edit = $('<a><button>')
+                                    .attr('class', "btn bg-blue-grey waves-effect edit-menu")
+                                    .attr('href',urlEdit+'/'+row.kd_spokok)
+                                    .text('Edit')
+                                    .wrap('<div></div>')
+                                    .parent()
+                                    .html();
+                        var del = $('<button>')
+                                    .attr('class', "btn btn-danger waves-effect delete-menu")
+                                    .attr('onclick', "deletProcess('"+row.kd_spokok+"')")
+                                    .text('Delete')
+                                    .wrap('<div></div>')
+                                    .parent()
+                                    .html();
+                        return edit+" | "+del;
                             return edit+" | "+del;
                         } else {
                             return "-";
@@ -273,6 +279,19 @@ var listTable = $('.listTable').DataTable( {
           "destroy" : true
       });
     });
+    function deletProcess(kd_spokok){
+    swal({
+        title: "Apakah anda yakin ?",
+        text: "Anda akan menghapus data.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete ",
+        closeOnConfirm: true,
+    }, function () {
+         window.location.href = urlDelete+'/'+kd_spokok;
+     });
+  } 
 </script>
 @endsection
 @stop
