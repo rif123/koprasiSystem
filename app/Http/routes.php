@@ -17,6 +17,7 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
         Route::get('/', 'DashboardController@index');
+        Route::get('/detail', 'DashboardController@detail');
 
         // profile
         Route::get('/profile', ['uses'=>'ProfileController@index', 'as'=>'profile.index']);
@@ -267,7 +268,7 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/management/view-income-excel', ['uses'=>'managementincomeController@viewIncomeExcel', 'as'=>'management.viewIncomeExcel']);
         Route::get('/management/outcome', ['uses'=>'managementoutcomeController@index', 'as'=>'management.outcome']);
         Route::get('/management/outcome-ajax', ['uses'=>'managementoutcomeController@indexAjax', 'as'=>'management.outcomeajax']);
-        
+
         Route::get('/management/view-outcome', ['uses'=>'managementoutcomeController@viewOutcome', 'as'=>'management.viewoutcome']);
         Route::post('/management/income-edit', ['uses'=>'managementoutcomeController@update', 'as'=>'management.incomeupdate']);
         Route::get('/management/view-outcome-ajax', ['uses'=>'managementoutcomeController@viewOutcomeAjax', 'as'=>'management.viewOutcomeAjax']);

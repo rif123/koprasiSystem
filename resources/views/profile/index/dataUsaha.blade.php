@@ -3,7 +3,7 @@
         <h2 class="card-inside-title">Jenis Usaha</h2>
         <div class="input-group">
             <div class="form-line">
-                <select name="jenisProd_usaha" class="form-control">
+                <select name="jenis_usaha" class="form-control jenis_usaha">
                     @foreach($jenisUsaha as $k => $v)
                         <option value="{{ $v->nama_jenis_usaha }}">{{$v->nama_jenis_usaha}}</option>
                     @endforeach

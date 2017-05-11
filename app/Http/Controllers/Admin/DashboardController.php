@@ -49,6 +49,11 @@ class DashboardController extends Controller
         return view("content.dashboard",$data)->with('parser', $this->parser);
     }
 
+    public function detail () {
+        $data  = [];
+        return view("content.detailNews",$data)->with('parser', $this->parser);
+    }
+
     public function privilege()
     {
 

@@ -44,9 +44,12 @@ $(document).ready(function(){
     $('.btn-rubah-data').click(function(){
         $(this).attr('disabled', 'disabled');
         $('#form-anggota input').attr("readonly", false);
+            $(".jenis_usaha").attr("disabled", false);
     });
-    $('#form-anggota input').attr('readonly', 'readonly');
 
+    $('#form-anggota input').attr('readonly', 'readonly');
+    $('#form-anggota select').attr('readonly', 'readonly');
+    $(".jenis_usaha").attr("disabled", "disabled");
 
     $('#tanggal_lahir_pribadi').datepicker({
             format: 'dd-mm-yyyy',
@@ -74,11 +77,8 @@ $(document).ready(function(){
             $("input[name='kabKot_usaha']").val("");
         }
     });
-    // $('.event-address-pribadi').click(function(){
-
-    // })
+    
 });
-
 // pre-submit callback
 function showRequest(formData, jqForm, options) {
     var queryString = $.param(formData);
