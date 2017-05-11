@@ -10,7 +10,7 @@
      <div class="input-group">
         <div class="form-line">
             <input type="text" class="form-control" name="tempat_lahir_pribadi" placeholder="Tempat Lahir"
-            value="{{!empty($allData->tempat_lahir_pribadi) ? $allData->tempat_lahir_pribadi : '' }}"
+            value="{{!empty($allData->tempat_lahir_pribadi) ? $allData->tempat_lahir_pribadi : '' }}" readonly='true'
             />
         </div>
       </div>

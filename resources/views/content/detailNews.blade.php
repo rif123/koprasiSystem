@@ -10,12 +10,16 @@
                 <div class="row clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
-
                             <div class="header">
                                 <h2>
                                     <?php echo $listNews[0]->judul_news ?>
                                     <small>
                                         <?php echo date("d M Y", strtotime($listNews[0]->tanggal_news)) ?>
+                                    </small>
+                                    <small>
+                                        @if(!empty($listNews[0]->file_news))
+                                            <a href="{{url('/uploads/file_news/')}}{{$listNews[0]->file_news}}" style="color:blue" download>{{$listNews[0]->file_news}}</a>
+                                        @endif
                                     </small>
                                 </h2>
                                 <div class="pull-right" style="margin-top:-40px">

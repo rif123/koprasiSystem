@@ -274,7 +274,7 @@ class ProfileController extends Controller
             $file = \Input::file('pasPhoto_anggota')->isValid();
             $destinationPath = public_path().'/uploads'; // upload path
             $extension = \Input::file('pasPhoto_anggota')->getClientOriginalExtension(); // getting image extension
-            $fileName = rand(11111, 99999).'.'.$extension; // renameing image
+            $fileName = strtotime(date('Ymdhis')).'.'.$extension; // renameing image
             \Input::file('pasPhoto_anggota')->move($destinationPath, $fileName); // uploading file to given path;
             return $fileName;
         }
@@ -291,7 +291,7 @@ class ProfileController extends Controller
             $file = \Input::file($fn)->isValid();
             $destinationPath = public_path().'/uploads/'.$fn; // upload path
             $extension = \Input::file($fn)->getClientOriginalExtension(); // getting image extension
-            $fileName = rand(11111, 99999).'.'.$extension; // renameing image
+            $fileName = strtotime(date('Ymdhis')).'.'.$extension; // renameing image
             \Input::file($fn)->move($destinationPath, $fileName); // uploading file to given path;
             return $fileName;
         }
@@ -323,7 +323,7 @@ class ProfileController extends Controller
             $file = \Input::file('file')->isValid();
             $destinationPath = public_path().'/uploads/profile'; // upload path
             $extension = \Input::file('file')->getClientOriginalExtension(); // getting image extension
-            $fileName = rand(11111, 99999).'.'.$extension; // renameing image
+            $fileName = strtotime(date('Ymdhis')).'.'.$extension; // renameing image
             \Input::file('file')->move($destinationPath, $fileName); // uploading file to given path;
 
             $kd_anggota = \Session::get('kd_anggota');
@@ -364,7 +364,7 @@ class ProfileController extends Controller
             $file = \Input::file('file')->isValid();
             $destinationPath = public_path().'/uploads/produk'; // upload path
             $extension = \Input::file('file')->getClientOriginalExtension(); // getting image extension
-            $fileName = rand(11111, 99999).'.'.$extension; // renameing image
+            $fileName = strtotime(date('Ymdhis')).'.'.$extension; // renameing image
             \Input::file('file')->move($destinationPath, $fileName); // uploading file to given path;
 
             $kd_anggota = \Session::get('kd_anggota');

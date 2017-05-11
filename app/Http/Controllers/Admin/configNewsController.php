@@ -93,6 +93,7 @@ class configNewsController extends Controller
             $news->description_news = \Input::get('description_news');
             $news->tanggal_news = date('Y-m-d', strtotime(\Input::get('tanggal_news')));
             $news->status = \Input::get('status');
+            $news->file_news = $this->uploadFileDocFIle('file_news');
             $news->save();
             return \Redirect::to(route('config.news'));
         } else {
@@ -100,6 +101,24 @@ class configNewsController extends Controller
             return \Redirect::back()->withErrors($message);
         }
     }
+
+    /**
+     * upload image
+     * @return [type] [description]
+     */
+    private function uploadFileDocFIle($fn)
+    {
+
+        if (!empty(\Input::file($fn))) {
+            $file = \Input::file($fn)->isValid();
+            $destinationPath = public_path().'/uploads/'.$fn; // upload path
+            $extension = \Input::file($fn)->getClientOriginalExtension(); // getting image extension
+            $fileName = strtotime(date('Ymdhis')).'.'.$extension; // renameing image
+            \Input::file($fn)->move($destinationPath, $fileName); // uploading file to given path;
+            return $fileName;
+        }
+    }
+
     public function edit($id_news)
     {
         $update = NW::where('id_news', $id_news)->get();
@@ -138,6 +157,9 @@ class configNewsController extends Controller
             $news->description_news = \Input::get('description_news');
             $news->tanggal_news = date('Y-m-d', strtotime(\Input::get('tanggal_news')));
             $news->status = \Input::get('status');
+            if (!empty(\Input::file('file_news'))) {
+                $news->file_news = $this->uploadFileDocFIle('file_news');
+            }
             $news->update();
             return \Redirect::to(route('config.news'));
         } else {

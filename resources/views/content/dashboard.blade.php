@@ -247,11 +247,14 @@
                                    <small><?php echo date("d M Y", strtotime($listNews[0]->tanggal_news)) ?></small>
                                </div>
                                <div class="body">
-                                  <?php echo substr($val->description_news, 0, 100) ."..";  ?>
+                                  <?php echo strip_tags(substr($val->description_news, 0, 100)) ."..";  ?>
                                </div>
-                               <a href="{{url('/admin/detail')}}?id={{$val->id_news}}" class="body">
-                                  load more ...
-                                </a>
+                               <center>
+                                   <a href="{{url('/admin/detail')}}?id={{$val->id_news}}" class="btn btn-warning waves-effect">
+                                      load more ...
+                                    </a>    
+                               </center>
+                               <br />
                            </div>
                        </div>
                        @endforeach

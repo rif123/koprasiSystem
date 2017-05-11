@@ -54,13 +54,23 @@
                             <div class="col-md-12">
                                 <div class="input-group">
                                     <div class="form-line">
-                                        <input type="text" value="{{ !empty($tanggal_news) ? date('d-m-Y', strtotime($tanggal_news)) : ''}}" name="tanggal_news" class="form-control date " id="tanggal_news" placeholder="tanggal" onClick="getAllMenu()">
+                                        <input type="text" value="{{ !empty($tanggal_news) ? date('d-m-Y', strtotime($tanggal_news)) : ''}}" name="tanggal_news" class="form-control date " id="tanggal_news" placeholder="tanggal">
 
                                     </div>
                                 </div>
                             </div>
                         </div >
+                        <div class="row clearfix">
+                            <h2 class="card-inside-title group-title">File</h2>
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="file" value="" name="file_news" class="form-control date">
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div >
                       <div class="row clearfix">
                           <div class="col-md-12">
                               <h2 class="card-inside-title">Status</h2>
