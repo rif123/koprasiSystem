@@ -21,27 +21,24 @@
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
-                        <form id="form-anggota" action="{{url(route('profile.create'))}}" method="post" enctype="multipart/form-data">
-                    <div id="wizard_horizontal">
-
-                        {!! Form::token() !!}
-                        <input  type="hidden" name="kd_anggota" value="{{Session::get('kd_anggota')}}" />
-                        <h2>DATA PRIBADI</h2>
-                               <section>
+                    <form id="form-anggota" action="{{url(route('profile.create'))}}" method="post" enctype="multipart/form-data">
+                        <div id="wizard_horizontal">
+                                {!! Form::token() !!}
+                                <input  type="hidden" name="kd_anggota" value="{{Session::get('kd_anggota')}}" />
+                                <h2>DATA PRIBADI</h2>
+                                <section>
                                     @include('profile.index.dataPribadi')
-                               </section>
-
-                               <h2>DATA USAHA</h2>
-                               <section>
+                                </section>
+                                <h2>DATA USAHA</h2>
+                                <section>
                                     @include('profile.index.dataUsaha')
-                               </section>
-
-                               <h2>DOC & LEGAL</h2>
-                               <section>
-                                  @include('profile.index.dataDocLegal')
-                               </section>
-                    </div>
-                </form>
+                                </section>
+                                <h2>DOC & LEGAL</h2>
+                                <section>
+                                    @include('profile.index.dataDocLegal')
+                                </section>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
