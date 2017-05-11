@@ -16,7 +16,7 @@
             </h2>
         </div>
         <div class="row clearfix">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
                     @if(!empty($id_news))
                     <form id="form-menu" action="{{url(route('config.newsUpdate'))}}" method="post" enctype="multipart/form-data">
@@ -39,7 +39,12 @@
                             <div class="col-md-12">
                                 <div class="input-group">
                                     <div class="form-line">
+                                        <!--
                                         <input type="text" name="description_news" class="form-control date" id ="description_news" placeholder="Description News" value="{{!empty($description_news) ? $description_news : '' }}">
+                                    -->
+                                    <textarea id="tinymce" name="description_news">
+                                        {{!empty($description_news) ? $description_news : '' }}
+                                    </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -55,23 +60,29 @@
                                 </div>
                             </div>
                         </div >
-                     
+
                       <div class="row clearfix">
                           <div class="col-md-12">
                               <h2 class="card-inside-title">Status</h2>
                               <div class="input-group">
                                   <div class="form-line">
                                       <select name="status" class="form-control">
-                                      
                                           @foreach($status as $k => $v)
-                                              <option value="{{ $v }}">{{$v}}</option>
+                                            <?php $selected = ""; ?>
+                                            @if(!empty($sts))
+                                            <?php print_R($sts) ?>
+                                                @if ($v == $sts)
+                                                    <?php $selected = "selected='selected'"; ?>
+                                                @endif
+                                            @endif
+                                              <option  {{$selected}}  value="{{ $v }}">{{$v}}</option>
                                           @endforeach
                                       </select>
                                   </div>
                               </div>
                           </div>
                         </div>
-     
+
 
                         @if (!empty ($id_news))
                         <div class="row clearfix">
@@ -94,7 +105,7 @@
                     </form>
                 </div>
             </div> <!-- enf form -->
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable listTable">
                     <thead>
@@ -160,10 +171,32 @@
 </section>
 @section('js')
 <script src="{{ URL::asset('') }}plugins/bootsrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="{{ URL::asset('') }}plugins/tinymce/tinymce.js"></script>
+ <script src="{{ URL::asset('') }}plugins/sweetalert/sweetalert.min.js"></script>
 <script>
     var urlAjaxTable = "{{ URL::to(route('config.newsAjax')) }}";
     var  urlEdit = "{{url('/admin/config/news-edit')}}";
     var  urlDelete = "{{url('/admin/config/news-delete')}}";
+    var urlBase = "{{url('/')}}";
+    $(function () {
+    //TinyMCE
+    tinymce.init({
+        selector: "textarea#tinymce",
+        theme: "modern",
+        height: 300,
+        plugins: [
+            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking save table contextmenu directionality',
+            'emoticons template paste textcolor colorpicker textpattern imagetools'
+        ],
+        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons',
+        image_advtab: true
+    });
+    tinymce.suffix = ".min";
+    tinyMCE.baseURL = urlBase+'/plugins/tinymce';
+});
 $('#tanggal_news').datepicker({
         format: 'dd-mm-yyyy',
         autoclose: true,
@@ -172,7 +205,7 @@ $('#tanggal_news').datepicker({
 // jquery datatables
 var listTable = $('.listTable').DataTable( {
         "processing": true,
-        "bFilter": false,
+        "bFilter": true,
         "bInfo": false,
         "bLengthChange": false,
         "serverSide": true,
@@ -187,7 +220,7 @@ var listTable = $('.listTable').DataTable( {
 
             { "data": "status" },
             { "render": function (data, type, row, meta) {
-              
+
                         var edit = $('<a><button>')
                                     .attr('class', "btn bg-blue-grey waves-effect edit-menu")
                                     .attr('href',urlEdit+'/'+row.id_news)
@@ -195,8 +228,9 @@ var listTable = $('.listTable').DataTable( {
                                     .wrap('<div></div>')
                                     .parent()
                                     .html();
-                        var del = $('<a><button>')
+                        var del = $('<button>')
                                     .attr('class', "btn btn-danger waves-effect delete-menu")
+                                    .attr('onclick', "deletProcess('"+row.id_news+"')")
                                     .attr('href',urlDelete+'/'+row.id_news)
                                     .text('Delete')
                                     .wrap('<div></div>')
@@ -218,7 +252,10 @@ var listTable = $('.listTable').DataTable( {
                    'print'
                ]
            }
-       ]
+       ],
+        "aoColumnDefs": [
+         { "bSortable": false, "aTargets": [ 4 ] }
+        ]
     });
 
     $('.showFilter').click(function(){
@@ -258,9 +295,10 @@ var listTable = $('.listTable').DataTable( {
                                         .wrap('<div></div>')
                                         .parent()
                                         .html();
-                            var del = $('<a><button>')
+                            var del = $('<button>')
                                         .attr('class', "btn btn-danger waves-effect delete-menu")
-                                        .attr('href',urlDelete+'/'+row.kd_spokok)
+                                        .attr('onclick', "deletProcess('"+row.id_news+"')")
+                                        .attr('href',urlDelete+'/'+row.id_news)
                                         .text('Delete')
                                         .wrap('<div></div>')
                                         .parent()
@@ -272,9 +310,26 @@ var listTable = $('.listTable').DataTable( {
                     }
                 },
             ],
-          "destroy" : true
+            "destroy" : true,
+            "aoColumnDefs": [
+              { "bSortable": false, "aTargets": [ 4 ] }
+            ]
       });
     });
+
+function deletProcess(id_news){
+    swal({
+        title: "Apakah anda yakin ?",
+        text: "Anda akan menghapus data.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete ",
+        closeOnConfirm: true,
+    }, function () {
+         window.location.href = urlDelete+'/'+id_news;
+    });
+}
 </script>
 @endsection
 @stop

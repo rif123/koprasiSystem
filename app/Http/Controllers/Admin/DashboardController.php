@@ -9,6 +9,7 @@ use App\Models\Project as PJ;
 use App\Models\Swajib as SW;
 use App\Models\Income as Ic;
 use App\liblary\Format;
+use App\Models\News as NW;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -35,8 +36,6 @@ class DashboardController extends Controller
                 }
             }
             $data['sumSwajib'] = Format::getRp($sumSwajib);
-
-
             $incomeWajib = Ic::getAllForSum();
             $sumSwajib = 0;
             if (!empty($incomeWajib)) {
@@ -46,11 +45,12 @@ class DashboardController extends Controller
             }
             $data['sumSwajib'] = Format::getRp($sumSwajib);
         }
+        $data['listNews'] = NW::where('status', "Active")->get();
         return view("content.dashboard",$data)->with('parser', $this->parser);
     }
 
     public function detail () {
-        $data  = [];
+        $data['listNews'] = NW::where('id_news', \Input::get('id'))->get();
         return view("content.detailNews",$data)->with('parser', $this->parser);
     }
 

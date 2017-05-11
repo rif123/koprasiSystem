@@ -55,7 +55,6 @@ class AnggotaController extends Controller
                 $insert->save();
                 $dataAnggota = new MAN;
                 $dataAnggota->id_users = $insert->id;
-                $dataAnggota->nm_anggota = $userName;
                 $dataAnggota->save();
                 \Session::flash('userName', $userName);
                 \Session::flash('token', $token);

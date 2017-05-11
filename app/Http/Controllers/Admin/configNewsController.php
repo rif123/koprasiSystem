@@ -36,9 +36,8 @@ class configNewsController extends Controller
      */
     public function index()
     {
-         $data['data'] = NW::all();
+        $data['data'] = NW::all();
         $data['status'] = ['Active','Non Active'];
-                         
         return view('config.news.news',$data);
     }
    public function indexAjax()
@@ -49,9 +48,8 @@ class configNewsController extends Controller
        $search=$_REQUEST['search']["value"];
        $listWajib = new NW;
        // ======= count ===== //
-       $total=NW::count();
+       $total=count(NW::getAll());
        // ======= count ===== //
-
        $output=array();
        $output['draw']=$draw;
        $output['recordsTotal']=$output['recordsFiltered']=$total;
@@ -63,7 +61,7 @@ class configNewsController extends Controller
        foreach ($query as $key => $row) {
            $json['id_news'] =$row->id_news;
            $json['judul_news'] =$row->judul_news;
-           $json['description_news'] = $row->description_news;
+           $json['description_news'] = substr($row->description_news, 0, 20)."...";
            $json['tanggal_news'] = date('d-m-Y', strtotime($row->tanggal_news));
            $json['status']  = $row->status ;
            $list[] = $json;
@@ -107,12 +105,12 @@ class configNewsController extends Controller
         $update = NW::where('id_news', $id_news)->get();
         $data   = [];
         $data['data'] = NW::all();
+        $data['status'] = ['Active','Non Active'];
         foreach ($update as $key => $value) {
             $data['judul_news'] = $value->judul_news;
             $data['description_news'] = $value->description_news;
             $data['tanggal_news'] = $value->tanggal_news;
-            $data['st'] = $value->status;
-            $data['status'] = ['Active','Non Active'];
+            $data['sts'] = $value->status;
             $data['id_news'] = $value->id_news;
         }
      return view('config.news.news',$data);    }

@@ -9,7 +9,7 @@ class News extends Model
     public $timestamps = false;
     protected $fillable = ['id_news','judul_news','description_news','tanggal_news','status'];
 
- 
+
   public static function column_order()
     {
         return  ['judul_news','description_news','tanggal_news','status'];
@@ -23,9 +23,16 @@ class News extends Model
             $where = "where ";
             $count = count(self::column_order()) -1;
             foreach (self::column_order() as $key => $value) {
-                $where .= $value . " LIKE '%".$input."%'";
-                if ($key <  $count) {
-                    $where .= " OR ";
+                if ($value != 'tanggal_news') {
+                    $where .= $value . " LIKE '%".$input."%'";
+                    if ($key <  $count) {
+                        $where .= " OR ";
+                    }
+                } else {
+                    $where .= $value . " LIKE '%".date("Y-m-d", strtotime($input))."%'";
+                    if ($key <  $count) {
+                        $where .= " OR ";
+                    }
                 }
             }
         }
@@ -38,10 +45,13 @@ class News extends Model
         // limit 10 OFFSET 1
         $start = \Input::get('start');
         $length = \Input::get('length');
-        $limit  = "LIMIT ".$length." OFFSET ".$start;
-        $query = " select * from m_news 
-				".$where."				
-				".$order."				
+        $limit= "";
+        if(!empty($length) && !empty($start)) {
+            $limit  = "LIMIT ".$length." OFFSET ".$start;
+        }
+        $query = " select * from m_news
+				".$where."
+				".$order."
                 ".$limit."
                 ";
         // print_R($query);die;
@@ -50,15 +60,15 @@ class News extends Model
     }
       public static function getJenisUsaha()
     {
-         $nama_usaha = \Input::get('nama_jenis_usaha');   
-        $query = "SELECT nama_jenis_usaha FROM m_jenis_usaha 
+         $nama_usaha = \Input::get('nama_jenis_usaha');
+        $query = "SELECT nama_jenis_usaha FROM m_jenis_usaha
                WHERE nama_jenis_usaha= '".$nama_usaha."'";
 
         // print_R($query);die;
         $listData = \DB::select($query);
         return $listData;
 
-    }    
+    }
 
 
   }

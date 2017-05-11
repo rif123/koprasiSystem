@@ -109,7 +109,7 @@
                 </div>
                 <!-- #END# Widgets -->
                 <!-- CPU Usage -->
-            @if( \Session::get('rules') == '5')
+            @if( \Session::get('user_grp') != 5)
                 <div class="row clearfix">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
@@ -237,22 +237,26 @@
                 </div>
                 @else
                 <!-- Basic Card -->
-                <a href="{{url('/admin/detail')}}">
+
                    <div class="row clearfix">
+                       @foreach($listNews as $key => $val)
                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 showDetail">
                            <div class="card">
                                <div class="header">
-                                   <h2>
-                                       Basic Card Title <small>Description text here...</small>
-                                   </h2>
+                                   <h2>{{$val->judul_news}}</h2>
+                                   <small><?php echo date("d M Y", strtotime($listNews[0]->tanggal_news)) ?></small>
                                </div>
                                <div class="body">
-                                   Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+                                  <?php echo substr($val->description_news, 0, 100) ."..";  ?>
                                </div>
+                               <a href="{{url('/admin/detail')}}?id={{$val->id_news}}" class="body">
+                                  load more ...
+                                </a>
                            </div>
                        </div>
+                       @endforeach
                    </div>
-                </a>
+
        <!-- #END# Basic Card -->
                 @endif
                 <!-- #END# CPU Usage -->
