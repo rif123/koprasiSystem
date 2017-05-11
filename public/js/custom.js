@@ -13,6 +13,7 @@ define([
 		'customIndex',
 		'jquerydatatables',
 		'jqueryForm',
+		'step',
 		'profile',
 		'sweetAlert',
 		'menu',

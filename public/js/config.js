@@ -45,6 +45,9 @@ require.config({
 		},
 		'jqueryDatePicker' : {
 			deps: ['jquery']
+		},
+		'step' : {
+			deps: ['jquery']
 		}
 	},
 	paths : {
@@ -67,6 +70,7 @@ require.config({
         leanmodal  : 'plugins/jquery-leanmodal/jquery.leanModal.min',
         jqueryForm  : 'plugins/form/jqueryForm',
         jqueryDatePicker  : 'plugins/bootsrap-datepicker/bootstrap-datepicker.min',
+        step  			: 'plugins/jquery-steps/jquery.steps',
         profile  : 'js/profile/profile',
 		menu 	: 'js/menu/menu',
 		group 	: 'js/group/group',

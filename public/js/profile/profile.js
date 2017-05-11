@@ -77,8 +77,28 @@ $(document).ready(function(){
             $("input[name='kabKot_usaha']").val("");
         }
     });
-    
+
+    $('#wizard_horizontal').steps({
+       headerTag: 'h2',
+       bodyTag: 'section',
+       transitionEffect: 'slideLeft',
+       onInit: function (event, currentIndex) {
+           setButtonWavesEffect(event);
+       },
+       onStepChanged: function (event, currentIndex, priorIndex) {
+           setButtonWavesEffect(event);
+       },
+       onFinished: function (event, currentIndex) {
+           $('.btn-profile').trigger('click');
+        }
+   });
+
+
 });
+function setButtonWavesEffect(event) {
+    $(event.currentTarget).find('[role="menu"] li a').removeClass('waves-effect');
+    $(event.currentTarget).find('[role="menu"] li:not(.disabled) a').addClass('waves-effect');
+}
 // pre-submit callback
 function showRequest(formData, jqForm, options) {
     var queryString = $.param(formData);

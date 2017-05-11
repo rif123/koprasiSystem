@@ -21,30 +21,27 @@
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="body">
-                    <form id="form-anggota" action="{{url(route('profile.create'))}}" method="post" enctype="multipart/form-data">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                       <li role="presentation" class="active"><a href="#home" data-toggle="tab">DATA PRIBADI</a></li>
-                       <li role="presentation"><a href="#profile" data-toggle="tab">DATA USAHA</a></li>
-                       <li role="presentation"><a href="#messages" data-toggle="tab">DOC & LEGAL</a></li>
-                    </ul>
+                        <form id="form-anggota" action="{{url(route('profile.create'))}}" method="post" enctype="multipart/form-data">
+                    <div id="wizard_horizontal">
 
                         {!! Form::token() !!}
                         <input  type="hidden" name="kd_anggota" value="{{Session::get('kd_anggota')}}" />
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                 @include('profile.index.dataPribadi')
-                            </div>
+                        <h2>DATA PRIBADI</h2>
+                               <section>
+                                    @include('profile.index.dataPribadi')
+                               </section>
 
-                            <div role="tabpanel" class="tab-pane fade" id="profile">
-                                @include('profile.index.dataUsaha')
-                            </div>
+                               <h2>DATA USAHA</h2>
+                               <section>
+                                    @include('profile.index.dataUsaha')
+                               </section>
 
-                            <div role="tabpanel" class="tab-pane fade" id="messages">
-                                @include('profile.index.dataDocLegal')
-                            </div>
-                        </div>
-                    </form>
+                               <h2>DOC & LEGAL</h2>
+                               <section>
+                                  @include('profile.index.dataDocLegal')
+                               </section>
+                    </div>
+                </form>
                 </div>
             </div>
         </div>
