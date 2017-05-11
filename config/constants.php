@@ -15,5 +15,8 @@ return [
     'ERROR_BKT_WAJIB' => 'file Wajib di isi',
     'ERROR_NM_JNS_USAHA' => 'Nama Jenis Usaha Wajib Di isi',
     'ERROR_NMA_JNS_USAHA' => 'Nama Jenis Usaha Sudah Terdaftar',
+    'ERROR_judul_news' => 'Judul Berita Wajib di isi',
+    'ERROR_description_news' => 'Description Berita Wajib di isi',
+    'ERROR_tanggal_news' => 'Tanggal Berita Wajib di isi',
 
 ];

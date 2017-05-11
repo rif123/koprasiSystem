@@ -297,7 +297,16 @@ Route::group(['middleware' => ['beforelogin','token']], function () {
         Route::get('/jenis-Usaha-delete/{id}', ['uses'=>'jenisUsahaController@delete', 'as'=>'jenis.usahaDelete']);
         Route::get('/jenis-Usaha-edit/{id}', ['uses'=>'jenisUsahaController@edit', 'as'=>'jenis.usahaEdit']);
         Route::get('/jenis-usaha-ajax', ['uses'=>'jenisUsahaController@indexAjax', 'as'=>'jenis.usahaajax']);
+        //Jenis Usaha
 
+        //Config News
+        Route::get('/config/news', ['uses'=>'configNewsController@index', 'as'=>'config.news']);
+        Route::post('/config/news-save', ['uses'=>'configNewsController@create', 'as'=>'config.newsSave']);
+        Route::post('/config/news-edit', ['uses'=>'configNewsController@update', 'as'=>'config.newsUpdate']);
+        Route::get('/config/news-delete/{id}', ['uses'=>'configNewsController@delete', 'as'=>'config.newsDelete']);
+        Route::get('/config/news-edit/{id}', ['uses'=>'configNewsController@edit', 'as'=>'config.newsEdit']);
+        Route::get('/config/news-ajax', ['uses'=>'configNewsController@indexAjax', 'as'=>'config.newsAjax']);
+        //Config News
 
     });
 });
