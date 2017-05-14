@@ -11,7 +11,7 @@
  Target Server Version : 50505
  File Encoding         : utf-8
 
- Date: 05/11/2017 14:13:01 PM
+ Date: 05/14/2017 21:48:28 PM
 */
 
 SET NAMES utf8;
@@ -99,13 +99,13 @@ CREATE TABLE `m_anggota` (
   KEY `key_anggota` (`id_users`),
   CONSTRAINT `key_anggota` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`),
   CONSTRAINT `key_jabatan` FOREIGN KEY (`kd_jabatan`) REFERENCES `m_jabatan` (`kd_jabatan`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 --  Records of `m_anggota`
 -- ----------------------------
 BEGIN;
-INSERT INTO `m_anggota` VALUES ('82', '9', 'huhuy', '1', null, '63014.jpeg', '75375.jpeg'), ('83', '35', 'masuk809', null, null, null, null), ('84', '36', 'huhuy080', null, null, null, null), ('85', '37', 'lolo231', null, null, null, null), ('86', '38', 'kodokkkfas', null, null, null, null), ('87', '39', 'asasf234', null, null, null, null), ('88', '40', 'asfas534', null, null, null, null), ('89', '41', 'aasdfasfda534', null, null, null, null), ('90', '42', 'ccca234', null, null, null, null), ('91', '43', 'asfasdfas222', null, null, null, null), ('92', '44', 'asdfa555', null, null, null, null), ('93', '45', 'ggg342', null, null, null, null), ('94', '46', 'asdfasfdatretertr231', null, null, null, null), ('95', '47', 'asfda342', null, null, null, null), ('96', '48', null, null, null, null, null);
+INSERT INTO `m_anggota` VALUES ('82', '9', 'huhuy', '1', null, '63014.jpeg', '75375.jpeg'), ('83', '35', 'masuk809', null, null, null, null), ('84', '36', 'huhuy080', null, null, null, null), ('85', '37', 'lolo231', null, null, null, null), ('86', '38', 'kodokkkfas', null, null, null, null), ('87', '39', 'asasf234', null, null, null, null), ('88', '40', 'asfas534', null, null, null, null), ('89', '41', 'aasdfasfda534', null, null, null, null), ('90', '42', 'ccca234', null, null, null, null), ('91', '43', 'asfasdfas222', null, null, null, null), ('92', '44', 'asdfa555', null, null, null, null), ('93', '45', 'ggg342', null, null, null, null), ('94', '46', 'asdfasfdatretertr231', null, null, null, null), ('95', '47', 'asfda342', null, null, null, null), ('96', '48', 'fathya username', null, null, null, null), ('97', '49', 'asdqwe123', null, null, null, null);
 COMMIT;
 
 -- ----------------------------
@@ -142,13 +142,13 @@ CREATE TABLE `m_data_doclegal` (
   PRIMARY KEY (`kd_docLegal`),
   KEY `kd_anggota` (`kd_anggota`),
   CONSTRAINT `key_anggota_docLegal` FOREIGN KEY (`kd_anggota`) REFERENCES `m_anggota` (`kd_anggota`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Records of `m_data_doclegal`
 -- ----------------------------
 BEGIN;
-INSERT INTO `m_data_doclegal` VALUES ('1', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, null, null, 'aku', '2017-04-15 20:08:37', null, null), ('2', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, null, null, 'aku', '2017-04-15 20:09:01', null, null), ('3', '82', 'asdfa', '85621.jpeg', '', '12077.jpeg', '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, 'aku', '2017-04-15 20:55:36', null, null);
+INSERT INTO `m_data_doclegal` VALUES ('1', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, null, null, 'aku', '2017-04-15 20:08:37', null, null), ('2', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, null, null, 'aku', '2017-04-15 20:09:01', null, null), ('3', '82', 'asdfa', '85621.jpeg', '', '12077.jpeg', '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, 'aku', '2017-04-15 20:55:36', null, null), ('4', '96', '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, '', null, 'aku', '2017-05-11 18:42:45', null, null);
 COMMIT;
 
 -- ----------------------------
@@ -177,13 +177,13 @@ CREATE TABLE `m_data_pribadi` (
   PRIMARY KEY (`kd_data_pribadi`),
   KEY `kd_anggota` (`kd_anggota`),
   CONSTRAINT `key_anggota_pribadi` FOREIGN KEY (`kd_anggota`) REFERENCES `m_anggota` (`kd_anggota`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Records of `m_data_pribadi`
 -- ----------------------------
 BEGIN;
-INSERT INTO `m_data_pribadi` VALUES ('1', null, '', '', '', '', '', '', '', '', null, '', '', 'aku', '2017-04-15 20:08:37', null, null, '0000-00-00'), ('2', null, '', '', '', '', '', '', '', '', null, '', '', 'aku', '2017-04-15 20:09:01', null, null, '0000-00-00'), ('3', '82', 'tttttttttttttt', '', '', '', 'asdfasdfas as dfas', '', '', '', '', '', '', 'aku', '2017-04-15 20:30:35', null, null, '2017-05-31');
+INSERT INTO `m_data_pribadi` VALUES ('1', null, '', '', '', '', '', '', '', '', null, '', '', 'aku', '2017-04-15 20:08:37', null, null, '0000-00-00'), ('2', null, '', '', '', '', '', '', '', '', null, '', '', 'aku', '2017-04-15 20:09:01', null, null, '0000-00-00'), ('3', '82', 'tttttttttttttt', '', '', '', 'asdfasdfas as dfas', '', '', '', '', '', '', 'aku', '2017-04-15 20:30:35', null, null, '2017-05-31'), ('4', '96', '', '', '', '', '', '', '', '', '', '', '', 'aku', '2017-05-11 18:42:45', null, null, '1970-01-01');
 COMMIT;
 
 -- ----------------------------
@@ -218,13 +218,13 @@ CREATE TABLE `m_data_usaha` (
   PRIMARY KEY (`kd_usaha`),
   KEY `kd_anggota` (`kd_anggota`),
   CONSTRAINT `key_anggota_usaha` FOREIGN KEY (`kd_anggota`) REFERENCES `m_anggota` (`kd_anggota`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Records of `m_data_usaha`
 -- ----------------------------
 BEGIN;
-INSERT INTO `m_data_usaha` VALUES ('1', '88', '', '0', 'Baju', '', '', '', 'Bandung', '', '0', '', '', '0', '9000', '', '', '', 'aku', null, null, null, '', ''), ('2', '89', '', '0', 'Mobil', '', '', '', 'Jakarta', '', '0', '', '', '0', '10000', '', '', '', 'aku', null, null, null, '', ''), ('3', '82', '', '0', '', 'Jlan Jurang', '04/05', 'Sukajadi', '', '', '0', 'Bandung', '', '0', '20000', '', '', '', 'aku', null, null, null, 'pasteur', 'Konveksi');
+INSERT INTO `m_data_usaha` VALUES ('1', '88', '', '0', 'Baju', '', '', '', 'Bandung', '', '0', '', '', '0', '9000', '', '', '', 'aku', null, null, null, '', ''), ('2', '89', '', '0', 'Mobil', '', '', '', 'Jakarta', '', '0', '', '', '0', '10000', '', '', '', 'aku', null, null, null, '', ''), ('3', '82', '', '0', '', 'Jlan Jurang', '04/05', 'Sukajadi', '', '', '800000', 'Bandung', '', '0', '20000', '', '', '', 'aku', null, null, null, 'pasteur', 'Konveksi'), ('4', '96', '', '0', '', '', '', '', '', '', '90000', '', '', '0', '0', '', '', '', 'aku', null, null, null, '', 'Konveksi');
 COMMIT;
 
 -- ----------------------------
@@ -309,16 +309,17 @@ CREATE TABLE `m_news` (
   `judul_news` varchar(50) NOT NULL COMMENT 'judul_news',
   `description_news` text NOT NULL COMMENT 'description_news',
   `tanggal_news` date NOT NULL COMMENT 'tanggal_news',
+  `file_news` varchar(100) DEFAULT NULL,
   `status` varchar(15) NOT NULL,
   `id_news` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_news`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Records of `m_news`
 -- ----------------------------
 BEGIN;
-INSERT INTO `m_news` VALUES ('zx', '<h2>WYSIWYG Editor</h2>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper sapien non nisl facilisis bibendum in quis tellus. Duis in urna bibendum turpis pretium fringilla. Aenean neque velit, porta eget mattis ac, imperdiet quis nisi. Donec non dui et tortor vulputate luctus. Praesent consequat rhoncus velit, ut molestie arcu venenatis sodales.</p>\r\n<h3>Lacinia</h3>\r\n<ul>\r\n<li>Suspendisse tincidunt urna ut velit ullamcorper fermentum.</li>\r\n<li>Nullam mattis sodales lacus, in gravida sem auctor at.</li>\r\n<li>Praesent non lacinia mi.</li>\r\n<li>Mauris a ante neque.</li>\r\n<li>Aenean ut magna lobortis nunc feugiat sagittis.</li>\r\n</ul>\r\n<h3>Pellentesque adipiscing</h3>\r\n<p>Maecenas quis ante ante. Nunc adipiscing rhoncus rutrum. Pellentesque adipiscing urna mi, ut tempus lacus ultrices ac. Pellentesque sodales, libero et mollis interdum, dui odio vestibulum dolor, eu pellentesque nisl nibh quis nunc. Sed porttitor leo adipiscing venenatis vehicula. Aenean quis viverra enim. Praesent porttitor ut ipsum id ornare.</p>', '2017-06-04', 'Active', '1');
+INSERT INTO `m_news` VALUES ('zx', '<h2>WYSIWYG Editor</h2>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper sapien non nisl facilisis bibendum in quis tellus. Duis in urna bibendum turpis pretium fringilla. Aenean neque velit, porta eget mattis ac, imperdiet quis nisi. Donec non dui et tortor vulputate luctus. Praesent consequat rhoncus velit, ut molestie arcu venenatis sodales.</p>\r\n<h3>Lacinia</h3>\r\n<ul>\r\n<li>Suspendisse tincidunt urna ut velit ullamcorper fermentum.</li>\r\n<li>Nullam mattis sodales lacus, in gravida sem auctor at.</li>\r\n<li>Praesent non lacinia mi.</li>\r\n<li>Mauris a ante neque.</li>\r\n<li>Aenean ut magna lobortis nunc feugiat sagittis.</li>\r\n</ul>\r\n<h3>Pellentesque adipiscing</h3>\r\n<p>Maecenas quis ante ante. Nunc adipiscing rhoncus rutrum. Pellentesque adipiscing urna mi, ut tempus lacus ultrices ac. Pellentesque sodales, libero et mollis interdum, dui odio vestibulum dolor, eu pellentesque nisl nibh quis nunc. Sed porttitor leo adipiscing venenatis vehicula. Aenean quis viverra enim. Praesent porttitor ut ipsum id ornare.</p>', '2017-06-04', null, 'Active', '1'), ('asfda', '<p>asdfa</p>', '2017-05-23', '1494500068.jpeg', 'Active', '4');
 COMMIT;
 
 -- ----------------------------
@@ -691,13 +692,13 @@ CREATE TABLE `t_simpan_pokok` (
   PRIMARY KEY (`kd_spokok`),
   KEY `kd_anggota` (`kd_anggota`),
   CONSTRAINT `key_anggota_simpan_pokok` FOREIGN KEY (`kd_anggota`) REFERENCES `m_anggota` (`kd_anggota`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Records of `t_simpan_pokok`
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_simpan_pokok` VALUES ('19', null, '123', '2017-04-17', '41332.jpg', '82', '2'), ('21', null, '1', '2017-04-19', '14857.jpg', '82', '2'), ('23', null, '1231231', '2017-05-25', null, '82', '1');
+INSERT INTO `t_simpan_pokok` VALUES ('19', null, '123', '2017-04-17', '41332.jpg', '82', '2'), ('21', null, '1', '2017-04-19', '14857.jpg', '82', '2'), ('23', null, '1231231', '2017-05-25', null, '82', '1'), ('24', null, '1000', '2017-05-13', '60207.png', '82', '1');
 COMMIT;
 
 -- ----------------------------
@@ -731,13 +732,13 @@ CREATE TABLE `t_simpan_wajib` (
   KEY `kd_anggota_3` (`kd_anggota`),
   KEY `kd_anggota_4` (`kd_anggota`),
   CONSTRAINT `key_anggota_simpan_wajib` FOREIGN KEY (`kd_anggota`) REFERENCES `m_anggota` (`kd_anggota`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Records of `t_simpan_wajib`
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_simpan_wajib` VALUES ('18', '20', '98746.jpg', '2017-04-26', null, '82', '1'), ('20', '12', '38471.jpg', '2017-04-19', null, '82', '0');
+INSERT INTO `t_simpan_wajib` VALUES ('18', '20', '98746.jpg', '2017-04-26', null, '82', '1'), ('20', '12', '38471.jpg', '2017-04-19', null, '82', '0'), ('21', '9000', '88986.png', '2017-05-24', null, '82', '1'), ('22', 'xx', '37534.php', '2017-05-10', null, '82', '1');
 COMMIT;
 
 -- ----------------------------
@@ -855,13 +856,13 @@ CREATE TABLE `users` (
   UNIQUE KEY `uname` (`uname`),
   KEY `user_grp` (`user_grp`),
   CONSTRAINT `user_group_menu` FOREIGN KEY (`user_grp`) REFERENCES `menu_group` (`user_grp`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 --  Records of `users`
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` VALUES ('9', '1', 'admin', null, 'admin@admin.com', '$2y$10$PmcUVEJRgmmIEBQxKL/pzeHMsmjLZYEnUxvjFk5oosm1yskMtohVi', '1', 'juI0jCykZ2n0uuheaT97lZkw7QrBS5lRIIYhaHHA35iY1U4t1jgCXoGf2lVv'), ('26', '5', 'Rifky000', null, '', '$2y$10$9mYNEXKrW4Pt.SkizYO6Tu9mlrod0ogK/ClBnTRgkY85AWvyptIle', '4', null), ('27', '5', 'Rifkyxxx', null, 'rifky@kudo.co.id', '$2y$10$T6W7T2jyzsdXBmYEOJTXQ.09TO4Oosyc97UwpbrqHjEPiLscHJxji', '5', null), ('28', '5', 'Rifky222', null, '', '$2y$10$ahPaJvALdLElOypkiMel8ONl55tNvU6ID0nkH3z2lUaNrgPq0tgFG', '4', null), ('29', '5', 'asdfasfda234', null, '', '$2y$10$BbFzgeZ62X0EQiTFc6qT/OxvQrDYnObFzWfxVIzHgUD/mC6CBQAq.', '4', 'gIqLz8Anep6HtHhPv33owfZALZTLPmAtKqmPuQ8Jy8exgsqPcsNR7IfY1mry'), ('30', '5', 'xxx098908090', null, '', '$2y$10$NLIHlUBjTFIOPcuSvO2HYeQXTwYQervxTQBSbhmQ2uO8k0ghgzIx.', '4', null), ('31', '5', 'rr979', null, '', '$2y$10$jRdxKi2ZA50QzyMyRHMX/.emVxz2cmsI7uRI58NGME2xZvduQHMHW', '4', null), ('32', '5', 'xxx000', null, '', '$2y$10$dyED.mEsAf0oL.dFqqg.yuk9TgePZ4o9i9imwTD/KNCblbpoDLPIS', '4', null), ('33', '5', 'kiki455', null, '', '$2y$10$kKC8mxb.9QcKiBUtdi/JeemoT8r0tBTTKKdZ2DxnXKLd4jvIPC2Ku', '4', '6Jz6wAAFKtKOmfRtaBwig85fZQK3jt3VyZ9MeyLrFuixXIca7GrdT9TO9tvH'), ('34', '5', 'dodolxxx', null, 'rifky@kudo.co.id', '$2y$10$W12OLbFykdMVdEtrQxHfSesxZg0NY1T6AlWLrUFWKk/uLbZ/yYd.i', '5', null), ('35', '5', 'masuk809', null, '', '$2y$10$ERlzKW4YMn0IfUyFNC/BfupItWc3j0XqWFlkSQAoXCloQHXuIRPhC', '4', null), ('36', '5', 'huhuy080', null, '', '$2y$10$eyn3vDoDGuhxrkYOvFhKQ.0FSWXIF9rWqJR0HCLJWE0KfQve3RFRC', '4', null), ('37', '5', 'lolo231', '1231231231', '', '$2y$10$geVwDAWTB5dpPBwcsi1jDObT0gVsE3E8nZNQ8xAymkQAHZiSmFElu', '4', null), ('38', '5', 'kodokkkfas', 'asdfasdfas', '', '$2y$10$OliurUlWFp3DNIMf4h0nceXo30mPT.kyJLjhFjcsuRejzjhH0Xkci', '4', null), ('39', '5', 'asasf234', '234234', '', '$2y$10$v1dNUoKWknuS8JO78d5ul.O6YtEMMFPTXi.97O2Nw3X1eVkcstkd2', '4', null), ('40', '5', 'asfas534', '4534534', '', '$2y$10$FtKENe4tY7Pa6H8VEZIPa.cqtLEKmO41EtX8FBJlQ1PWYq18XOatO', '4', null), ('41', '5', 'aasdfasfda534', '2334534', '', '$2y$10$uMa6Z25c4aLX/dAToGrKG.iKz0OWDBUhRyFy0I7bzmxYLUgQEF35W', '4', null), ('42', '5', 'ccca234', '234234234', '', '$2y$10$A994k.LREXkuvidSh357LespfpdOsfA9NoTh5CZLqrgvQiELOYBPu', '4', null), ('43', '5', 'asfasdfas222', '2222222', '', '$2y$10$yU.Mu9PgMDIiQzzyb8ilMuHBfA5.6WNn0a14NtDWUxVfjjy106fr.', '4', null), ('44', '5', 'asdfa555', '5555555', '', '$2y$10$H1GVsgkFdkzNu3sO3mu8uufEjwt9LvDMk0dIShfoA2xRY8ce1U29q', '4', null), ('45', '5', 'ggg342', '2342342', '', '$2y$10$wbjdAGZyWD8bj7DWiIFYM.ExugdA98C3RdN8oiRR7lFMHFTtLubsO', '4', null), ('46', '5', 'asdfasfdatretertr231', '1231231', '', '$2y$10$WAX9H7wUuAX3JoOeydFVr.L.7JpqmKOTVzV2xLtIN4TyFFXvIRl32', '4', null), ('47', '5', 'asfda342', '2342342342', '', '$2y$10$T5Ws.eocvm/DJdn6nqO9Cev4AGE654W9h6TEzFtrZ2qjmXc64YTze', '4', null), ('48', '5', 'fathya546', '1234546', '', '$2y$10$XUbXckuMMNU9kEg64Y2NLeHkTGg91ZuA2UFL0.V3/56HP7xQSilqy', '4', 'tne9EBbblQbb2Aj48bRpMC64wme2jG5Pz3SqnqxV1JIisWX4GFQkOcBhX4CN');
+INSERT INTO `users` VALUES ('9', '1', 'admin', null, 'admin@admin.com', '$2y$10$PmcUVEJRgmmIEBQxKL/pzeHMsmjLZYEnUxvjFk5oosm1yskMtohVi', '1', 'O7XpapnGC0wijNgrylVYc6B0E1zQmdNBIYkdBgEpBiAo9rhUCMSTP8RnlbgX'), ('26', '5', 'Rifky000', null, '', '$2y$10$9mYNEXKrW4Pt.SkizYO6Tu9mlrod0ogK/ClBnTRgkY85AWvyptIle', '4', null), ('27', '5', 'Rifkyxxx', null, 'rifky@kudo.co.id', '$2y$10$T6W7T2jyzsdXBmYEOJTXQ.09TO4Oosyc97UwpbrqHjEPiLscHJxji', '5', null), ('28', '5', 'Rifky222', null, '', '$2y$10$ahPaJvALdLElOypkiMel8ONl55tNvU6ID0nkH3z2lUaNrgPq0tgFG', '4', null), ('29', '5', 'asdfasfda234', null, '', '$2y$10$BbFzgeZ62X0EQiTFc6qT/OxvQrDYnObFzWfxVIzHgUD/mC6CBQAq.', '4', 'gIqLz8Anep6HtHhPv33owfZALZTLPmAtKqmPuQ8Jy8exgsqPcsNR7IfY1mry'), ('30', '5', 'xxx098908090', null, '', '$2y$10$NLIHlUBjTFIOPcuSvO2HYeQXTwYQervxTQBSbhmQ2uO8k0ghgzIx.', '4', null), ('31', '5', 'rr979', null, '', '$2y$10$jRdxKi2ZA50QzyMyRHMX/.emVxz2cmsI7uRI58NGME2xZvduQHMHW', '4', null), ('32', '5', 'xxx000', null, '', '$2y$10$dyED.mEsAf0oL.dFqqg.yuk9TgePZ4o9i9imwTD/KNCblbpoDLPIS', '4', null), ('33', '5', 'kiki455', null, '', '$2y$10$kKC8mxb.9QcKiBUtdi/JeemoT8r0tBTTKKdZ2DxnXKLd4jvIPC2Ku', '4', '6Jz6wAAFKtKOmfRtaBwig85fZQK3jt3VyZ9MeyLrFuixXIca7GrdT9TO9tvH'), ('34', '5', 'dodolxxx', null, 'rifky@kudo.co.id', '$2y$10$W12OLbFykdMVdEtrQxHfSesxZg0NY1T6AlWLrUFWKk/uLbZ/yYd.i', '5', null), ('35', '5', 'masuk809', null, '', '$2y$10$ERlzKW4YMn0IfUyFNC/BfupItWc3j0XqWFlkSQAoXCloQHXuIRPhC', '4', null), ('36', '5', 'huhuy080', null, '', '$2y$10$eyn3vDoDGuhxrkYOvFhKQ.0FSWXIF9rWqJR0HCLJWE0KfQve3RFRC', '4', null), ('37', '5', 'lolo231', '1231231231', '', '$2y$10$geVwDAWTB5dpPBwcsi1jDObT0gVsE3E8nZNQ8xAymkQAHZiSmFElu', '4', null), ('38', '5', 'kodokkkfas', 'asdfasdfas', '', '$2y$10$OliurUlWFp3DNIMf4h0nceXo30mPT.kyJLjhFjcsuRejzjhH0Xkci', '4', null), ('39', '5', 'asasf234', '234234', '', '$2y$10$v1dNUoKWknuS8JO78d5ul.O6YtEMMFPTXi.97O2Nw3X1eVkcstkd2', '4', null), ('40', '5', 'asfas534', '4534534', '', '$2y$10$FtKENe4tY7Pa6H8VEZIPa.cqtLEKmO41EtX8FBJlQ1PWYq18XOatO', '4', null), ('41', '5', 'aasdfasfda534', '2334534', '', '$2y$10$uMa6Z25c4aLX/dAToGrKG.iKz0OWDBUhRyFy0I7bzmxYLUgQEF35W', '4', null), ('42', '5', 'ccca234', '234234234', '', '$2y$10$A994k.LREXkuvidSh357LespfpdOsfA9NoTh5CZLqrgvQiELOYBPu', '4', null), ('43', '5', 'asfasdfas222', '2222222', '', '$2y$10$yU.Mu9PgMDIiQzzyb8ilMuHBfA5.6WNn0a14NtDWUxVfjjy106fr.', '4', null), ('44', '5', 'asdfa555', '5555555', '', '$2y$10$H1GVsgkFdkzNu3sO3mu8uufEjwt9LvDMk0dIShfoA2xRY8ce1U29q', '4', null), ('45', '5', 'ggg342', '2342342', '', '$2y$10$wbjdAGZyWD8bj7DWiIFYM.ExugdA98C3RdN8oiRR7lFMHFTtLubsO', '4', null), ('46', '5', 'asdfasfdatretertr231', '1231231', '', '$2y$10$WAX9H7wUuAX3JoOeydFVr.L.7JpqmKOTVzV2xLtIN4TyFFXvIRl32', '4', null), ('47', '5', 'asfda342', '2342342342', '', '$2y$10$T5Ws.eocvm/DJdn6nqO9Cev4AGE654W9h6TEzFtrZ2qjmXc64YTze', '4', null), ('48', '5', 'fathya', '1234546', '', '$2y$10$2NJd3uRe6v/n0qpYucjQX.Ck6kl9LpPBBjbFJcOc6YXj4td9xYCfu', '5', 'OPFKLPqARm7O5rh8OvG0qgFiGcFsZ8COcAgAzVvkPZQY8YP6SYw5uBrKgpQX'), ('49', '1', 'asdqwe123', null, '', '$2y$10$JHT6csSAt99oZfdMDc7k6.mr42OHdyRjRJ8tOA6yEDI291Vsdcnp.', '1', null);
 COMMIT;
 
 -- ----------------------------
