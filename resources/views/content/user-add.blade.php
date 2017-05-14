@@ -34,7 +34,7 @@
                                                 <i class="material-icons">title</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="uname" placeholder="uname" />
+                                                <input type="text" class="form-control" name="uname" placeholder="uname" autocomplete="off"/>
                                             </div>
                                         </div>
                                         <h2 class="card-inside-title">password</h2>
@@ -43,7 +43,7 @@
                                                 <i class="material-icons">remove_red_eye</i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="password" class="form-control" name="password" placeholder="password" />
+                                                <input type="password" class="form-control" name="password" placeholder="password" autocomplete="off"/>
                                             </div>
                                         </div>
                                         <h2 class="card-inside-title">email</h2>

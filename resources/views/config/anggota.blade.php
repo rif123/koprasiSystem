@@ -28,6 +28,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Username</th>
                             <th>Nama</th>
                             <th>Nomor Anggota</th>
                             <th>Kab/kot</th>
@@ -152,7 +153,7 @@ var listTable = $('.listTable').DataTable( {
                     }
                 }
             },
-
+            { "data": "nm_anggota" },
             { "render": function (data, type, row, meta) {
                 if (row.no_anggota != null) {
                     var detail = $('<a>')

@@ -38,7 +38,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
     public static function column_order()
     {
-        return  ['uname', 'no_anggota', 'kec_usaha','jenisProd_usaha', 'ma.kd_anggota','id'];
+        return  ['uname', 'nm_anggota', 'no_anggota', 'kec_usaha','jenisProd_usaha', 'ma.kd_anggota','id'];
     }
 
     public static function mGroup()

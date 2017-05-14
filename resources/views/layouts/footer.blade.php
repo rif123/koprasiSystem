@@ -7,11 +7,10 @@
 	var baseAsset = "{{ URL::asset('') }}";
 </script>
 
-<script data-main="{{ URL::asset('') }}js/config" src="{{ URL::asset('js/requirejs.js') }}"></script>
+<script data-main="{{ URL::asset('') }}js/config.js?v={{rand(10, 123344)}}" src="{{ URL::asset('js/requirejs.js') }}?v={{rand(10, 123344)}}"></script>
 <script>
 	require(['config'], function (){
-	     require([baseAsset+"js/custom.js"]);
+	     require([baseAsset+"js/custom.js?v={{rand(10, 123344)}}"]);
 	});
 </script>
-
 @yield("js")

@@ -55,14 +55,16 @@ class LoginController extends Controller
                         );
             if(\Auth::attempt($userdata,$remember)){
                         $anggota = US::mAnggota(\Auth::User()->id);
+                        // echo "<pre>";
+                        // print_R($anggota);die;
                         $dataSession = [
                             'UserId' =>     \Auth::User()->id,
                             'kd_anggota' => $anggota[0]->kd_anggota,
-                            'id' =>         \Auth::User()->user_level->rules,
+                            'id' =>         !empty(\Auth::User()->user_level->rules ) ? \Auth::User()->user_level->rules  : "",
                             'user_grp' =>   \Auth::User()->user_grp,
                             'uname' =>      \Auth::User()->uname,
                             'email' =>      \Auth::User()->email,
-                            'rules' =>      \Auth::User()->user_level->rules
+                            'rules' =>      !empty(\Auth::User()->user_level->rules) ? \Auth::User()->user_level->rules : ""
                         ];
                         \Session::put($dataSession);
                     $a = array("admin","admin/error","admin/home","admin/logout","admin/logout","admin/setting/profile");

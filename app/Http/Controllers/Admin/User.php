@@ -40,18 +40,25 @@ class User extends Controller
     public function addProcess()
     {
         $rules = array(
-            'uname'    => 'required|alpha|min:4',
+            'uname'    => 'required',
             'password'    => 'required|min:4',
             'ugroup'    => 'required',
-            'email'    => 'required|email',
         );
-
-        $validator = \Validator::make(\Input::all(), $rules);
+        $messages = [
+            'uname'    => 'Tidak Boleh Kosong',
+            'password'    => 'Password Tidak boleh Kosong',
+            'ugroup'    => 'Group tidak boleh kosong',
+        ];
+        $validator = \Validator::make(\Input::all(), $rules, $messages);
 
         if ($validator->fails()) {
             return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user/add')->withErrors($validator);
         } else {
             // try {
+                $checkUname = DB::table('users')->where('uname', \Input::get('uname'))->get();
+                if (!empty($checkUname) ) {
+                        return \Redirect::to($_ENV['ADMIN_FOLDER'].'/user/add/')->withErrors(array('message' => 'Username/email already exist.'));
+                }
                 $insert = new US;
                 $insert->uname = \Input::get('uname');
                 $insert->password = \Hash::make(\Input::get('password'));
@@ -89,7 +96,6 @@ class User extends Controller
             'uname'    => 'required',
             'password'    => 'min:4',
             'ugroup'    => 'required',
-            'email'    => 'required|email',
         );
 
         $validator = \Validator::make(\Input::all(), $rules);

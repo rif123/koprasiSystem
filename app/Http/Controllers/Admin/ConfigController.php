@@ -237,9 +237,6 @@ class ConfigController extends Controller
     }
 
     public function anggotaDetail(){
-
-        // $listMenu = MA::all()->sortByDesc("id_menu");
-        // $data['listMenu'] = $listMenu;
         $query  = "select * from m_jenis_usaha";
         $getJenisUsaha = \DB::select($query);
         $data['jenisUsaha'] = $getJenisUsaha;
@@ -266,6 +263,7 @@ class ConfigController extends Controller
         foreach ($query as $key => $row) {
             $json['no'] = $no;
             $json['uname'] = $row->uname;
+            $json['nm_anggota'] = $row->nm_anggota;
             $json['no_anggota'] = $row->no_anggota;
             $json['kabKot_usaha'] = $row->kabKot_usaha;
             $json['jenisProd_usaha'] = $row->jenisProd_usaha;
