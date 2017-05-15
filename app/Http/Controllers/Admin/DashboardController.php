@@ -25,6 +25,7 @@ class DashboardController extends Controller
         $data['team'] = TeamModel::select('id','name','position')->get();
         $data['post'] = PS::select('id','title','date','active')->get();
         $data['project'] = PJ::with('project_category')->get();
+        $data['news'] = count(NW::all());
         $data['data'] = GuestModel::where('has_read','0')->get();
         if ( \Session::get('user_grp') == 5) {
             // $data['simpanan'] = get();

@@ -102,7 +102,21 @@
                                     <div class="number count-to" data-from="0" data-to="{{$data->count()}}" data-speed="1000" data-fresh-interval="20">{{$data->count()}}</div>
                                 </div>
                             </div>
-                                    </a>
+                            </a>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <a href="#"  style="text-decoration:none">
+                            <div class="info-box bg-orange hover-expand-effect" style="cursor:pointer">
+                                <div class="icon">
+                                    <i class="material-icons">forum</i>
+                                </div>
+                                <div class="content">
+                                    <div class="text">News</div>
+                                    <div class="number count-to" data-from="0" data-to="{{$news}}" data-speed="1000" data-fresh-interval="20">{{$news}}</div>
+                                </div>
+                            </div>
+                            </a>
                         </div>
                     @endif
 
@@ -252,7 +266,7 @@
                                <center>
                                    <a href="{{url('/admin/detail')}}?id={{$val->id_news}}" class="btn btn-warning waves-effect">
                                       load more ...
-                                    </a>    
+                                    </a>
                                </center>
                                <br />
                            </div>
