@@ -88,6 +88,13 @@
                                                 <input type="hidden" class="form-control" value="{{$site_logo}}" name="image" id="imgUploadReplace1"/>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <h2 class="card-inside-title">favicon</h2>
+                                            <div id="information"></div>
+                                            <div class="form-line">
+                                            <input type="file" name="favicon" id="favicon">
+                                            </div>
+                                        </div>
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <div style="text-align:center">
                                             <button type="Submit" class="btn btn-primary btn-lg m-l-15 waves-effect">Save</button>
