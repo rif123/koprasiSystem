@@ -220,5 +220,14 @@ class Helpers
         ];
         return $listMonth;
     }
-
+    /**
+     * @param get rp
+     * @return string
+     */
+    public static function getFavicon()
+    {
+        $query = "select * from settings where setting_name = 'favicon' ";
+        $menu = DB::select($query);
+        return !empty($menu[0]->value) ? $menu[0]->value : "";
+    }
 }

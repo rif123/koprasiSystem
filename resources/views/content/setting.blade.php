@@ -82,10 +82,23 @@
                                             <div class="form-line">
                                                 <div class="input-group">
                                                     <input name="img" type="file" id="imgupload" /><button type="button" class="btn btn-warning waves-effect clearupload" data-target="#imgupload">Clear upload</button>
-                                                </div> Or 
+                                                </div> Or
                                                 <button type="button" href="#ContentModal" data-to="#imgUploadReplace" data-to-origin="#imgUploadReplace1" data-url="/{{$_ENV['ADMIN_FOLDER']}}/mediamanager/show" class="btn bg-light-blue waves-effect OpenMediaManager">Choose from media manager</button>
                                                 <input type="text" class="form-control" value="{{$site_logo}}" id="imgUploadReplace" disabled/>
                                                 <input type="hidden" class="form-control" value="{{$site_logo}}" name="image" id="imgUploadReplace1"/>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <h2 class="card-inside-title">Favicon</h2>
+                                            <div id="information"></div>
+                                            <div class="form-line">
+                                                <div class="input-group">
+                                                    <input name="favicon" type="file" />
+                                                    <br />
+                                                    <img src="{{url('/images').'/'.$favicon}}"  width="100px"/>
+                                                </div>
                                             </div>
                                         </div>
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

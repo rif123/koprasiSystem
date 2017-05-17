@@ -7,8 +7,8 @@
     <meta name="description" content="{{$meta_description}}">
     <meta name="keywords" content="{{$meta_keyword}}">
     <meta name="author" content="">
-
-
+    <link rel="shortcut icon" type="image/png" href="{{ url('/images').'/'.Helpers::getFavicon()}}" />
+    <link rel="shortcut icon" type="image/png" href="{{ url('/images').'/'.Helpers::getFavicon()}}" />
     <!--[if lt IE 9]>
 	<script src="{{ URL::asset('') }}/js/html5shiv.js"></script>
 	<![endif]-->
@@ -16,6 +16,7 @@
 
     <!-- CSS Files
     ================================================== -->
+
     <link rel="stylesheet" href="{{ URL::asset('') }}css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="{{ URL::asset('') }}css/jpreloader.css" type="text/css">
     <link rel="stylesheet" href="{{ URL::asset('') }}css/animate.css" type="text/css">

@@ -54,18 +54,18 @@
                                                     @else
                                                         <td class="photo-team"><img src="{{asset('/images/image-gallery/team/avatar.jpg')}}" style="display:block;width:100%;"/></td>
                                                     @endif
-                                                    
+
                                                     <td>{{$a['name']}}</td>
                                                     <td style="width:50%">{{$a['position']}}</td>
                                                     <td>
                                                         <a href="{{url($_ENV['ADMIN_FOLDER'].'/team/edit/'.$a['id'])}}">
                                                             <button class="btn btn-info waves-effect" type="button">
-                                                                    <i class="material-icons" style="color:white">mode_edit</i>     
+                                                                    <i class="material-icons" style="color:white">mode_edit</i>
                                                             </button>
                                                         </a>
                                                         <a href="{{url($_ENV['ADMIN_FOLDER'].'/team/delete/'.$a['id'])}}" class="alertButton">
                                                             <button class="btn bg-red waves-effect" type="button">
-                                                                    <i class="material-icons">delete</i>                  
+                                                                    <i class="material-icons">delete</i>
                                                             </button>
                                                         </a>
                                                     </td>
