@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2017 at 03:32 AM
+-- Generation Time: May 18, 2017 at 03:46 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -69,7 +69,34 @@ INSERT INTO `menu_admin` (`id_menu`, `level_menu`, `parent_menu`, `posisition_me
 (227, 0, 216, 0, 'admin/skill', 'Skill', NULL, '2017-04-08 15:36:50', NULL, NULL, NULL),
 (228, 0, 216, 0, 'admin/team', 'Team', NULL, '2017-04-08 15:37:10', NULL, NULL, NULL),
 (229, 0, 216, 0, 'admin/testimonial', 'Testimonial', NULL, '2017-04-08 15:37:30', NULL, NULL, NULL),
-(230, 0, 217, 0, 'admin/setting', 'General', NULL, '2017-04-08 15:39:07', NULL, NULL, NULL);
+(230, 0, 217, 0, 'admin/setting', 'General', NULL, '2017-04-08 15:39:07', NULL, NULL, NULL),
+(231, 0, 217, 0, 'Footer', 'Footers', NULL, '2017-04-08 15:39:32', NULL, NULL, NULL),
+(232, 0, 231, 0, 'admin/setting/footer', 'Footer Text', 'volume_down', '2017-04-08 15:39:58', NULL, NULL, NULL),
+(233, 0, 231, 0, 'admin/setting/footer/social', 'Social Link', NULL, '2017-04-08 15:40:50', NULL, NULL, NULL),
+(234, 0, 217, 0, 'admin/setting/location', 'Location', NULL, '2017-04-08 15:41:25', NULL, NULL, NULL),
+(235, 0, 217, 0, 'admin/setting/profile', 'Profile', NULL, '2017-04-08 15:41:48', NULL, NULL, NULL),
+(236, 0, 217, 0, 'admin/contact', 'Contact', 'favorite', '2017-04-08 15:42:28', NULL, NULL, NULL),
+(237, 0, 0, 0, 'simpanan', 'Simpanan Anggota', 'save', '2017-04-09 05:29:11', NULL, NULL, NULL),
+(238, 0, 237, 0, 'admin/simpanan/wajib', 'Wajib', 'card_giftcard', '2017-04-09 05:30:16', NULL, NULL, NULL),
+(239, 0, 237, 0, 'admin/simpanan/pokok', 'Pokok', 'card_travel', '2017-04-09 05:31:20', NULL, NULL, NULL),
+(241, 0, 0, 0, 'keuangan', 'Keuangan Koprasi', 'payment', '2017-04-15 02:25:30', NULL, NULL, NULL),
+(242, 0, 0, 0, 'admin/keuangan', 'Koperasi', 'payment', '2017-04-15 02:26:15', NULL, NULL, NULL),
+(243, 0, 259, 0, 'admin/anggota', 'Generate Token Anggota', 'fingerprint', '2017-04-15 03:44:59', NULL, NULL, NULL),
+(244, 0, 237, 0, 'admin/simpan-wajib', 'Simpanan Wajib', 'description', '2017-04-19 07:59:25', NULL, NULL, NULL),
+(245, 0, 237, 0, 'admin/simpan-pokok', 'Simpanan Pokok', 'description', '2017-04-20 16:11:28', NULL, NULL, NULL),
+(246, 0, 259, 0, 'admin/config/controll-Pay', 'Pembayaran Simpanan', 'settings', '2017-04-22 14:23:52', NULL, NULL, NULL),
+(248, 0, 259, 0, 'admin/management/income', 'Income', 'dns', '2017-04-28 15:40:54', NULL, NULL, NULL),
+(249, 0, 259, 0, 'admin/management/outcome', 'Outcome', 'dns', '2017-04-28 15:41:31', NULL, NULL, NULL),
+(250, 0, 259, 0, 'admin/management/report', 'Report Keuangan', 'assignment', '2017-04-29 05:17:51', NULL, NULL, NULL),
+(251, 0, 237, 0, 'admin/simpan-wajib-read', 'User Only Simpan Wajib', 'save', '2017-04-30 13:19:17', NULL, NULL, NULL),
+(252, 0, 241, 0, 'admin/keuangan/income', 'Income', 'payment', '2017-05-06 04:41:49', NULL, NULL, NULL),
+(253, 0, 241, 0, 'admin/keuangan/outcome', 'Outcome', 'card_giftcard', '2017-05-06 04:42:49', NULL, NULL, NULL),
+(254, 0, 259, 0, 'admin/config/anggota', 'Anggota', 'verified_user', '2017-05-06 16:30:12', NULL, NULL, NULL),
+(255, 0, 259, 0, 'admin/management/view-income', 'View Income', 'assignment_return', '2017-05-08 13:46:11', NULL, NULL, NULL),
+(256, 0, 259, 0, 'admin/management/view-outcome', 'View Outcome', 'exit_to_app', '2017-05-08 13:47:48', NULL, NULL, NULL),
+(257, 0, 259, 0, 'admin/jenis-Usaha', 'Jenis Usaha', 'credit_card', '2017-05-09 07:34:24', NULL, NULL, NULL),
+(258, 0, 259, 0, 'admin/config/news', 'Infomrmasi Internal', 'art_track', '2017-05-10 18:18:01', NULL, NULL, NULL),
+(259, 0, 0, 0, '/', 'Manage WJS', 'content_paste', '2017-05-15 16:24:48', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
