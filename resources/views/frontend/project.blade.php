@@ -29,9 +29,9 @@
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 <ul id="filters" class="wow fadeInUp" data-wow-delay="0s">
-                                    <li><a href="#" data-filter="*" class="selected">All Projects</a></li>
+                                    <li><a href="#" data-filter="*" class="selected">Jenis usaha</a></li>
                                     @foreach($project_category as $a)
-                                        <li><a href="#" data-filter=".{{$a}}">{{$a}}</a></li>
+                                        <li><a href="#" data-filter=".{{str_replace(" ","_",$a)}}">{{$a}}</a></li>
                                     @endforeach
                                 </ul>
 
@@ -40,23 +40,23 @@
                         <!-- portfolio filter close -->
 
                     </div>
-
                     <div id="gallery" class="gallery full-gallery de-gallery pf_full_width wow fadeInUp" data-wow-delay=".3s">
-
                         <!-- gallery item -->
                         @foreach($project as $a)
-                        <div class="item {{$a->project_category->name}}">
-                            <div class="picframe">
-                                <a class="simple-ajax-popup-align-top" href="/project/{{$a->id}}">
-                                    <span class="overlay">
-                                        <span class="pf_text">
-                                            <span class="project-name">{{$a->name}}</span>
+                            @foreach($a as $k)
+                            <div class="item {{str_replace(" ","_",$k['jenis_usaha'])}}">
+                                <div class="picframe">
+                                    <a  href="{{ url('/') }}/project/{{$k['kd_jenis_usaha']}}">
+                                        <span class="overlay">
+                                            <span class="pf_text">
+                                                <span class="project-name">{{$k['brand_usaha']}}</span>
+                                            </span>
                                         </span>
-                                    </span>
-                                </a>
-                                <img src="{{ URL::asset('') }}/images/image-gallery/{{$a->featured_image}}" alt="" />
+                                    </a>
+                                    <img src="{{ URL::asset('') }}/uploads/produk/{{$k['pasPhotoProduk']}}" alt="" />
+                                </div>
                             </div>
-                        </div>
+                            @endforeach
                         @endforeach
                         <!-- close gallery item -->
                     </div>

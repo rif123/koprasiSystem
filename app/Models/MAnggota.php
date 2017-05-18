@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
     public static function getALlData ($kd_anggota) {
         $query  = "select * from m_anggota  as ma
                     LEFT JOIN m_data_pribadi as mdp on ma.kd_anggota = mdp.kd_anggota
-                    LEFT JOIN m_data_docLegal as mdd on ma.kd_anggota = mdd.kd_anggota
+                    LEFT JOIN m_data_doclegal as mdd on ma.kd_anggota = mdd.kd_anggota
                     LEFT JOIN m_data_usaha as mdu on ma.kd_anggota = mdu.kd_anggota
                     WHERE ma.kd_anggota  = '".$kd_anggota."'
                     ";
@@ -30,4 +30,18 @@ use Illuminate\Database\Eloquent\Model;
         $listData = \DB::select($query);
         return $listData;
     }
+
+    public static function getALlNoWhere () {
+        $query  = "select * from m_anggota  as ma
+                    LEFT JOIN m_data_pribadi as mdp on ma.kd_anggota = mdp.kd_anggota
+                    LEFT JOIN m_data_doclegal as mdd on ma.kd_anggota = mdd.kd_anggota
+                    LEFT JOIN m_data_usaha as mdu on ma.kd_anggota = mdu.kd_anggota
+                    WHERE  ma.pasPhoto_anggota IS NOT NULL
+                    ORDER BY RAND()
+                    LIMIT 10
+                    ";
+        $listData = \DB::select($query);
+        return $listData;
+    }
+
 }

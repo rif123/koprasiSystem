@@ -3,16 +3,15 @@
                     <div class="container">
                         <div class="row">
                             <!--site desc-->
-
                             @if(!empty($widget_add['add_site_desc_footer']))
                                 @include('layoutsFe.'.$widget_add['add_site_desc_footer'])
                             @endif
-                            
+
                             <!--news footer-->
                             @if(!empty($widget_add['add_latest_news_footer']))
                                 @include('layoutsFe.'.$widget_add['add_latest_news_footer'])
                             @endif
-                            
+
 
                             <!--contact us footer-->
                             @if(!empty($widget_add['add_contact_us_footer']))
@@ -33,5 +32,3 @@
     				<a href="#" id="back-to-top"></a>
                 </footer>
                 <!-- footer close -->
-
-        
